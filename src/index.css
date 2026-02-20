@@ -139,15 +139,16 @@
 
 @keyframes kenBurns {
   0% {
-    transform: scale(1);
+    transform: scale(1.0);
   }
   100% {
-    transform: scale(1.12);
+    transform: scale(1.2);
   }
 }
 
 .animate-ken-burns {
-  animation: kenBurns 6s ease-out forwards;
+  animation: kenBurns 5.5s ease-in-out forwards;
+  will-change: transform;
 }
 
 @keyframes fadeIn {

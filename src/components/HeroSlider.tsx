@@ -51,7 +51,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative w-full h-[300px] md:h-[350px] lg:h-[45vh] overflow-hidden"
+      className="relative w-full h-[150px] md:h-[175px] lg:h-[22vh] overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-roledescription="carousel"
@@ -67,6 +67,7 @@ export default function HeroSlider() {
           aria-hidden={i !== current}
         >
           <img
+            key={i === current ? `kb-${current}-${Date.now()}` : `img-${i}`}
             src={s.image}
             alt={s.alt}
             className={`w-full h-full object-cover ${i === current ? "animate-ken-burns" : ""}`}
@@ -87,14 +88,14 @@ export default function HeroSlider() {
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
         <h1
           key={`h-${current}`}
-          className="font-heading font-bold text-4xl md:text-5xl lg:text-7xl text-primary-foreground mb-4 md:mb-6 animate-fade-in-up"
+          className="font-heading font-bold text-xl md:text-2xl lg:text-4xl text-primary-foreground mb-2 md:mb-3 animate-fade-in-up"
           style={{ animationDuration: "0.5s" }}
         >
           {slide.headline}
         </h1>
         <p
           key={`p-${current}`}
-          className="text-lg md:text-xl text-primary-foreground/85 max-w-2xl mb-8 animate-fade-in-up"
+          className="text-sm md:text-base text-primary-foreground/85 max-w-xl mb-4 animate-fade-in-up"
           style={{ animationDelay: "0.1s", animationDuration: "0.5s" }}
         >
           {slide.subheadline}
