@@ -88,14 +88,14 @@ export default function HeroSlider() {
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
         <h1
           key={`h-${current}`}
-          className="font-heading font-bold text-xl md:text-2xl lg:text-4xl text-primary-foreground mb-2 md:mb-3 animate-fade-in-up"
+          className="font-heading font-bold text-lg md:text-xl lg:text-2xl text-primary-foreground mb-1 md:mb-2 animate-fade-in-up"
           style={{ animationDuration: "0.5s" }}
         >
           {slide.headline}
         </h1>
         <p
           key={`p-${current}`}
-          className="text-sm md:text-base text-primary-foreground/85 max-w-xl mb-4 animate-fade-in-up"
+          className="text-xs md:text-sm text-primary-foreground/85 max-w-lg mb-3 animate-fade-in-up"
           style={{ animationDelay: "0.1s", animationDuration: "0.5s" }}
         >
           {slide.subheadline}
@@ -105,15 +105,15 @@ export default function HeroSlider() {
           style={{ animationDelay: "0.2s", animationDuration: "0.5s" }}
         >
           <Link to="/contact">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-forest-dark font-semibold text-base px-8 h-12 shadow-lg">
+            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-forest-dark font-semibold text-sm px-6 h-9 shadow-lg">
               Get Free Inspection
             </Button>
           </Link>
           <Link to="/portfolio">
             <Button
-              size="lg"
+              size="sm"
               variant="outline"
-              className="border-primary-foreground/40 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20 font-semibold text-base px-8 h-12"
+              className="border-primary-foreground/40 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20 font-semibold text-sm px-6 h-9"
             >
               View Our Portfolio
             </Button>
