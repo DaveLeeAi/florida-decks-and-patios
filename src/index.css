@@ -147,7 +147,7 @@
 }
 
 .animate-ken-burns {
-  animation: kenBurns 3.5s ease-in-out forwards;
+  animation: kenBurns 6s ease-in-out forwards;
   will-change: transform;
   transform-origin: center center;
 }
