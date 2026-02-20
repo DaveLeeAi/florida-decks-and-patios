@@ -3,6 +3,14 @@ import hero2 from "@/assets/hero-2.jpg";
 import hero3 from "@/assets/hero-3.jpg";
 import hero4 from "@/assets/hero-4.jpg";
 import hero5 from "@/assets/hero-5.jpg";
+import portfolio1 from "@/assets/portfolio-1.jpg";
+import portfolio2 from "@/assets/portfolio-2.jpg";
+import portfolio3 from "@/assets/portfolio-3.jpg";
+import portfolio4 from "@/assets/portfolio-4.jpg";
+import portfolio5 from "@/assets/portfolio-5.jpg";
+import portfolio6 from "@/assets/portfolio-6.jpg";
+import portfolio7 from "@/assets/portfolio-7.jpg";
+import portfolio8 from "@/assets/portfolio-8.jpg";
 
 export const COMPANY = {
   name: "Timber & Stone Outdoor",
@@ -123,14 +131,14 @@ export const services = [
 ];
 
 export const portfolioProjects = [
-  { id: 1, title: "Lakeside Cedar Deck", category: "Deck Installation", description: "A 600 sq ft cedar deck overlooking a private lake with built-in bench seating and solar post lights.", location: "Alpharetta, GA" },
-  { id: 2, title: "Modern Composite Entertaining Space", category: "Composite Decking", description: "Multi-level composite deck with cable railing system and integrated LED step lighting.", location: "Marietta, GA" },
-  { id: 3, title: "Craftsman Pergola & Patio", category: "Pergolas & Patios", description: "Custom cedar pergola over a 400 sq ft stone paver patio with built-in fire pit.", location: "Kennesaw, GA" },
-  { id: 4, title: "Chef's Outdoor Kitchen", category: "Outdoor Kitchens", description: "Full outdoor kitchen with granite counters, built-in grill, refrigerator, and bar seating for six.", location: "Roswell, GA" },
-  { id: 5, title: "Victorian Screened Porch", category: "Porches", description: "Screened porch with beadboard ceiling, ceiling fan, and custom railing details matching the home's Victorian style.", location: "Decatur, GA" },
-  { id: 6, title: "Backyard Deck Restoration", category: "Deck Repair", description: "Complete restoration of a 15-year-old pressure-treated deck including joist replacement and new composite boards.", location: "Sandy Springs, GA" },
-  { id: 7, title: "Hillside Multi-Level Deck", category: "Deck Installation", description: "Three-level deck system navigating a steep hillside with spiral staircase and multiple seating areas.", location: "Brookhaven, GA" },
-  { id: 8, title: "Poolside Composite Deck", category: "Composite Decking", description: "Slip-resistant composite decking surrounding a pool area with built-in planter boxes and outdoor shower.", location: "Johns Creek, GA" },
+  { id: 1, title: "Lakeside Cedar Deck", category: "Deck Installation", description: "A 600 sq ft cedar deck overlooking a private lake with built-in bench seating and solar post lights.", location: "Alpharetta, GA", image: portfolio1 },
+  { id: 2, title: "Modern Composite Entertaining Space", category: "Composite Decking", description: "Multi-level composite deck with cable railing system and integrated LED step lighting.", location: "Marietta, GA", image: portfolio2 },
+  { id: 3, title: "Craftsman Pergola & Patio", category: "Pergolas & Patios", description: "Custom cedar pergola over a 400 sq ft stone paver patio with built-in fire pit.", location: "Kennesaw, GA", image: portfolio3 },
+  { id: 4, title: "Chef's Outdoor Kitchen", category: "Outdoor Kitchens", description: "Full outdoor kitchen with granite counters, built-in grill, refrigerator, and bar seating for six.", location: "Roswell, GA", image: portfolio4 },
+  { id: 5, title: "Victorian Screened Porch", category: "Porches", description: "Screened porch with beadboard ceiling, ceiling fan, and custom railing details matching the home's Victorian style.", location: "Decatur, GA", image: portfolio5 },
+  { id: 6, title: "Backyard Deck Restoration", category: "Deck Repair", description: "Complete restoration of a 15-year-old pressure-treated deck including joist replacement and new composite boards.", location: "Sandy Springs, GA", image: portfolio6 },
+  { id: 7, title: "Hillside Multi-Level Deck", category: "Deck Installation", description: "Three-level deck system navigating a steep hillside with spiral staircase and multiple seating areas.", location: "Brookhaven, GA", image: portfolio7 },
+  { id: 8, title: "Poolside Composite Deck", category: "Composite Decking", description: "Slip-resistant composite decking surrounding a pool area with built-in planter boxes and outdoor shower.", location: "Johns Creek, GA", image: portfolio8 },
 ];
 
 export const blogPosts = [
