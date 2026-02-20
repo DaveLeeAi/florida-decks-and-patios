@@ -50,7 +50,7 @@ export default function Header() {
             <Link
               key={link.path}
               to={link.path}
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-md text-base font-semibold transition-colors ${
                 location.pathname === link.path
                   ? "text-primary bg-primary/10"
                   : "text-foreground/80 hover:text-primary hover:bg-primary/5"
@@ -71,7 +71,7 @@ export default function Header() {
             {COMPANY.phoneDisplay}
           </a>
           <Link to="/contact">
-            <Button size="sm" className="hidden sm:inline-flex bg-primary text-primary-foreground hover:bg-forest-dark font-semibold">
+            <Button size="default" className="hidden sm:inline-flex bg-amber text-charcoal hover:bg-amber-dark font-bold text-sm px-6 shadow-md">
               Get Free Estimate
             </Button>
           </Link>
