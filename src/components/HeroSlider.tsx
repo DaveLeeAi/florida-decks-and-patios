@@ -51,7 +51,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative w-full h-[600px] md:h-[700px] lg:h-[85vh] overflow-hidden"
+      className="relative w-full h-[300px] md:h-[350px] lg:h-[45vh] overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-roledescription="carousel"
@@ -69,7 +69,7 @@ export default function HeroSlider() {
           <img
             src={s.image}
             alt={s.alt}
-            className="w-full h-full object-cover"
+            className={`w-full h-full object-cover ${i === current ? "animate-ken-burns" : ""}`}
             loading={i === 0 ? "eager" : "lazy"}
           />
         </div>

@@ -137,6 +137,19 @@
   }
 }
 
+@keyframes kenBurns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.12);
+  }
+}
+
+.animate-ken-burns {
+  animation: kenBurns 6s ease-out forwards;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
