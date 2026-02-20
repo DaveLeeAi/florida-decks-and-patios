@@ -46,8 +46,8 @@ export default function Portfolio() {
                 onClick={() => setSelected(project)}
                 className="group bg-card rounded-lg border border-border overflow-hidden text-left hover:shadow-lg transition-all"
               >
-                <div className="h-48 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                  <span className="text-4xl opacity-50">🏠</span>
+                <div className="h-48 overflow-hidden">
+                  <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
                 </div>
                 <div className="p-5">
                   <span className="text-xs font-medium text-primary">{project.category}</span>
