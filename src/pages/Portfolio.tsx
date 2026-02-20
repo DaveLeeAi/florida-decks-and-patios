@@ -69,10 +69,10 @@ export default function Portfolio() {
             <button onClick={() => setSelected(null)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground">
               <X className="h-5 w-5" />
             </button>
+            <img src={selected.image} alt={selected.title} className="w-full h-48 object-cover rounded mb-4" />
             <span className="text-xs font-medium text-primary">{selected.category}</span>
             <h2 className="font-heading text-2xl font-bold text-foreground mt-2 mb-2">{selected.title}</h2>
             <p className="text-sm text-muted-foreground mb-4">{selected.location}</p>
-            <p className="text-foreground/80 leading-relaxed">{selected.description}</p>
           </div>
         </div>
       )}
