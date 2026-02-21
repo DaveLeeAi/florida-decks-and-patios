@@ -139,10 +139,10 @@
 
 @keyframes kenBurns {
   0% {
-    transform: scale(1.0);
+    transform: scale(1);
   }
   100% {
-    transform: scale(1.15);
+    transform: scale(1.05);
   }
 }
 
@@ -150,6 +150,33 @@
   animation: kenBurns 6s ease-in-out forwards;
   will-change: transform;
   transform-origin: center center;
+}
+
+/* Hero section sizing */
+.hero-section {
+  min-height: 84svh;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    min-height: 97vh;
+  }
+}
+
+/* Hero typography */
+.hero-headline {
+  line-height: 1.08;
+  animation-duration: 0.5s;
+}
+
+.hero-subheadline {
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ken-burns {
+    animation: none;
+  }
 }
 
 @keyframes fadeIn {
