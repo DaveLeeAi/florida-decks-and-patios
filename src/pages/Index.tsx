@@ -24,7 +24,7 @@ const trustIconMap: Record<string, React.ReactNode> = {
 
 export default function Index() {
   return (
-    <Layout>
+    <Layout heroPage>
       {/* JSON-LD */}
       <script
         type="application/ld+json"
