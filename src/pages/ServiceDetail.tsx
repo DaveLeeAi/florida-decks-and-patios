@@ -1,18 +1,18 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import Layout from "@/components/Layout";
-import { services, COMPANY } from "@/data/siteData";
+import { useSiteData } from "@/contexts/SiteDataContext";
 import { ArrowLeft, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
+  const { services, company, settings } = useSiteData();
   const service = services.find((s) => s.slug === slug);
 
   if (!service) return <Navigate to="/services" replace />;
 
   return (
     <Layout>
-      {/* JSON-LD Service Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -21,7 +21,7 @@ export default function ServiceDetail() {
             "@type": "Service",
             name: service.title,
             description: service.description,
-            provider: { "@type": "LocalBusiness", name: COMPANY.name },
+            provider: { "@type": "LocalBusiness", name: company.name },
             areaServed: { "@type": "State", name: "Georgia" },
           }),
         }}
@@ -42,17 +42,14 @@ export default function ServiceDetail() {
             </div>
           )}
 
-          {/* Features */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
             {service.features.map((f) => (
               <div key={f} className="flex items-center gap-2 text-sm text-foreground">
-                <Check className="h-4 w-4 text-primary shrink-0" />
-                {f}
+                <Check className="h-4 w-4 text-primary shrink-0" /> {f}
               </div>
             ))}
           </div>
 
-          {/* Long description */}
           <div className="prose prose-slate max-w-none">
             {service.longDescription.split("\n\n").map((para, i) => {
               if (para.startsWith("**") && para.endsWith("**")) {
@@ -74,32 +71,22 @@ export default function ServiceDetail() {
             })}
           </div>
 
-          {/* CTA */}
           <div className="mt-12 p-8 rounded-lg bg-primary/5 border border-primary/20 text-center">
             <h3 className="font-heading text-xl font-semibold text-foreground mb-2">Interested in {service.shortTitle}?</h3>
             <p className="text-muted-foreground mb-4">Get a free, no-obligation estimate for your project.</p>
-            <Link to="/contact">
-              <Button className="bg-primary text-primary-foreground hover:bg-forest-dark font-semibold">
-                Get Free Estimate
-              </Button>
+            <Link to={settings.ctaLink}>
+              <Button className="bg-primary text-primary-foreground hover:bg-forest-dark font-semibold">{settings.ctaText}</Button>
             </Link>
           </div>
 
-          {/* Other services */}
           <div className="mt-12">
             <h3 className="font-heading text-lg font-semibold text-foreground mb-4">Other Services</h3>
             <div className="flex flex-wrap gap-2">
-              {services
-                .filter((s) => s.slug !== slug)
-                .map((s) => (
-                  <Link
-                    key={s.slug}
-                    to={`/services/${s.slug}`}
-                    className="text-sm bg-muted text-muted-foreground px-3 py-1.5 rounded-md hover:bg-primary/10 hover:text-primary transition-colors"
-                  >
-                    {s.shortTitle}
-                  </Link>
-                ))}
+              {services.filter((s) => s.slug !== slug).map((s) => (
+                <Link key={s.slug} to={`/services/${s.slug}`} className="text-sm bg-muted text-muted-foreground px-3 py-1.5 rounded-md hover:bg-primary/10 hover:text-primary transition-colors">
+                  {s.shortTitle}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
-import { blogPosts } from "@/data/siteData";
+import { useSiteData } from "@/contexts/SiteDataContext";
 
 export default function Blog() {
+  const { blogPosts } = useSiteData();
+
   return (
     <Layout>
       <section className="section-padding bg-section-alt">

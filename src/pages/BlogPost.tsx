@@ -1,10 +1,11 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import Layout from "@/components/Layout";
-import { blogPosts } from "@/data/siteData";
+import { useSiteData } from "@/contexts/SiteDataContext";
 import { ArrowLeft } from "lucide-react";
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
+  const { blogPosts } = useSiteData();
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return <Navigate to="/blog" replace />;
 
@@ -40,22 +41,8 @@ export default function BlogPost() {
                 return (
                   <div key={i} className="overflow-x-auto my-6">
                     <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
-                      <thead>
-                        <tr className="bg-muted">
-                          {headers?.map((h, j) => (
-                            <th key={j} className="px-4 py-2 text-left font-semibold text-foreground">{h}</th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {data.map((row, j) => (
-                          <tr key={j} className="border-t border-border">
-                            {row.map((cell, k) => (
-                              <td key={k} className="px-4 py-2 text-foreground/80">{cell}</td>
-                            ))}
-                          </tr>
-                        ))}
-                      </tbody>
+                      <thead><tr className="bg-muted">{headers?.map((h, j) => <th key={j} className="px-4 py-2 text-left font-semibold text-foreground">{h}</th>)}</tr></thead>
+                      <tbody>{data.map((row, j) => <tr key={j} className="border-t border-border">{row.map((cell, k) => <td key={k} className="px-4 py-2 text-foreground/80">{cell}</td>)}</tr>)}</tbody>
                     </table>
                   </div>
                 );
@@ -66,42 +53,32 @@ export default function BlogPost() {
               if (block.startsWith("- ")) {
                 return (
                   <ul key={i} className="space-y-1.5 mb-6 ml-4">
-                    {block.split("\n").map((line, j) => (
-                      <li key={j} className="text-foreground/80 list-disc">
-                        {line.replace(/^- /, "").replace(/\*\*(.*?)\*\*/g, "$1")}
-                      </li>
-                    ))}
+                    {block.split("\n").map((line, j) => <li key={j} className="text-foreground/80 list-disc">{line.replace(/^- /, "").replace(/\*\*(.*?)\*\*/g, "$1")}</li>)}
                   </ul>
                 );
               }
               if (block.startsWith("1. ")) {
                 return (
                   <ol key={i} className="space-y-1.5 mb-6 ml-4 list-decimal">
-                    {block.split("\n").map((line, j) => (
-                      <li key={j} className="text-foreground/80">{line.replace(/^\d+\. /, "")}</li>
-                    ))}
+                    {block.split("\n").map((line, j) => <li key={j} className="text-foreground/80">{line.replace(/^\d+\. /, "")}</li>)}
                   </ol>
                 );
               }
               if (block.startsWith("*") && block.endsWith("*") && !block.startsWith("**")) {
                 return <p key={i} className="text-sm text-muted-foreground italic mt-4">{block.replace(/^\*|\*$/g, "")}</p>;
               }
-              // Bold within text
               const formatted = block.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
               return <p key={i} className="text-foreground/80 leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: formatted }} />;
             })}
           </div>
 
-          {/* Related Posts */}
           <div className="mt-16 pt-8 border-t border-border">
             <h3 className="font-heading text-xl font-semibold text-foreground mb-6">More Articles</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {otherPosts.map((p) => (
                 <Link key={p.slug} to={`/blog/${p.slug}`} className="group p-4 rounded-lg border border-border hover:border-primary/30 transition-colors">
                   <span className="text-xs text-primary font-medium">{p.category}</span>
-                  <h4 className="font-heading text-sm font-semibold text-foreground mt-1 group-hover:text-primary transition-colors leading-tight">
-                    {p.title}
-                  </h4>
+                  <h4 className="font-heading text-sm font-semibold text-foreground mt-1 group-hover:text-primary transition-colors leading-tight">{p.title}</h4>
                 </Link>
               ))}
             </div>
