@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
-import { services } from "@/data/siteData";
+import { useSiteData } from "@/contexts/SiteDataContext";
 import { Hammer, Wrench, Layers, FileCheck, TreePine, Home, ChefHat, ArrowRight } from "lucide-react";
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -14,6 +14,8 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function Services() {
+  const { services } = useSiteData();
+
   return (
     <Layout>
       <section className="section-padding bg-section-alt">
