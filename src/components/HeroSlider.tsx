@@ -51,7 +51,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative w-full overflow-hidden hero-section"
+      className="relative w-full h-[250px] md:h-[280px] lg:h-[350px] overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-roledescription="carousel"
@@ -77,78 +77,74 @@ export default function HeroSlider() {
       ))}
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-charcoal/60" />
+      <div className="absolute inset-0 bg-charcoal/55" />
 
       {/* Flash effect */}
       {isFlashing && (
         <div className="absolute inset-0 hero-flash bg-warm-white/20 pointer-events-none z-10" />
       )}
 
-      {/* Content — left-aligned desktop, centered mobile */}
-      <div className="relative z-20 flex items-center h-full px-6 md:px-12 lg:px-20">
-        <div className="w-full max-w-2xl text-center md:text-left">
-          <h1
-            key={`h-${current}`}
-            className="font-heading font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary-foreground animate-fade-in-up hero-headline"
-          >
-            {slide.headline}
-          </h1>
-          <p
-            key={`p-${current}`}
-            className="text-base sm:text-lg md:text-xl text-primary-foreground/80 max-w-xl mt-5 md:mt-6 animate-fade-in-up hero-subheadline mx-auto md:mx-0"
-            style={{ animationDelay: "0.1s", animationDuration: "0.5s" }}
-          >
-            {slide.subheadline}
-          </p>
-          <div
-            className="flex flex-col sm:flex-row gap-4 mt-8 md:mt-10 animate-fade-in-up justify-center md:justify-start"
-            style={{ animationDelay: "0.2s", animationDuration: "0.5s" }}
-          >
-            <Link to="/contact">
-              <Button
-                size="lg"
-                className="bg-amber text-charcoal hover:bg-amber-dark font-bold text-base px-8 h-12 rounded-lg shadow-lg"
-              >
-                Get Free Inspection
-              </Button>
-            </Link>
-            <Link to="/portfolio">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary-foreground/30 text-primary-foreground bg-primary-foreground/5 hover:bg-primary-foreground/15 font-semibold text-base px-8 h-12 rounded-lg"
-              >
-                View Our Portfolio
-              </Button>
-            </Link>
-          </div>
+      {/* Content */}
+      <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
+        <h1
+          key={`h-${current}`}
+          className="font-heading font-bold text-lg md:text-xl lg:text-2xl text-primary-foreground mb-1 md:mb-2 animate-fade-in-up"
+          style={{ animationDuration: "0.5s" }}
+        >
+          {slide.headline}
+        </h1>
+        <p
+          key={`p-${current}`}
+          className="text-xs md:text-sm text-primary-foreground/85 max-w-lg mb-3 animate-fade-in-up"
+          style={{ animationDelay: "0.1s", animationDuration: "0.5s" }}
+        >
+          {slide.subheadline}
+        </p>
+        <div
+          className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
+          style={{ animationDelay: "0.2s", animationDuration: "0.5s" }}
+        >
+          <Link to="/contact">
+            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-forest-dark font-semibold text-sm px-6 h-9 shadow-lg">
+              Get Free Inspection
+            </Button>
+          </Link>
+          <Link to="/portfolio">
+            <Button
+              size="sm"
+              variant="outline"
+              className="border-primary-foreground/40 text-primary-foreground bg-primary-foreground/10 hover:bg-primary-foreground/20 font-semibold text-sm px-6 h-9"
+            >
+              View Our Portfolio
+            </Button>
+          </Link>
         </div>
       </div>
 
       {/* Arrow controls */}
       <button
         onClick={prev}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-charcoal/30 text-primary-foreground/70 hover:bg-charcoal/50 hover:text-primary-foreground transition-all"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-charcoal/40 text-primary-foreground/80 hover:bg-charcoal/60 transition-colors"
         aria-label="Previous slide"
       >
         <ChevronLeft className="h-6 w-6" />
       </button>
       <button
         onClick={next}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-charcoal/30 text-primary-foreground/70 hover:bg-charcoal/50 hover:text-primary-foreground transition-all"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-charcoal/40 text-primary-foreground/80 hover:bg-charcoal/60 transition-colors"
         aria-label="Next slide"
       >
         <ChevronRight className="h-6 w-6" />
       </button>
 
       {/* Dot indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-2.5">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
         {heroSlides.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}
             className={`h-2.5 rounded-full transition-all duration-300 ${
-              i === current ? "w-9 bg-amber" : "w-2.5 bg-primary-foreground/35 hover:bg-primary-foreground/55"
+              i === current ? "w-8 bg-amber" : "w-2.5 bg-primary-foreground/40 hover:bg-primary-foreground/60"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />
