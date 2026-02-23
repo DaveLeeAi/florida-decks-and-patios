@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import logoImg from "@/assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { Phone, Menu, X } from "lucide-react";
@@ -30,9 +31,9 @@ export default function Header() {
     >
       <div className="container-narrow mx-auto flex items-center justify-between h-16 md:h-20 px-4 md:px-8">
         <Link to="/" className="flex items-center gap-2 font-heading font-bold text-xl text-primary">
-          <span className="text-2xl">🪵</span>
+          <img src={logoImg} alt="Florida Decks and Patios" className="h-10 w-auto" />
           <span className="hidden sm:inline">{company.name}</span>
-          <span className="sm:hidden">T&S</span>
+          <span className="sm:hidden">FD&P</span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">

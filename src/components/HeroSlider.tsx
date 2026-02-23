@@ -34,7 +34,7 @@ export default function HeroSlider() {
 
   useEffect(() => {
     if (isPaused) return;
-    timerRef.current = setInterval(next, 7000);
+    timerRef.current = setInterval(next, 10000);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [next, isPaused]);
 
@@ -49,7 +49,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative w-full h-[350px] md:h-[392px] lg:h-[490px] overflow-hidden"
+      className="relative w-full h-[90vh] overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-roledescription="carousel"
