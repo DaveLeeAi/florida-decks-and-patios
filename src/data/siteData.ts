@@ -11,16 +11,22 @@ import portfolio5 from "@/assets/portfolio-5.jpg";
 import portfolio6 from "@/assets/portfolio-6.jpg";
 import portfolio7 from "@/assets/portfolio-7.jpg";
 import portfolio8 from "@/assets/portfolio-8.jpg";
+import portfolio9 from "@/assets/portfolio-9.jpg";
+import portfolio10 from "@/assets/portfolio-10.jpg";
+import portfolio11 from "@/assets/portfolio-11.jpg";
+import portfolio12 from "@/assets/portfolio-12.jpg";
+import portfolio13 from "@/assets/portfolio-13.jpg";
+import portfolio14 from "@/assets/portfolio-14.jpg";
 
 export const COMPANY = {
-  name: "Timber & Stone Outdoor",
+  name: "Florida Decks and Patios",
   phone: "555-238-9102",
   phoneDisplay: "(555) 238-9102",
-  email: "hello@timberstone.example.com",
+  email: "hello@floridadecksandpatios.com",
   address: "1425 Oakwood Trail, Suite 200",
-  city: "Roswell",
-  state: "GA",
-  zip: "30075",
+  city: "Tampa",
+  state: "FL",
+  zip: "33601",
   tagline: "Crafting Your Perfect Outdoor Space",
 };
 
@@ -131,14 +137,20 @@ export const services = [
 ];
 
 export const portfolioProjects = [
-  { id: 1, title: "Lakeside Cedar Deck", category: "Deck Installation", description: "A 600 sq ft cedar deck overlooking a private lake with built-in bench seating and solar post lights.", location: "Alpharetta, GA", image: portfolio1 },
-  { id: 2, title: "Modern Composite Entertaining Space", category: "Composite Decking", description: "Multi-level composite deck with cable railing system and integrated LED step lighting.", location: "Marietta, GA", image: portfolio2 },
-  { id: 3, title: "Craftsman Pergola & Patio", category: "Pergolas & Patios", description: "Custom cedar pergola over a 400 sq ft stone paver patio with built-in fire pit.", location: "Kennesaw, GA", image: portfolio3 },
-  { id: 4, title: "Chef's Outdoor Kitchen", category: "Outdoor Kitchens", description: "Full outdoor kitchen with granite counters, built-in grill, refrigerator, and bar seating for six.", location: "Roswell, GA", image: portfolio4 },
-  { id: 5, title: "Victorian Screened Porch", category: "Porches", description: "Screened porch with beadboard ceiling, ceiling fan, and custom railing details matching the home's Victorian style.", location: "Decatur, GA", image: portfolio5 },
-  { id: 6, title: "Backyard Deck Restoration", category: "Deck Repair", description: "Complete restoration of a 15-year-old pressure-treated deck including joist replacement and new composite boards.", location: "Sandy Springs, GA", image: portfolio6 },
-  { id: 7, title: "Hillside Multi-Level Deck", category: "Deck Installation", description: "Three-level deck system navigating a steep hillside with spiral staircase and multiple seating areas.", location: "Brookhaven, GA", image: portfolio7 },
-  { id: 8, title: "Poolside Composite Deck", category: "Composite Decking", description: "Slip-resistant composite decking surrounding a pool area with built-in planter boxes and outdoor shower.", location: "Johns Creek, GA", image: portfolio8 },
+  { id: 1, title: "Lakeside Cedar Deck", category: "Deck Installation", description: "A 600 sq ft cedar deck overlooking a private lake with built-in bench seating and solar post lights.", location: "Tampa, FL", image: portfolio1 },
+  { id: 2, title: "Modern Composite Entertaining Space", category: "Composite Decking", description: "Multi-level composite deck with cable railing system and integrated LED step lighting.", location: "St. Petersburg, FL", image: portfolio2 },
+  { id: 3, title: "Craftsman Pergola & Patio", category: "Pergolas & Patios", description: "Custom cedar pergola over a 400 sq ft stone paver patio with built-in fire pit.", location: "Clearwater, FL", image: portfolio3 },
+  { id: 4, title: "Chef's Outdoor Kitchen", category: "Outdoor Kitchens", description: "Full outdoor kitchen with granite counters, built-in grill, refrigerator, and bar seating for six.", location: "Jacksonville, FL", image: portfolio4 },
+  { id: 5, title: "Victorian Screened Porch", category: "Porches", description: "Screened porch with beadboard ceiling, ceiling fan, and custom railing details matching the home's Victorian style.", location: "Boca Raton, FL", image: portfolio5 },
+  { id: 6, title: "Backyard Deck Restoration", category: "Deck Repair", description: "Complete restoration of a 15-year-old pressure-treated deck including joist replacement and new composite boards.", location: "West Palm Beach, FL", image: portfolio6 },
+  { id: 7, title: "Hillside Multi-Level Deck", category: "Deck Installation", description: "Three-level deck system navigating a steep hillside with spiral staircase and multiple seating areas.", location: "Gainesville, FL", image: portfolio7 },
+  { id: 8, title: "Poolside Composite Deck", category: "Composite Decking", description: "Slip-resistant composite decking surrounding a pool area with built-in planter boxes and outdoor shower.", location: "Johns Creek, FL", image: portfolio8 },
+  { id: 9, title: "Tropical Sunset Patio", category: "Pergolas & Patios", description: "Spacious paver patio with modern railing and tropical landscaping, perfect for sunset entertaining.", location: "Naples, FL", image: portfolio9 },
+  { id: 10, title: "Luxury Screened Lanai", category: "Porches", description: "Elegant screened-in porch with vaulted ceiling, ceiling fan, and lush tropical garden views.", location: "Sarasota, FL", image: portfolio10 },
+  { id: 11, title: "Gourmet Outdoor Kitchen", category: "Outdoor Kitchens", description: "Full outdoor kitchen with stainless steel appliances, granite counters, and bar seating on a composite deck.", location: "Fort Lauderdale, FL", image: portfolio11 },
+  { id: 12, title: "Pergola & Patio Retreat", category: "Pergolas & Patios", description: "Custom wooden pergola with string lighting over a natural stone patio with outdoor dining and lounge areas.", location: "Orlando, FL", image: portfolio12 },
+  { id: 13, title: "Waterfront Dock Deck", category: "Deck Installation", description: "Premium composite decking extending to a private boat dock with cable railing and panoramic water views.", location: "Cape Coral, FL", image: portfolio13 },
+  { id: 14, title: "Resort-Style Pool Deck", category: "Composite Decking", description: "Paver and composite pool deck with lounge area, tropical plants, and spa surround in a resort-style layout.", location: "Miami, FL", image: portfolio14 },
 ];
 
 export const blogPosts = [
