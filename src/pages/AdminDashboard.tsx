@@ -72,12 +72,20 @@ function ServicesTab() {
   const [editing, setEditing] = useState<number | null>(null);
 
   const updateItem = (index: number, field: keyof Service, value: any) => {
-    setItems(prev => prev.map((s, i) => i === index ? { ...s, [field]: value } : s));
+    setItems(prev => prev.map((s, i) => {
+      if (i !== index) return s;
+      const updated = { ...s, [field]: value };
+      if (field === "title") updated.slug = toServiceSlug(value);
+      return updated;
+    }));
   };
+
+  const toServiceSlug = (text: string) =>
+    text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 80) || `service-${Date.now()}`;
 
   const addService = () => {
     const newService: Service = {
-      slug: `service-${Date.now()}`,
+      slug: toServiceSlug("New Service"),
       title: "New Service",
       shortTitle: "New Service",
       icon: "Hammer",
@@ -202,14 +210,16 @@ function BlogTab() {
   const [items, setItems] = useState<BlogPost[]>(blogPosts.map(p => ({ ...p })));
   const [editing, setEditing] = useState<number | null>(null);
 
-  const updateItem = (index: number, field: keyof BlogPost, value: string) => {
-    setItems(prev => prev.map((p, i) => i === index ? { ...p, [field]: value } : p));
-  };
+  
+
+  const toSlug = (text: string) =>
+    text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 80) || `post-${Date.now()}`;
 
   const addPost = () => {
+    const title = "New Blog Post";
     const newPost: BlogPost = {
-      slug: `post-${Date.now()}`,
-      title: "New Blog Post",
+      slug: toSlug(title),
+      title,
       excerpt: "",
       date: new Date().toISOString().split("T")[0],
       category: "General",
@@ -217,6 +227,18 @@ function BlogTab() {
     };
     setItems(prev => [newPost, ...prev]);
     setEditing(0);
+  };
+
+  const updateItem = (index: number, field: keyof BlogPost, value: string) => {
+    setItems(prev => prev.map((p, i) => {
+      if (i !== index) return p;
+      const updated = { ...p, [field]: value };
+      // Auto-generate slug from title
+      if (field === "title") {
+        updated.slug = toSlug(value);
+      }
+      return updated;
+    }));
   };
 
   return (
