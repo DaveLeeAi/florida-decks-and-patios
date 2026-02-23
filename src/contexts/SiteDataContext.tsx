@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react";
 import * as defaults from "@/data/siteData";
 
 // Types
@@ -152,46 +152,47 @@ const SiteDataContext = createContext<SiteDataContextType | null>(null);
 export function SiteDataProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<SiteData>(getInitialData);
 
-  const persist = useCallback((newData: SiteData) => {
-    setData(newData);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newData));
+  // Cross-tab sync: listen for localStorage changes from other tabs
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEY && e.newValue) {
+        try {
+          const parsed = JSON.parse(e.newValue);
+          setData({
+            company: parsed.company ?? defaults.COMPANY,
+            heroSlides: parsed.heroSlides ?? defaults.heroSlides as HeroSlide[],
+            services: parsed.services ?? defaults.services as Service[],
+            portfolioProjects: parsed.portfolioProjects ?? defaults.portfolioProjects as PortfolioProject[],
+            blogPosts: parsed.blogPosts ?? defaults.blogPosts as BlogPost[],
+            testimonials: parsed.testimonials ?? defaults.testimonials as Testimonial[],
+            trustBadges: parsed.trustBadges ?? defaults.trustBadges as TrustBadge[],
+            navLinks: parsed.navLinks ?? defaultNavLinks,
+            settings: parsed.settings ?? defaultSettings,
+          });
+        } catch {}
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
   }, []);
 
-  const updateCompany = useCallback((company: CompanyInfo) => {
-    setData(prev => { const n = { ...prev, company }; localStorage.setItem(STORAGE_KEY, JSON.stringify(n)); return n; });
+  const persistUpdate = useCallback(<K extends keyof SiteData>(key: K, value: SiteData[K]) => {
+    setData(prev => {
+      const n = { ...prev, [key]: value };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(n));
+      return n;
+    });
   }, []);
 
-  const updateHeroSlides = useCallback((heroSlides: HeroSlide[]) => {
-    setData(prev => { const n = { ...prev, heroSlides }; localStorage.setItem(STORAGE_KEY, JSON.stringify(n)); return n; });
-  }, []);
-
-  const updateServices = useCallback((services: Service[]) => {
-    setData(prev => { const n = { ...prev, services }; localStorage.setItem(STORAGE_KEY, JSON.stringify(n)); return n; });
-  }, []);
-
-  const updatePortfolio = useCallback((portfolioProjects: PortfolioProject[]) => {
-    setData(prev => { const n = { ...prev, portfolioProjects }; localStorage.setItem(STORAGE_KEY, JSON.stringify(n)); return n; });
-  }, []);
-
-  const updateBlogPosts = useCallback((blogPosts: BlogPost[]) => {
-    setData(prev => { const n = { ...prev, blogPosts }; localStorage.setItem(STORAGE_KEY, JSON.stringify(n)); return n; });
-  }, []);
-
-  const updateTestimonials = useCallback((testimonials: Testimonial[]) => {
-    setData(prev => { const n = { ...prev, testimonials }; localStorage.setItem(STORAGE_KEY, JSON.stringify(n)); return n; });
-  }, []);
-
-  const updateTrustBadges = useCallback((trustBadges: TrustBadge[]) => {
-    setData(prev => { const n = { ...prev, trustBadges }; localStorage.setItem(STORAGE_KEY, JSON.stringify(n)); return n; });
-  }, []);
-
-  const updateNavLinks = useCallback((navLinks: NavLink[]) => {
-    setData(prev => { const n = { ...prev, navLinks }; localStorage.setItem(STORAGE_KEY, JSON.stringify(n)); return n; });
-  }, []);
-
-  const updateSettings = useCallback((settings: SiteSettings) => {
-    setData(prev => { const n = { ...prev, settings }; localStorage.setItem(STORAGE_KEY, JSON.stringify(n)); return n; });
-  }, []);
+  const updateCompany = useCallback((company: CompanyInfo) => persistUpdate("company", company), [persistUpdate]);
+  const updateHeroSlides = useCallback((heroSlides: HeroSlide[]) => persistUpdate("heroSlides", heroSlides), [persistUpdate]);
+  const updateServices = useCallback((services: Service[]) => persistUpdate("services", services), [persistUpdate]);
+  const updatePortfolio = useCallback((portfolioProjects: PortfolioProject[]) => persistUpdate("portfolioProjects", portfolioProjects), [persistUpdate]);
+  const updateBlogPosts = useCallback((blogPosts: BlogPost[]) => persistUpdate("blogPosts", blogPosts), [persistUpdate]);
+  const updateTestimonials = useCallback((testimonials: Testimonial[]) => persistUpdate("testimonials", testimonials), [persistUpdate]);
+  const updateTrustBadges = useCallback((trustBadges: TrustBadge[]) => persistUpdate("trustBadges", trustBadges), [persistUpdate]);
+  const updateNavLinks = useCallback((navLinks: NavLink[]) => persistUpdate("navLinks", navLinks), [persistUpdate]);
+  const updateSettings = useCallback((settings: SiteSettings) => persistUpdate("settings", settings), [persistUpdate]);
 
   return (
     <SiteDataContext.Provider
