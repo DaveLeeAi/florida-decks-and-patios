@@ -52,10 +52,10 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <a
             href={`tel:${company.phone}`}
-            className="hidden md:flex items-center gap-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+            className="hidden md:flex items-center gap-2 text-sm font-semibold text-primary hover:text-forest-dark transition-colors"
           >
             <Phone className="h-4 w-4" />
             {company.phoneDisplay}
