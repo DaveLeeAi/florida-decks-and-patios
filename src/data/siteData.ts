@@ -17,6 +17,7 @@ import portfolio11 from "@/assets/portfolio-11.jpg";
 import portfolio12 from "@/assets/portfolio-12.jpg";
 import portfolio13 from "@/assets/portfolio-13.jpg";
 import portfolio14 from "@/assets/portfolio-14.jpg";
+import portfolio15 from "@/assets/portfolio-15.jpg";
 
 export const COMPANY = {
   name: "Florida Decks and Patios",
@@ -151,6 +152,7 @@ export const portfolioProjects = [
   { id: 12, title: "Pergola & Patio Retreat", category: "Pergolas & Patios", description: "Custom wooden pergola with string lighting over a natural stone patio with outdoor dining and lounge areas.", location: "Orlando, FL", image: portfolio12 },
   { id: 13, title: "Waterfront Dock Deck", category: "Deck Installation", description: "Premium composite decking extending to a private boat dock with cable railing and panoramic water views.", location: "Cape Coral, FL", image: portfolio13 },
   { id: 14, title: "Resort-Style Pool Deck", category: "Composite Decking", description: "Paver and composite pool deck with lounge area, tropical plants, and spa surround in a resort-style layout.", location: "Miami, FL", image: portfolio14 },
+  { id: 15, title: "Tropical Sunset Lounge Deck", category: "Deck Installation", description: "Elevated hardwood deck with modern lounge furniture, palm tree landscaping, and stunning sunset views.", location: "Key West, FL", image: portfolio15 },
 ];
 
 export const blogPosts = [

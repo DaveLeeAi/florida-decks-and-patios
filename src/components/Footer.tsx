@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { Phone, Mail, MapPin } from "lucide-react";
+import logoImg from "@/assets/logo.png";
 
 export default function Footer() {
   const { company, services, settings } = useSiteData();
@@ -10,8 +11,8 @@ export default function Footer() {
       <div className="container-narrow mx-auto section-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <Link to="/" className="font-heading font-bold text-xl flex items-center gap-2 mb-4">
-              <span className="text-2xl">🪵</span>
+            <Link to="/" className="font-heading font-bold text-xl flex items-center gap-3 mb-4">
+              <img src={logoImg} alt={company.name} className="h-12 w-auto" />
               {company.name}
             </Link>
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
