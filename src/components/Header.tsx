@@ -31,7 +31,7 @@ export default function Header() {
     >
       <div className="container-narrow mx-auto flex items-center justify-between h-16 md:h-20 px-4 md:px-8">
         <Link to="/" className="flex items-center gap-2 font-heading font-bold text-xl text-primary">
-          <img src={logoImg} alt="Florida Decks and Patios" className="h-10 w-auto" />
+          <img src={logoImg} alt="Florida Decks and Patios" className="h-14 md:h-16 w-auto" />
           <span className="hidden sm:inline">{company.name}</span>
           <span className="sm:hidden">FD&P</span>
         </Link>
