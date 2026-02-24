@@ -34,7 +34,7 @@ export default function HeroSlider() {
 
   useEffect(() => {
     if (isPaused) return;
-    timerRef.current = setInterval(next, 10000);
+    timerRef.current = setInterval(next, 14000);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [next, isPaused]);
 
@@ -72,10 +72,10 @@ export default function HeroSlider() {
       {isFlashing && <div className="absolute inset-0 hero-flash bg-warm-white/20 pointer-events-none z-10" />}
 
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
-        <h1 key={`h-${current}`} className="font-heading font-bold text-lg md:text-xl lg:text-2xl text-primary-foreground mb-1 md:mb-2 animate-fade-in-up" style={{ animationDuration: "0.5s" }}>
+        <h1 key={`h-${current}`} className="font-heading font-bold text-base md:text-lg lg:text-xl text-primary-foreground mb-1 md:mb-2 animate-fade-in-up" style={{ animationDuration: "0.5s" }}>
           {slide.headline}
         </h1>
-        <p key={`p-${current}`} className="text-xs md:text-sm text-primary-foreground/85 max-w-lg mb-3 animate-fade-in-up" style={{ animationDelay: "0.1s", animationDuration: "0.5s" }}>
+        <p key={`p-${current}`} className="text-xs md:text-sm text-primary-foreground/85 max-w-md mb-3 animate-fade-in-up" style={{ animationDelay: "0.1s", animationDuration: "0.5s" }}>
           {slide.subheadline}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: "0.2s", animationDuration: "0.5s" }}>
