@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
-import { X } from "lucide-react";
+import { X, ZoomIn } from "lucide-react";
 
 export default function Portfolio() {
   const { portfolioProjects } = useSiteData();
@@ -34,8 +34,11 @@ export default function Portfolio() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((project) => (
               <button key={project.id} onClick={() => setSelected(project)} className="group bg-card rounded-lg border border-border overflow-hidden text-left hover:shadow-lg transition-all">
-                <div className="h-48 overflow-hidden">
+                <div className="h-48 overflow-hidden relative">
                   <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors flex items-center justify-center">
+                    <ZoomIn className="h-8 w-8 text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
+                  </div>
                 </div>
                 <div className="p-5">
                   <span className="text-xs font-medium text-primary">{project.category}</span>
@@ -49,13 +52,18 @@ export default function Portfolio() {
       </section>
 
       {selected && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/60 backdrop-blur-sm" onClick={() => setSelected(null)}>
-          <div className="bg-card rounded-lg max-w-lg w-full p-8 relative" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setSelected(null)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"><X className="h-5 w-5" /></button>
-            <img src={selected.image} alt={selected.title} className="w-full h-48 object-cover rounded mb-4" />
-            <span className="text-xs font-medium text-primary">{selected.category}</span>
-            <h2 className="font-heading text-2xl font-bold text-foreground mt-2 mb-2">{selected.title}</h2>
-            <p className="text-sm text-muted-foreground mb-4">{selected.location}</p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80 backdrop-blur-sm" onClick={() => setSelected(null)}>
+          <div className="bg-card rounded-lg max-w-3xl w-full relative animate-fade-in overflow-hidden" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => setSelected(null)} className="absolute top-3 right-3 z-10 bg-background/80 backdrop-blur-sm rounded-full p-1.5 text-muted-foreground hover:text-foreground transition-colors">
+              <X className="h-5 w-5" />
+            </button>
+            <img src={selected.image} alt={selected.title} className="w-full max-h-[70vh] object-contain bg-charcoal/5" />
+            <div className="p-6">
+              <span className="text-xs font-medium text-primary">{selected.category}</span>
+              <h2 className="font-heading text-2xl font-bold text-foreground mt-2 mb-1">{selected.title}</h2>
+              <p className="text-sm text-muted-foreground mb-2">{selected.location}</p>
+              <p className="text-sm text-foreground/80">{selected.description}</p>
+            </div>
           </div>
         </div>
       )}
