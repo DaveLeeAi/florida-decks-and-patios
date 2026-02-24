@@ -36,7 +36,7 @@ export default function Header() {
           <span className="sm:hidden leading-tight">FD&P</span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+        <nav className="hidden lg:flex items-center gap-2" aria-label="Main navigation">
           {navLinks.map((link) => (
             <Link
               key={link.path}
