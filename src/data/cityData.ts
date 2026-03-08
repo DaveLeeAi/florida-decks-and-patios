@@ -298,6 +298,8 @@ export const cityPages: CityData[] = [
     heroSubheadline: "Quality outdoor living spaces at North Central Florida's best prices — perfect for new builds, first-time homeowners, and retirement communities.",
     permitLink: "https://www.marioncountyfl.org/departments-agencies/building-safety",
     permitDepartment: "Marion County Building Safety",
+    cityMultiplier: 1.0,
+    cityMultiplierLabel: "Standard ROI",
     permitPhone: "(352) 438-2400",
     climateProfile: {
       primary: "Inland north-central subtropical with moderate conditions",
