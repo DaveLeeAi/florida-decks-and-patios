@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { cityPages } from "@/data/cityData";
+import { citySeoPages } from "@/data/citySeoData";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { Phone, Mail, MapPin } from "lucide-react";
 import logoImg from "@/assets/logo.png";
