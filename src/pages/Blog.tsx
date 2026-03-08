@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
+import RelatedContent from "@/components/RelatedContent";
 
 export default function Blog() {
   const { blogPosts } = useSiteData();
