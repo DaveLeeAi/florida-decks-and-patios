@@ -763,7 +763,6 @@ export const portfolioProjects: PortfolioProject[] = rawProjects.map(p => {
     afterImage: getImg(`deck-project-${pad}-finished.jpg`),
     galleryImages: [
       getImg(`deck-project-${pad}-after.jpg`),
-      getImg(`deck-project-${pad}-progress.jpg`),
       getImg(`deck-project-${pad}-railing.jpg`),
       getImg(`deck-project-${pad}-closeup.jpg`),
       getImg(`deck-project-${pad}-finished.jpg`),

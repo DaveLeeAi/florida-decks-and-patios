@@ -9,7 +9,7 @@ import { useState } from "react";
 import { X, ZoomIn } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
-const GALLERY_LABELS = ["Finished deck", "Completed project", "Construction progress", "Railing detail", "Material closeup", "Final result"];
+const GALLERY_LABELS = ["Finished Deck View", "Railing System Detail", "Deck Surface Detail", "Outdoor Living Space"];
 
 export default function ProjectDetail() {
   const { slug } = useParams();
