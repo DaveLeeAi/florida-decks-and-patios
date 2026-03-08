@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import { Helmet } from "react-helmet-async";
 import { COMPANY } from "@/data/siteData";
 
 export default function Privacy() {
