@@ -2,10 +2,9 @@ import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { portfolioProjects, PROJECT_TYPES, MATERIAL_TYPES, CITY_TYPES, type ProjectType, type MaterialType, type CityType } from "@/data/portfolioData";
-import { Filter, X, ChevronDown, ArrowRight, MapPin } from "lucide-react";
+import { Filter, X, ChevronDown } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import PortfolioCard from "@/components/PortfolioCard";
 import { Helmet } from "react-helmet-async";
 
@@ -17,10 +16,8 @@ export default function Portfolio() {
 
   const activeFilterCount = [typeFilter, materialFilter, cityFilter].filter(f => f !== "All").length;
 
-  const featuredProject = portfolioProjects[0];
-
   const filtered = useMemo(() => {
-    return portfolioProjects.slice(1).filter(p => {
+    return portfolioProjects.filter(p => {
       if (typeFilter !== "All" && p.projectType !== typeFilter) return false;
       if (materialFilter !== "All" && p.materials !== materialFilter) return false;
       if (cityFilter !== "All" && p.city !== cityFilter) return false;
@@ -38,7 +35,7 @@ export default function Portfolio() {
     <Layout>
       <Helmet>
         <title>Deck & Patio Portfolio | 30+ Florida Projects | Florida Decks and Patios</title>
-        <meta name="description" content="Browse 30+ completed deck, patio, and pergola projects across Florida. Before/after photos, project details, and inspection insights from Tampa, Miami, Orlando, and more." />
+        <meta name="description" content="Browse 30+ completed deck, patio, and pergola projects across Florida. Project photos, details, and inspection insights from Tampa, Miami, Orlando, and more." />
       </Helmet>
 
       {/* Hero */}
@@ -56,36 +53,6 @@ export default function Portfolio() {
             <span className="bg-card border border-border rounded-full px-4 py-1.5">{portfolioProjects.filter(p => p.projectType === "Patio").length} Patio Projects</span>
             <span className="bg-card border border-border rounded-full px-4 py-1.5">{portfolioProjects.filter(p => p.projectType === "Pergola").length} Pergola Projects</span>
             <span className="bg-card border border-border rounded-full px-4 py-1.5">{portfolioProjects.filter(p => p.projectType === "Repair").length} Repair Projects</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Project — Before/After */}
-      <section className="section-padding bg-section-alt">
-        <div className="container-narrow mx-auto">
-          <div className="text-center mb-8">
-            <Badge variant="outline" className="mb-3 text-xs uppercase tracking-wider">Featured Project</Badge>
-            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-2">
-              {featuredProject.title}
-            </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Drag the slider to see this {featuredProject.city} transformation — from weathered structure to a professionally finished outdoor space.
-            </p>
-          </div>
-          <BeforeAfterSlider
-            beforeSrc={featuredProject.beforeImage}
-            afterSrc={featuredProject.afterImage}
-            beforeAlt={`Before: ${featuredProject.title}`}
-            afterAlt={`After: ${featuredProject.title}`}
-            location={`${featuredProject.city}, FL`}
-            materials={featuredProject.materials}
-          />
-          <div className="text-center mt-6">
-            <Link to={`/portfolio/${featuredProject.slug}`}>
-              <Button variant="outline" className="gap-2">
-                View Full Project Details <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
           </div>
         </div>
       </section>
