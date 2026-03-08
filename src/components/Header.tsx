@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { Phone, Menu, X, ChevronDown, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cityPages } from "@/data/cityData";
+import { citySeoPages } from "@/data/citySeoData";
 
 
 export default function Header() {
@@ -38,7 +38,7 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const citySlugs = cityPages.map((c) => `/areas/${c.slug}`);
+  const citySlugs = citySeoPages.map((c) => `/city/${c.citySlug}`);
   const isAreaActive = citySlugs.includes(location.pathname);
 
   const phoneIsPlaceholder = !company.phone || company.phone.includes("PLACEHOLDER");
@@ -92,20 +92,20 @@ export default function Header() {
             {areasOpen && (
               <div className="absolute top-full right-0 mt-2 w-80 bg-card border border-border rounded-lg shadow-lg overflow-hidden animate-fade-in z-50">
                 <div className="p-4 grid grid-cols-2 gap-x-4 gap-y-2">
-                  {cityPages.map((city) => (
-                    <Link
-                      key={city.slug}
-                      to={`/areas/${city.slug}`}
-                      className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        location.pathname === `/areas/${city.slug}`
-                          ? "text-primary bg-primary/10"
-                          : "text-foreground/80 hover:text-primary hover:bg-primary/5"
-                      }`}
-                    >
-                      {city.name}
-                    </Link>
-                  ))}
-                </div>
+                   {citySeoPages.map((city) => (
+                     <Link
+                       key={city.citySlug}
+                       to={`/city/${city.citySlug}`}
+                       className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                         location.pathname === `/city/${city.citySlug}`
+                           ? "text-primary bg-primary/10"
+                           : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                       }`}
+                     >
+                       {city.cityName}
+                     </Link>
+                   ))}
+                 </div>
               </div>
             )}
           </div>
@@ -166,24 +166,24 @@ export default function Header() {
               <ChevronDown className={`h-4 w-4 transition-transform ${mobileAreasOpen ? "rotate-180" : ""}`} />
             </button>
 
-            {mobileAreasOpen && (
-              <div className="ml-4 flex flex-col gap-1">
-                {cityPages.map((city) => (
-                  <Link
-                    key={city.slug}
-                    to={`/areas/${city.slug}`}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-colors ${
-                      location.pathname === `/areas/${city.slug}`
-                        ? "text-primary bg-primary/10"
-                        : "text-foreground/80 hover:text-primary hover:bg-primary/5"
-                    }`}
-                  >
-                    <MapPin className="h-3.5 w-3.5" />
-                    {city.name}
-                  </Link>
-                ))}
-              </div>
-            )}
+             {mobileAreasOpen && (
+               <div className="ml-4 flex flex-col gap-1">
+                 {citySeoPages.map((city) => (
+                   <Link
+                     key={city.citySlug}
+                     to={`/city/${city.citySlug}`}
+                     className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-colors ${
+                       location.pathname === `/city/${city.citySlug}`
+                         ? "text-primary bg-primary/10"
+                         : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                     }`}
+                   >
+                     <MapPin className="h-3.5 w-3.5" />
+                     {city.cityName}
+                   </Link>
+                 ))}
+               </div>
+             )}
 
             <a
               href={phoneIsPlaceholder ? "/contact" : `tel:${company.phone}`}
