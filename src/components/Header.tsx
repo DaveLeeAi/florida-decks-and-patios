@@ -48,7 +48,7 @@ export default function Header() {
           : "bg-card/80 backdrop-blur-sm"
       }`}
     >
-      <div className="container-narrow mx-auto flex items-center justify-between h-20 md:h-24 px-4 md:px-8">
+      <div className="max-w-7xl mx-auto flex items-center justify-between h-20 md:h-24 px-4 md:px-6">
         <Link to="/" className="flex items-center gap-3 font-heading font-bold text-lg md:text-xl text-primary shrink-0">
           <img src={logoImg} alt="Florida Decks and Patios" className="h-14 md:h-16 w-auto" />
           <span className="hidden sm:inline leading-tight">{company.name}</span>
