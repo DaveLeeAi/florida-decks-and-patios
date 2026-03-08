@@ -2,7 +2,7 @@ export type ViolationCategory = "structural" | "connectors" | "railings" | "stai
 
 export type ViolationEntry = {
   id: string;
-  category: ViolationCategory;
+  category?: ViolationCategory;
   type: "code_violation" | "inspection_issue" | "documentation_issue" | "permit_issue" | "hvhz_issue" | "electrical_issue" | "drainage_issue";
   jurisdiction: "Florida" | "HVHZ" | "Miami-Dade" | "Broward" | "General";
   code?: string;
