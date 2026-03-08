@@ -389,7 +389,7 @@ function ContentTab() {
               
             </div>
           ))}
-          <Button variant="outline" size="sm" className="gap-1" onClick={() => setTests(prev => [...prev, { name: "New Reviewer", location: "", text: "", rating: 5, note: "" }])}>
+          <Button variant="outline" size="sm" className="gap-1" onClick={() => setTests(prev => [...prev, { name: "New Reviewer", location: "", text: "", rating: 5 }])}>
             <Plus className="h-4 w-4" /> Add Testimonial
           </Button>
           <div><SaveButton onClick={() => { updateTestimonials(tests); toast.success("Testimonials saved!"); }} /></div>

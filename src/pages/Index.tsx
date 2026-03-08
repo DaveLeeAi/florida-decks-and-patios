@@ -114,7 +114,7 @@ export default function Index() {
                     <p className="text-xs text-muted-foreground">{t.location}</p>
                   </div>
                 </div>
-                <p className="text-[10px] text-muted-foreground/50 mt-2">{t.note}</p>
+                
               </div>
             ))}
           </div>
