@@ -1,80 +1,226 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
-import { useSiteData } from "@/contexts/SiteDataContext";
-import { X, ZoomIn } from "lucide-react";
+import { portfolioProjects, PROJECT_TYPES, MATERIAL_TYPES, CITY_TYPES, type ProjectType, type MaterialType, type CityType } from "@/data/portfolioData";
+import { MapPin, ArrowRight, Filter, X, ChevronDown } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+import { Helmet } from "react-helmet-async";
 
 export default function Portfolio() {
-  const { portfolioProjects } = useSiteData();
-  const [selected, setSelected] = useState<typeof portfolioProjects[0] | null>(null);
-  const categories = ["All", ...Array.from(new Set(portfolioProjects.map((p) => p.category)))];
-  const [filter, setFilter] = useState("All");
+  const [typeFilter, setTypeFilter] = useState<ProjectType | "All">("All");
+  const [materialFilter, setMaterialFilter] = useState<MaterialType | "All">("All");
+  const [cityFilter, setCityFilter] = useState<CityType | "All">("All");
+  const [showFilters, setShowFilters] = useState(false);
 
-  const filtered = filter === "All" ? portfolioProjects : portfolioProjects.filter((p) => p.category === filter);
+  const activeFilterCount = [typeFilter, materialFilter, cityFilter].filter(f => f !== "All").length;
+
+  const filtered = useMemo(() => {
+    return portfolioProjects.filter(p => {
+      if (typeFilter !== "All" && p.projectType !== typeFilter) return false;
+      if (materialFilter !== "All" && p.materials !== materialFilter) return false;
+      if (cityFilter !== "All" && p.city !== cityFilter) return false;
+      return true;
+    });
+  }, [typeFilter, materialFilter, cityFilter]);
+
+  const clearFilters = () => {
+    setTypeFilter("All");
+    setMaterialFilter("All");
+    setCityFilter("All");
+  };
 
   return (
     <Layout>
-      <section className="section-padding bg-section-alt">
-        <div className="container-narrow mx-auto">
-          <div className="text-center mb-10">
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">Our Portfolio</h1>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Browse our completed projects to see the quality and craftsmanship we bring to every outdoor living space.
-            </p>
-          </div>
+      <Helmet>
+        <title>Deck & Patio Portfolio | 30+ Florida Projects | Florida Decks and Patios</title>
+        <meta name="description" content="Browse 30+ completed deck, patio, and pergola projects across Florida. Before/after photos, project details, and inspection insights from Tampa, Miami, Orlando, and more." />
+      </Helmet>
 
-          {/* Before/After Comparison */}
-          <div className="mb-16">
-            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground text-center mb-2">See the Transformation</h2>
-            <p className="text-muted-foreground text-center mb-8 max-w-lg mx-auto">Drag the slider to compare a weathered deck with its professional restoration.</p>
-            <BeforeAfterSlider />
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-2 mb-10">
-            {categories.map((cat) => (
-              <button key={cat} onClick={() => setFilter(cat)}
-                className={`text-sm px-4 py-2 rounded-full border transition-colors ${filter === cat ? "bg-primary text-primary-foreground border-primary" : "bg-background text-muted-foreground border-border hover:border-primary/50"}`}>
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((project) => (
-              <button key={project.id} onClick={() => setSelected(project)} className="group bg-card rounded-lg border border-border overflow-hidden text-left hover:shadow-lg transition-all">
-                <div className="h-48 overflow-hidden relative">
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
-                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors flex items-center justify-center">
-                    <ZoomIn className="h-8 w-8 text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
-                  </div>
-                </div>
-                <div className="p-5">
-                  <span className="text-xs font-medium text-primary">{project.category}</span>
-                  <h3 className="font-heading text-lg font-semibold text-foreground mt-1 group-hover:text-primary transition-colors">{project.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">{project.location}</p>
-                </div>
-              </button>
-            ))}
+      {/* Hero */}
+      <section className="bg-gradient-to-b from-primary/10 to-background section-padding">
+        <div className="container-narrow mx-auto text-center">
+          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
+            Our Project Portfolio
+          </h1>
+          <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto mb-8">
+            Browse {portfolioProjects.length}+ completed deck, patio, and pergola projects across Florida.
+            Every project includes before/after photos, materials used, and inspection insights.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
+            <span className="bg-card border border-border rounded-full px-4 py-1.5">{portfolioProjects.filter(p => p.projectType === "Deck").length} Deck Projects</span>
+            <span className="bg-card border border-border rounded-full px-4 py-1.5">{portfolioProjects.filter(p => p.projectType === "Patio").length} Patio Projects</span>
+            <span className="bg-card border border-border rounded-full px-4 py-1.5">{portfolioProjects.filter(p => p.projectType === "Pergola").length} Pergola Projects</span>
+            <span className="bg-card border border-border rounded-full px-4 py-1.5">{portfolioProjects.filter(p => p.projectType === "Repair").length} Repair Projects</span>
           </div>
         </div>
       </section>
 
-      {selected && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/80 backdrop-blur-sm" onClick={() => setSelected(null)}>
-          <div className="bg-card rounded-lg max-w-3xl w-full relative animate-fade-in overflow-hidden" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setSelected(null)} className="absolute top-3 right-3 z-10 bg-background/80 backdrop-blur-sm rounded-full p-1.5 text-muted-foreground hover:text-foreground transition-colors">
-              <X className="h-5 w-5" />
-            </button>
-            <img src={selected.image} alt={selected.title} className="w-full max-h-[70vh] object-contain bg-charcoal/5" />
-            <div className="p-6">
-              <span className="text-xs font-medium text-primary">{selected.category}</span>
-              <h2 className="font-heading text-2xl font-bold text-foreground mt-2 mb-1">{selected.title}</h2>
-              <p className="text-sm text-muted-foreground mb-2">{selected.location}</p>
-              <p className="text-sm text-foreground/80">{selected.description}</p>
+      {/* Before/After Feature */}
+      <section className="section-padding bg-section-alt">
+        <div className="container-narrow mx-auto">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground text-center mb-2">See the Transformation</h2>
+          <p className="text-muted-foreground text-center mb-8 max-w-lg mx-auto">Drag the slider to compare a weathered deck with its professional restoration.</p>
+          <BeforeAfterSlider />
+        </div>
+      </section>
+
+      {/* Filters + Grid */}
+      <section className="section-padding bg-background">
+        <div className="container-narrow mx-auto">
+          {/* Filter Toggle */}
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="font-heading text-2xl font-bold text-foreground">
+              {filtered.length} Project{filtered.length !== 1 ? "s" : ""}
+            </h2>
+            <div className="flex items-center gap-2">
+              {activeFilterCount > 0 && (
+                <Button variant="ghost" size="sm" onClick={clearFilters} className="text-muted-foreground">
+                  <X className="h-4 w-4 mr-1" /> Clear
+                </Button>
+              )}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowFilters(!showFilters)}
+                className="gap-2"
+              >
+                <Filter className="h-4 w-4" />
+                Filters
+                {activeFilterCount > 0 && (
+                  <Badge variant="default" className="ml-1 h-5 w-5 p-0 flex items-center justify-center text-xs rounded-full">
+                    {activeFilterCount}
+                  </Badge>
+                )}
+                <ChevronDown className={`h-3 w-3 transition-transform ${showFilters ? "rotate-180" : ""}`} />
+              </Button>
             </div>
           </div>
+
+          {/* Filter Panels */}
+          {showFilters && (
+            <div className="bg-card border border-border rounded-lg p-5 mb-8 animate-fade-in">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Project Type */}
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-2 block">Project Type</label>
+                  <div className="flex flex-wrap gap-1.5">
+                    <FilterChip active={typeFilter === "All"} onClick={() => setTypeFilter("All")}>All</FilterChip>
+                    {PROJECT_TYPES.map(t => (
+                      <FilterChip key={t} active={typeFilter === t} onClick={() => setTypeFilter(t)}>{t}</FilterChip>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Materials */}
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-2 block">Materials</label>
+                  <div className="flex flex-wrap gap-1.5">
+                    <FilterChip active={materialFilter === "All"} onClick={() => setMaterialFilter("All")}>All</FilterChip>
+                    {MATERIAL_TYPES.map(m => (
+                      <FilterChip key={m} active={materialFilter === m} onClick={() => setMaterialFilter(m)}>{m}</FilterChip>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Location */}
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-2 block">Location</label>
+                  <div className="flex flex-wrap gap-1.5">
+                    <FilterChip active={cityFilter === "All"} onClick={() => setCityFilter("All")}>All</FilterChip>
+                    {CITY_TYPES.map(c => (
+                      <FilterChip key={c} active={cityFilter === c} onClick={() => setCityFilter(c)}>{c}</FilterChip>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Project Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((project) => (
+              <Link
+                key={project.id}
+                to={`/portfolio/${project.slug}`}
+                className="group bg-card rounded-lg border border-border overflow-hidden hover:shadow-lg hover:border-primary/30 transition-all"
+              >
+                <div className="h-52 overflow-hidden relative">
+                  <img
+                    src={project.afterImage}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-3 left-3 flex gap-1.5">
+                    <Badge variant="secondary" className="text-xs bg-primary/90 text-primary-foreground border-0">
+                      {project.projectType}
+                    </Badge>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-heading text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
+                    {project.title}
+                  </h3>
+                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-2">
+                    <MapPin className="h-3.5 w-3.5 text-primary" />
+                    <span>{project.city === "Other Florida" ? "Gainesville" : project.city}, FL</span>
+                    <span className="text-border">•</span>
+                    <span>{project.materials}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                    {project.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">{project.deckSize} · {project.completionYear}</span>
+                    <span className="text-primary text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                      View Project <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {filtered.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-muted-foreground text-lg">No projects match your filters.</p>
+              <Button variant="outline" className="mt-4" onClick={clearFilters}>Clear Filters</Button>
+            </div>
+          )}
         </div>
-      )}
+      </section>
+
+      {/* CTA */}
+      <section className="section-padding bg-primary text-primary-foreground">
+        <div className="container-narrow mx-auto text-center">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Project?</h2>
+          <p className="text-primary-foreground/80 text-lg mb-6 max-w-2xl mx-auto">
+            Get a free estimate for your deck, patio, or pergola project anywhere in Florida.
+          </p>
+          <Link to="/contact">
+            <Button size="lg" variant="secondary" className="text-base px-8">
+              Request Free Estimate
+            </Button>
+          </Link>
+        </div>
+      </section>
     </Layout>
+  );
+}
+
+function FilterChip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+        active
+          ? "bg-primary text-primary-foreground border-primary"
+          : "bg-background text-muted-foreground border-border hover:border-primary/50"
+      }`}
+    >
+      {children}
+    </button>
   );
 }
