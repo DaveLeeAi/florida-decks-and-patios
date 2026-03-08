@@ -457,7 +457,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "The Space Coast represents a unique intersection of high-tech aerospace culture and coastal living demands. Brevard County's rapid growth, driven by SpaceX, Blue Origin, and L3Harris expansion, creates a market of discerning, engineering-minded homeowners.\n\nKey Space Coast market characteristics:\n\n- **Aerospace workforce demographics**: Tech-sector professionals prefer data-driven material comparisons, maintenance schedules, and lifecycle cost analyses when making purchasing decisions\n- **Salt-fog severity**: The Space Coast's persistent onshore Atlantic winds create salt-fog conditions more severe than many Gulf Coast locations, requiring specialized maintenance protocols\n- **Barrier island premium**: Cocoa Beach, Satellite Beach, and Indialantic properties command 20–30% higher deck project budgets due to full marine-grade hardware requirements\n- **30-day fast-track permitting**: Brevard County's new 2026 residential permit processing timeline benefits standard deck projects under 7,500 sq ft\n- **Cape Canaveral proximity**: Properties near launch facilities experience unique vibrational and acoustic considerations that may affect structural design choices",
   },
   {
-    slug: "west-palm-beach-decks",
+    slug: "west-palm-beach-decks-patios",
     name: "West Palm Beach / Port St. Lucie",
     county: "Palm Beach / Martin County",
     region: "Southeast Florida",
