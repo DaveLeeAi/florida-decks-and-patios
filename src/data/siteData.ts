@@ -21,13 +21,18 @@ import portfolio15 from "@/assets/portfolio-15.jpg";
 
 export const COMPANY = {
   name: "Florida Decks and Patios",
-  phone: "555-238-9102",
-  phoneDisplay: "(555) 238-9102",
-  email: "hello@floridadecksandpatios.com",
-  address: "1425 Oakwood Trail, Suite 200",
-  city: "Tampa",
-  state: "FL",
-  zip: "33601",
+  // TODO: Replace with real phone number before launch
+  phone: "[PHONE_PLACEHOLDER]",
+  // TODO: Replace with real phone display before launch
+  phoneDisplay: "[PHONE_PLACEHOLDER]",
+  // TODO: Replace with real email before launch
+  email: "[EMAIL_PLACEHOLDER]",
+  // TODO: Replace with real address before launch
+  address: "[ADDRESS_PLACEHOLDER]",
+  // TODO: Replace with real city, state, zip before launch
+  city: "",
+  state: "",
+  zip: "",
   tagline: "Crafting Your Perfect Outdoor Space",
 };
 
