@@ -7,6 +7,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { FAQSchema } from "@/components/seo/JsonLdSchema";
 import { faqEntries, FAQ_CATEGORIES, type FAQCategory } from "@/data/faqData";
+import RelatedContent from "@/components/RelatedContent";
 import { Search, Shield, ArrowRight, HelpCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
