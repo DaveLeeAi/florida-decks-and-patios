@@ -856,7 +856,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Panama City offers an accessible beach market with strong outdoor living potential.",
   },
   {
-    slug: "tallahassee-decks",
+    slug: "tallahassee-decks-patios",
     name: "Tallahassee",
     county: "Leon County",
     region: "North Florida",
