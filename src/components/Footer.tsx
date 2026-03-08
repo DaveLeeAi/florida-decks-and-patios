@@ -62,17 +62,13 @@ export default function Footer() {
             </ul>
             <h3 className="font-heading font-semibold text-lg mt-6 mb-3">Service Areas</h3>
             <ul className="space-y-2">
-              {[
-                { label: "Tampa Bay", path: "/tampa-decks" },
-                { label: "Orlando", path: "/orlando-patios" },
-                { label: "Sarasota", path: "/sarasota-outdoor-living" },
-                { label: "Jacksonville", path: "/jacksonville-decks" },
-                { label: "Ocala", path: "/ocala-outdoor-living" },
-                { label: "Miami", path: "/miami-decks" },
-                { label: "Melbourne", path: "/melbourne-decks" },
-                { label: "West Palm Beach", path: "/west-palm-beach-decks" },
-                { label: "St. Augustine", path: "/st-augustine-decks" },
-              ].map((l) => (
+              {cityPages.map((city) => (
+                <li key={city.slug}>
+                  <Link to={`/areas/${city.slug}`} className="text-sm text-primary-foreground/70 hover:text-amber transition-colors">
+                    {city.name}
+                  </Link>
+                </li>
+              ))}
                 <li key={l.path}>
                   <Link to={l.path} className="text-sm text-primary-foreground/70 hover:text-amber transition-colors">
                     {l.label}

@@ -357,9 +357,9 @@ export default function CityLanding() {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {otherCities.map((c) => (
-              <Link
+               <Link
                 key={c.slug}
-                to={`/${c.slug}`}
+                to={`/areas/${c.slug}`}
                 className="group bg-card rounded-lg border border-border p-4 hover:border-primary/30 hover:shadow-md transition-all"
               >
                 <p className="font-heading font-semibold text-foreground group-hover:text-primary transition-colors text-sm">{c.name}</p>
