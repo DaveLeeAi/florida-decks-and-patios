@@ -377,7 +377,7 @@ export default function PermitChecker() {
 
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">
-                  <LabelWithTooltip label="Railings Required?" tip="Florida code requires railings on decks 30\" or more above grade. Railings must be 36\" minimum height with max 4\" baluster spacing." />
+                  <LabelWithTooltip label="Railings Required?" tip="Florida code requires railings on decks 30 inches or more above grade. Railings must be 36 inch minimum height with max 4 inch baluster spacing." />
                 </label>
                 <ToggleGroup
                   options={[
