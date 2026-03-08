@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import ExpertCredentials from "@/components/ExpertCredentials";
+import RelatedContent from "@/components/RelatedContent";
 import { TechArticleSchema } from "@/components/seo/JsonLdSchema";
 import { Button } from "@/components/ui/button";
 
