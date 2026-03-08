@@ -92,20 +92,20 @@ export default function Header() {
             {areasOpen && (
               <div className="absolute top-full right-0 mt-2 w-80 bg-card border border-border rounded-lg shadow-lg overflow-hidden animate-fade-in z-50">
                 <div className="p-4 grid grid-cols-2 gap-x-4 gap-y-2">
-                  {cityPages.map((city) => (
-                    <Link
-                      key={city.slug}
-                      to={`/areas/${city.slug}`}
-                      className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        location.pathname === `/areas/${city.slug}`
-                          ? "text-primary bg-primary/10"
-                          : "text-foreground/80 hover:text-primary hover:bg-primary/5"
-                      }`}
-                    >
-                      {city.name}
-                    </Link>
-                  ))}
-                </div>
+                   {citySeoPages.map((city) => (
+                     <Link
+                       key={city.citySlug}
+                       to={`/city/${city.citySlug}`}
+                       className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                         location.pathname === `/city/${city.citySlug}`
+                           ? "text-primary bg-primary/10"
+                           : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                       }`}
+                     >
+                       {city.cityName}
+                     </Link>
+                   ))}
+                 </div>
               </div>
             )}
           </div>
