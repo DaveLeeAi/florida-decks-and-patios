@@ -57,6 +57,19 @@ export const TYPE_LABELS: Record<ViolationEntry["type"], string> = {
   drainage_issue: "Drainage Issue",
 };
 
+export const CATEGORY_LABELS: Record<ViolationCategory, string> = {
+  structural: "Structural",
+  connectors: "Connectors & Hardware",
+  railings: "Railings & Guards",
+  stairs: "Stairs & Steps",
+  permits: "Permits & Documentation",
+  hvhz: "HVHZ / Hurricane Zone",
+  electrical: "Electrical",
+  drainage: "Drainage & Grading",
+  inspection_sequencing: "Inspection Sequencing",
+  product_approvals: "Product Approvals",
+};
+
 export const SEVERITY_LABELS: Record<ViolationEntry["severity"], string> = {
   critical: "Critical — Stop Using Until Fixed",
   moderate: "Moderate — Fix Before Reinspection",
