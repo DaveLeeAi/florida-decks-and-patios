@@ -25,4 +25,5 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://backyard-decks.lovable.app/sitemap.xml
+# TODO: Update to production domain before launch
+Sitemap: https://florida-decks-and-patios.lovable.app/sitemap.xml
