@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { ArrowLeft } from "lucide-react";
+import ExpertCredentials from "@/components/ExpertCredentials";
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
@@ -71,6 +72,8 @@ export default function BlogPost() {
               return <p key={i} className="text-foreground/80 leading-relaxed mb-4" dangerouslySetInnerHTML={{ __html: formatted }} />;
             })}
           </div>
+
+          <ExpertCredentials />
 
           <div className="mt-16 pt-8 border-t border-border">
             <h3 className="font-heading text-xl font-semibold text-foreground mb-6">More Articles</h3>

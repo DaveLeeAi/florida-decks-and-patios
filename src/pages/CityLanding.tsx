@@ -5,6 +5,7 @@ import { COMPANY, blogPosts } from "@/data/siteData";
 import { Button } from "@/components/ui/button";
 import { MapPin, ExternalLink, Phone, Shield, Thermometer, Droplets, Wind, Sun, ArrowRight, BookOpen } from "lucide-react";
 import HomeValueCalculator from "@/components/city/HomeValueCalculator";
+import ExpertCredentials from "@/components/ExpertCredentials";
 import { FAQSchema, CityServiceSchema, LocalBusinessSchema, HowToSchema } from "@/components/seo/JsonLdSchema";
 import { useEffect } from "react";
 
@@ -341,8 +342,15 @@ export default function CityLanding() {
         </div>
       </section>
 
-      {/* Other Cities */}
+      {/* E-E-A-T Authority Footer */}
       <section className="section-padding bg-background">
+        <div className="container-narrow mx-auto max-w-3xl">
+          <ExpertCredentials />
+        </div>
+      </section>
+
+      {/* Other Cities */}
+      <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
           <h2 className="font-heading text-xl md:text-2xl font-bold text-foreground mb-6">
             We Also Serve These Florida Areas

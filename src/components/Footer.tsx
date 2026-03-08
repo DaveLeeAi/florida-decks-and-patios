@@ -62,6 +62,10 @@ export default function Footer() {
                 { label: "Sarasota", path: "/sarasota-outdoor-living" },
                 { label: "Jacksonville", path: "/jacksonville-decks" },
                 { label: "Ocala", path: "/ocala-outdoor-living" },
+                { label: "Miami", path: "/miami-decks" },
+                { label: "Melbourne", path: "/melbourne-decks" },
+                { label: "West Palm Beach", path: "/west-palm-beach-decks" },
+                { label: "St. Augustine", path: "/st-augustine-decks" },
               ].map((l) => (
                 <li key={l.path}>
                   <Link to={l.path} className="text-sm text-primary-foreground/70 hover:text-amber transition-colors">
