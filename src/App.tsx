@@ -67,6 +67,7 @@ const App = () => (
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/kb" element={<AdminKB />} />
               <Route path="/admin/chats" element={<AdminChatHistory />} />
