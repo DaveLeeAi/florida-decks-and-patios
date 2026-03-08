@@ -171,9 +171,9 @@ export default function Header() {
                 {cityPages.map((city) => (
                   <Link
                     key={city.slug}
-                    to={`/${city.slug}`}
+                    to={`/areas/${city.slug}`}
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-colors ${
-                      location.pathname === `/${city.slug}`
+                      location.pathname === `/areas/${city.slug}`
                         ? "text-primary bg-primary/10"
                         : "text-foreground/80 hover:text-primary hover:bg-primary/5"
                     }`}

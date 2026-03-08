@@ -913,7 +913,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Tallahassee offers affordable North Florida outdoor living with lower humidity and wind exposure.",
   },
   {
-    slug: "fort-walton-beach-decks",
+    slug: "fort-walton-beach-decks-patios",
     name: "Fort Walton Beach",
     county: "Okaloosa County",
     region: "Northwest Florida / Panhandle",
