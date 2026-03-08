@@ -5,6 +5,7 @@ import { COMPANY, blogPosts } from "@/data/siteData";
 import { Button } from "@/components/ui/button";
 import { MapPin, ExternalLink, Phone, Shield, Thermometer, Droplets, Wind, Sun, ArrowRight, BookOpen } from "lucide-react";
 import HomeValueCalculator from "@/components/city/HomeValueCalculator";
+import ExpertCredentials from "@/components/ExpertCredentials";
 import { FAQSchema, CityServiceSchema, LocalBusinessSchema, HowToSchema } from "@/components/seo/JsonLdSchema";
 import { useEffect } from "react";
 
