@@ -15,6 +15,13 @@ export default function BlogPost() {
 
   return (
     <Layout>
+      <TechArticleSchema
+        title={post.title}
+        description={post.excerpt}
+        slug={post.slug}
+        datePublished={post.date}
+        category={post.category}
+      />
       <article className="section-padding bg-background">
         <div className="container-narrow mx-auto max-w-3xl">
           <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">

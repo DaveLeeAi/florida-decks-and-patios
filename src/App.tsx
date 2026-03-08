@@ -56,6 +56,8 @@ const App = () => (
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/kb" element={<AdminKB />} />
+              <Route path="/data-hub" element={<DataHub />} />
+              <Route path="/glossary" element={<Glossary />} />
               <Route path="/:slug" element={<CityLanding />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
