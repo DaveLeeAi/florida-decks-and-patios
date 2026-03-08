@@ -1,25 +1,74 @@
 import type { ViolationEntry } from "@/data/violationData";
 
 const ALIASES: Record<string, string[]> = {
+  // Railing / guard
   "guard rail": ["railing", "guardrail", "guard"],
   "guardrail": ["railing", "guard rail", "guard"],
+  "banister": ["handrail", "railing"],
+  "spindle": ["baluster", "guard", "railing"],
+  "railing too short": ["railing", "height", "guard"],
+  "rail height": ["railing", "height", "guard"],
+  
+  // Permits
   "no permit": ["permit", "unpermitted", "after-the-fact"],
   "without permit": ["permit", "unpermitted"],
+  "didn't get a permit": ["permit", "unpermitted"],
+  "illegal deck": ["permit", "unpermitted"],
+  "permit expired": ["permit"],
+  
+  // HVHZ / NOA
   "noa": ["hvhz", "notice of acceptance", "miami-dade"],
   "notice of acceptance": ["noa", "hvhz"],
   "hurricane zone": ["hvhz"],
   "high velocity": ["hvhz"],
+  "miami dade": ["hvhz", "noa", "miami-dade"],
+  
+  // Stairs
   "staircase": ["stair", "step", "riser"],
   "steps": ["stair", "riser", "tread"],
-  "banister": ["handrail", "railing"],
-  "spindle": ["baluster", "guard", "railing"],
-  "failed inspection": ["inspection", "failed"],
+  "uneven steps": ["stair", "riser", "inconsistent"],
+  "tripped on stairs": ["stair", "riser", "tread", "trip"],
+  
+  // Structural - homeowner language
   "deck collapsed": ["ledger", "collapse", "connection"],
-  "wobbly": ["loose", "guard", "railing"],
-  "sagging": ["sag", "deflection", "joist", "beam"],
+  "deck falling": ["ledger", "collapse", "pulling away"],
+  "pulling away": ["ledger", "separating", "connection", "detaching"],
+  "separating from house": ["ledger", "connection", "pulling away"],
+  "deck feels bouncy": ["joist", "bounce", "deflection", "span"],
   "bouncy": ["bounce", "joist", "deflection"],
+  "wobbly": ["loose", "guard", "railing"],
+  "wobbly railing": ["loose", "guard", "railing", "attachment"],
+  "sagging": ["sag", "deflection", "joist", "beam"],
+  "deck is sinking": ["footing", "settling", "foundation"],
+  "deck is leaning": ["post", "footing", "settling"],
+  
+  // Water / rot
   "rot": ["rot", "moisture", "water damage", "deteriorated"],
+  "rotting": ["rot", "decay", "deteriorated", "moisture"],
   "water damage": ["rot", "moisture", "flashing", "drainage"],
+  "wood is soft": ["rot", "decay", "deteriorated"],
+  "moldy": ["rot", "moisture", "mold"],
+  "standing water": ["drainage", "pooling", "water"],
+  
+  // Inspection process
+  "failed inspection": ["inspection", "failed"],
+  "inspection failed": ["inspection", "failed"],
+  "red tag": ["inspection", "failed", "stop work"],
+  "stop work": ["permit", "inspection"],
+  
+  // Electrical
+  "outlet": ["receptacle", "GFCI", "electrical"],
+  "plug": ["receptacle", "GFCI", "electrical", "outlet"],
+  "shocked": ["GFCI", "bonding", "grounding", "electrical"],
+  
+  // Other homeowner terms
+  "termites": ["termite", "pest", "insect"],
+  "bugs eating wood": ["termite", "pest", "decay"],
+  "hot tub": ["hot tub", "spa", "heavy", "load"],
+  "spa": ["hot tub", "heavy", "load"],
+  "screen porch": ["screen", "enclosure", "lanai"],
+  "lanai": ["screen", "enclosure", "screened porch"],
+  "pergola": ["pergola", "patio cover", "anchorage"],
 };
 
 function normalizeQuery(raw: string): string {
