@@ -83,6 +83,8 @@ const App = () => (
               <Route path="/city/:citySlug" element={<CitySeoLanding />} />
               <Route path="/city/:citySlug/:serviceSlug" element={<CitySeoLanding />} />
               <Route path="/projects/:hubSlug" element={<CityProjectHub />} />
+              <Route path="/permits" element={<PermitsHub />} />
+              <Route path="/permits/:countySlug" element={<PermitCounty />} />
               <Route path="/areas/:slug" element={<CityLanding />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
