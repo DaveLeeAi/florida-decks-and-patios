@@ -6,17 +6,6 @@ import { Phone, Menu, X, ChevronDown, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cityPages } from "@/data/cityData";
 
-const cityDescriptions: Record<string, string> = {
-  "tampa-decks": "Decks, Patios & Outdoor Living",
-  "orlando-decks": "Backyard Deck & Patio Projects",
-  "sarasota-decks": "Coastal Outdoor Living Spaces",
-  "jacksonville-decks": "Decks, Patios & Backyard Upgrades",
-  "ocala-decks": "Outdoor Living for Growing Homes",
-  "miami-decks": "Pool Decks & Coastal Patio Design",
-  "melbourne-decks": "Space Coast Deck & Patio Projects",
-  "west-palm-beach-decks": "Waterfront Outdoor Living",
-  "st-augustine-decks": "Historic Coastal Outdoor Spaces",
-};
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
