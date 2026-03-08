@@ -60,45 +60,88 @@ export default function AdminLogin() {
           <p className="text-primary-foreground/60 text-sm mt-1">Sign in to manage your site</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-card rounded-lg border border-border p-6 space-y-4 shadow-xl">
-          <p className="text-xs text-muted-foreground text-center">Admin access requires an authorized account with write permissions.</p>
-          {error && (
-            <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md text-center">{error}</div>
-          )}
-          <div>
-            <label className="block text-sm font-medium text-foreground mb-1.5">Email</label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-md border border-input bg-background pl-10 pr-3 py-2.5 text-sm text-foreground"
-                placeholder="admin@example.com"
-                required
-                maxLength={255}
-              />
+        {forgotMode ? (
+          resetSent ? (
+            <div className="bg-card rounded-lg border border-border p-6 shadow-xl text-center space-y-3">
+              <Mail className="h-12 w-12 text-amber mx-auto" />
+              <p className="text-foreground font-medium">Check your email</p>
+              <p className="text-muted-foreground text-sm">We sent a password reset link to <strong>{email}</strong></p>
+              <button onClick={() => { setForgotMode(false); setResetSent(false); }} className="text-amber text-sm hover:underline mt-2">
+                ← Back to sign in
+              </button>
             </div>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-foreground mb-1.5">Password</label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-md border border-input bg-background pl-10 pr-3 py-2.5 text-sm text-foreground"
-                placeholder="••••••••••"
-                required
-                maxLength={100}
-              />
+          ) : (
+            <form onSubmit={handleForgotPassword} className="bg-card rounded-lg border border-border p-6 space-y-4 shadow-xl">
+              <p className="text-sm text-muted-foreground text-center">Enter your email to receive a password reset link.</p>
+              {error && (
+                <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md text-center">{error}</div>
+              )}
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">Email</label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full rounded-md border border-input bg-background pl-10 pr-3 py-2.5 text-sm text-foreground"
+                    placeholder="admin@example.com"
+                    required
+                  />
+                </div>
+              </div>
+              <Button type="submit" disabled={loading} className="w-full bg-amber text-charcoal hover:bg-amber-dark font-bold">
+                {loading ? <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Sending…</> : "Send Reset Link"}
+              </Button>
+              <button type="button" onClick={() => { setForgotMode(false); setError(""); }} className="w-full text-amber text-sm hover:underline">
+                ← Back to sign in
+              </button>
+            </form>
+          )
+        ) : (
+          <form onSubmit={handleSubmit} className="bg-card rounded-lg border border-border p-6 space-y-4 shadow-xl">
+            <p className="text-xs text-muted-foreground text-center">Admin access requires an authorized account with write permissions.</p>
+            {error && (
+              <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md text-center">{error}</div>
+            )}
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1.5">Email</label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full rounded-md border border-input bg-background pl-10 pr-3 py-2.5 text-sm text-foreground"
+                  placeholder="admin@example.com"
+                  required
+                  maxLength={255}
+                />
+              </div>
             </div>
-          </div>
-          <Button type="submit" disabled={loading} className="w-full bg-amber text-charcoal hover:bg-amber-dark font-bold">
-            {loading ? <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Signing in...</> : "Sign In"}
-          </Button>
-        </form>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-1.5">Password</label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full rounded-md border border-input bg-background pl-10 pr-3 py-2.5 text-sm text-foreground"
+                  placeholder="••••••••••"
+                  required
+                  maxLength={100}
+                />
+              </div>
+            </div>
+            <Button type="submit" disabled={loading} className="w-full bg-amber text-charcoal hover:bg-amber-dark font-bold">
+              {loading ? <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Signing in...</> : "Sign In"}
+            </Button>
+            <button type="button" onClick={() => { setForgotMode(true); setError(""); }} className="w-full text-amber text-sm hover:underline">
+              Forgot password?
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
