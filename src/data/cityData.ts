@@ -628,7 +628,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Lakeland offers an affordable alternative to coastal Florida markets while providing quality outdoor living solutions.",
   },
   {
-    slug: "key-west-decks",
+    slug: "key-west-decks-patios",
     name: "Key West",
     county: "Monroe County",
     region: "Florida Keys",
