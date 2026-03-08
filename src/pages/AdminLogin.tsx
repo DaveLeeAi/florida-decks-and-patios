@@ -9,9 +9,10 @@ export default function AdminLogin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [forgotMode, setForgotMode] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
   const navigate = useNavigate();
 
-  // If already logged in, redirect
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) navigate("/admin/dashboard", { replace: true });
@@ -24,15 +25,28 @@ export default function AdminLogin() {
     setError("");
 
     const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
-
     setLoading(false);
 
     if (authError) {
       setError(authError.message);
       return;
     }
-
     navigate("/admin/dashboard");
+  };
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) { setError("Please enter your email address."); return; }
+    setLoading(true);
+    setError("");
+
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    setLoading(false);
+
+    if (resetError) { setError(resetError.message); return; }
+    setResetSent(true);
   };
 
   return (
