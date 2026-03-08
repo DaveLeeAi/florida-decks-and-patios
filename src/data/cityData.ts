@@ -241,6 +241,8 @@ export const cityPages: CityData[] = [
     heroSubheadline: "Military-family-friendly deck building with maximum ROI — engineered for Northeast Florida's climate and built to last.",
     permitLink: "https://jaxepics.coj.net",
     permitDepartment: "City of Jacksonville Building Inspection Division",
+    cityMultiplier: 1.0,
+    cityMultiplierLabel: "Standard Appraisal Lift",
     permitPhone: "(904) 255-7800",
     climateProfile: {
       primary: "Northern subtropical with moderate coastal influence",
