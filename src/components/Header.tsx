@@ -1,15 +1,19 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import logoImg from "@/assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { useSiteData } from "@/contexts/SiteDataContext";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, ChevronDown, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cityPages } from "@/data/cityData";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [areasOpen, setAreasOpen] = useState(false);
+  const [mobileAreasOpen, setMobileAreasOpen] = useState(false);
   const location = useLocation();
   const { company, navLinks, settings } = useSiteData();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -19,7 +23,22 @@ export default function Header() {
 
   useEffect(() => {
     setMobileOpen(false);
+    setAreasOpen(false);
+    setMobileAreasOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setAreasOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const citySlugs = cityPages.map((c) => `/${c.slug}`);
+  const isAreaActive = citySlugs.includes(location.pathname);
 
   return (
     <header
@@ -50,6 +69,45 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+
+          {/* Service Areas Dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setAreasOpen(!areasOpen)}
+              className={`flex items-center gap-1 px-4 py-2 rounded-md text-base font-semibold transition-colors ${
+                isAreaActive
+                  ? "text-primary bg-primary/10"
+                  : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+              }`}
+            >
+              Service Areas
+              <ChevronDown className={`h-4 w-4 transition-transform ${areasOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {areasOpen && (
+              <div className="absolute top-full right-0 mt-2 w-72 bg-card border border-border rounded-lg shadow-lg overflow-hidden animate-fade-in z-50">
+                <div className="p-2">
+                  {cityPages.map((city) => (
+                    <Link
+                      key={city.slug}
+                      to={`/${city.slug}`}
+                      className={`flex items-start gap-3 px-3 py-2.5 rounded-md transition-colors ${
+                        location.pathname === `/${city.slug}`
+                          ? "text-primary bg-primary/10"
+                          : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                      }`}
+                    >
+                      <MapPin className="h-4 w-4 mt-0.5 shrink-0" />
+                      <div>
+                        <p className="font-semibold text-sm">{city.name}</p>
+                        <p className="text-xs text-muted-foreground">{city.tagline}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -91,6 +149,39 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+
+            {/* Mobile Service Areas */}
+            <button
+              onClick={() => setMobileAreasOpen(!mobileAreasOpen)}
+              className={`flex items-center justify-between px-4 py-3 rounded-md text-base font-medium transition-colors ${
+                isAreaActive
+                  ? "text-primary bg-primary/10"
+                  : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+              }`}
+            >
+              Service Areas
+              <ChevronDown className={`h-4 w-4 transition-transform ${mobileAreasOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {mobileAreasOpen && (
+              <div className="ml-4 flex flex-col gap-1">
+                {cityPages.map((city) => (
+                  <Link
+                    key={city.slug}
+                    to={`/${city.slug}`}
+                    className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-colors ${
+                      location.pathname === `/${city.slug}`
+                        ? "text-primary bg-primary/10"
+                        : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                    }`}
+                  >
+                    <MapPin className="h-3.5 w-3.5" />
+                    {city.name}
+                  </Link>
+                ))}
+              </div>
+            )}
+
             <a
               href={`tel:${company.phone}`}
               className="flex items-center gap-2 px-4 py-3 text-base font-medium text-foreground/80"

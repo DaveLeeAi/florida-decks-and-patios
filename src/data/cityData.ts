@@ -12,6 +12,8 @@ export interface CityData {
   permitLink: string;
   permitDepartment: string;
   permitPhone: string;
+  cityMultiplier: number;
+  cityMultiplierLabel: string;
   climateProfile: {
     primary: string;
     humidity: string;
