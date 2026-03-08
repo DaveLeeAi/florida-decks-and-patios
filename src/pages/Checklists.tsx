@@ -11,7 +11,7 @@ import { ClipboardCheck, FileCheck, RotateCcw, UserCheck, Download, Mail, Printe
 import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Helmet } from "react-helmet-alternative";
+
 
 const iconMap: Record<string, React.ReactNode> = {
   ClipboardCheck: <ClipboardCheck className="h-6 w-6" />,
