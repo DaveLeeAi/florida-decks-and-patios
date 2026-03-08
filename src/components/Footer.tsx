@@ -49,6 +49,7 @@ export default function Footer() {
                 { label: "Materials Hub", path: "/materials" },
                 { label: "2026 Cost Index", path: "/data-hub" },
                 { label: "Glossary", path: "/glossary" },
+                { label: "Free Checklists", path: "/checklists" },
                 { label: "Project Estimator", path: "/tools" },
                 { label: "Contact Us", path: "/contact" },
               ].map((l) => (
