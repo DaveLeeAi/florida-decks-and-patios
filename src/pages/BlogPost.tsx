@@ -87,10 +87,10 @@ export default function BlogPost() {
             <h3 className="font-heading text-xl font-semibold text-foreground mb-6">More Articles</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {otherPosts.map((p) => (
-                <Link key={p.slug} to={`/blog/${p.slug}`} className="group p-4 rounded-lg border border-border hover:border-primary/30 transition-colors">
+                <a key={p.slug} href={`/blog/${p.slug}`} className="group block p-4 rounded-lg border border-border hover:border-primary/30 transition-colors cursor-pointer">
                   <span className="text-xs text-primary font-medium">{p.category}</span>
                   <h4 className="font-heading text-sm font-semibold text-foreground mt-1 group-hover:text-primary transition-colors leading-tight">{p.title}</h4>
-                </Link>
+                </a>
               ))}
             </div>
           </div>
