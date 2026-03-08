@@ -20,6 +20,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const CityLanding = lazy(() => import("./pages/CityLanding"));
+const AdminKB = lazy(() => import("./pages/AdminKB"));
 
 const queryClient = new QueryClient();
 
