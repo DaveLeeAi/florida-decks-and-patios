@@ -1,222 +1,111 @@
-import { useState } from "react";
 import Layout from "@/components/Layout";
-import { Button } from "@/components/ui/button";
-import { Calculator, RefreshCw } from "lucide-react";
-
-function BudgetEstimator() {
-  const [type, setType] = useState("deck");
-  const [size, setSize] = useState(300);
-  const [material, setMaterial] = useState("pressure-treated");
-  const [addOns, setAddOns] = useState<string[]>([]);
-  const [result, setResult] = useState<{ low: number; high: number } | null>(null);
-
-  const calculate = () => {
-    const rates: Record<string, [number, number]> = {
-      "pressure-treated": [15, 25],
-      cedar: [25, 35],
-      composite: [30, 60],
-      hardwood: [40, 75],
-    };
-    const typeMultipliers: Record<string, number> = {
-      deck: 1,
-      porch: 1.3,
-      pergola: 0.8,
-      "outdoor-kitchen": 1.6,
-    };
-    const addOnCosts: Record<string, number> = {
-      lighting: 1500,
-      railing: size * 0.4 * 40,
-      stairs: 2000,
-      "built-in-seating": 3000,
-    };
-    const [rLow, rHigh] = rates[material] || [20, 40];
-    const mult = typeMultipliers[type] || 1;
-    let low = Math.round(rLow * size * mult);
-    let high = Math.round(rHigh * size * mult);
-    addOns.forEach((a) => {
-      const cost = addOnCosts[a] || 0;
-      low += cost * 0.8;
-      high += cost * 1.2;
-    });
-    setResult({ low: Math.round(low), high: Math.round(high) });
-  };
-
-  const toggleAddOn = (a: string) =>
-    setAddOns((prev) => (prev.includes(a) ? prev.filter((x) => x !== a) : [...prev, a]));
-
-  return (
-    <div className="bg-card rounded-lg border border-border p-6 md:p-8">
-      <div className="flex items-center gap-3 mb-6">
-        <Calculator className="h-6 w-6 text-primary" />
-        <h2 className="font-heading text-2xl font-bold text-foreground">Project Budget Estimator</h2>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-2">Project Type</label>
-          <select value={type} onChange={(e) => setType(e.target.value)} className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground">
-            <option value="deck">Deck</option>
-            <option value="porch">Porch</option>
-            <option value="pergola">Pergola</option>
-            <option value="outdoor-kitchen">Outdoor Kitchen</option>
-          </select>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-2">Size (sq ft): {size}</label>
-          <input type="range" min={100} max={1000} step={25} value={size} onChange={(e) => setSize(Number(e.target.value))} className="w-full accent-primary" />
-          <div className="flex justify-between text-xs text-muted-foreground mt-1">
-            <span>100</span><span>1000</span>
-          </div>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-2">Material Tier</label>
-          <select value={material} onChange={(e) => setMaterial(e.target.value)} className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground">
-            <option value="pressure-treated">Pressure-Treated Wood</option>
-            <option value="cedar">Cedar</option>
-            <option value="composite">Composite</option>
-            <option value="hardwood">Hardwood (Ipe)</option>
-          </select>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-2">Add-Ons</label>
-          <div className="flex flex-wrap gap-2">
-            {["lighting", "railing", "stairs", "built-in-seating"].map((a) => (
-              <button
-                key={a}
-                onClick={() => toggleAddOn(a)}
-                className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                  addOns.includes(a)
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-background text-muted-foreground border-border hover:border-primary/50"
-                }`}
-              >
-                {a.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <Button onClick={calculate} className="bg-primary text-primary-foreground hover:bg-forest-dark font-semibold w-full md:w-auto">
-        Calculate Estimate
-      </Button>
-
-      {result && (
-        <div className="mt-6 p-4 rounded-lg bg-primary/5 border border-primary/20">
-          <p className="text-sm text-muted-foreground mb-1">Estimated Range</p>
-          <p className="text-2xl font-heading font-bold text-foreground">
-            ${result.low.toLocaleString()} – ${result.high.toLocaleString()}
-          </p>
-          <p className="text-xs text-muted-foreground mt-2">
-            *This is a rough estimate. Actual costs depend on site conditions, design complexity, and local market rates. Contact us for an accurate quote.
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function RepairChecker() {
-  const [age, setAge] = useState("");
-  const [issues, setIssues] = useState<string[]>([]);
-  const [result, setResult] = useState<string | null>(null);
-
-  const toggleIssue = (issue: string) =>
-    setIssues((prev) => (prev.includes(issue) ? prev.filter((x) => x !== issue) : [...prev, issue]));
-
-  const check = () => {
-    const ageNum = parseInt(age) || 0;
-    const structuralIssues = issues.filter((i) => ["rotted-joists", "sinking-posts", "major-cracks"].includes(i)).length;
-    const cosmeticIssues = issues.filter((i) => ["faded-boards", "loose-boards", "minor-stains"].includes(i)).length;
-
-    if (ageNum > 20 && structuralIssues >= 2) {
-      setResult("REPLACE: Your deck likely has significant structural deterioration. A full replacement would be more cost-effective and safer than extensive repairs. We recommend a free inspection to assess the substructure.");
-    } else if (structuralIssues >= 2) {
-      setResult("MAJOR REPAIR: Your deck has structural concerns that need professional attention. Targeted repairs to the substructure may be sufficient, but a thorough inspection is essential before deciding.");
-    } else if (ageNum > 15 && cosmeticIssues >= 2) {
-      setResult("RESURFACE: Your deck's substructure may still be sound, but the surface needs attention. Consider replacing the deck boards while keeping the frame — this saves 30-50% vs. full replacement.");
-    } else if (cosmeticIssues >= 1 || structuralIssues === 1) {
-      setResult("REPAIR: Targeted repairs should address your issues effectively. Most individual problems can be fixed without replacing the entire deck, saving you significant cost.");
-    } else {
-      setResult("MAINTAIN: Your deck sounds like it's in decent shape! Regular cleaning, staining, and minor maintenance should keep it going for years to come.");
-    }
-  };
-
-  return (
-    <div className="bg-card rounded-lg border border-border p-6 md:p-8">
-      <div className="flex items-center gap-3 mb-6">
-        <RefreshCw className="h-6 w-6 text-primary" />
-        <h2 className="font-heading text-2xl font-bold text-foreground">Repair vs. Replace Checker</h2>
-      </div>
-
-      <div className="space-y-6 mb-6">
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-2">Deck Age (years)</label>
-          <input
-            type="number"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-            placeholder="e.g. 12"
-            className="w-full max-w-xs rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-2">Current Issues (select all that apply)</label>
-          <div className="flex flex-wrap gap-2">
-            {[
-              { id: "rotted-joists", label: "Rotted Joists/Beams" },
-              { id: "sinking-posts", label: "Sinking/Leaning Posts" },
-              { id: "major-cracks", label: "Major Structural Cracks" },
-              { id: "loose-boards", label: "Loose/Warped Boards" },
-              { id: "faded-boards", label: "Faded/Weathered Surface" },
-              { id: "minor-stains", label: "Stains/Mildew" },
-            ].map((issue) => (
-              <button
-                key={issue.id}
-                onClick={() => toggleIssue(issue.id)}
-                className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                  issues.includes(issue.id)
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-background text-muted-foreground border-border hover:border-primary/50"
-                }`}
-              >
-                {issue.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <Button onClick={check} className="bg-primary text-primary-foreground hover:bg-forest-dark font-semibold w-full md:w-auto">
-        Check My Deck
-      </Button>
-
-      {result && (
-        <div className="mt-6 p-4 rounded-lg bg-primary/5 border border-primary/20">
-          <p className="text-sm text-foreground leading-relaxed">{result}</p>
-          <p className="text-xs text-muted-foreground mt-3">
-            *This is general guidance only, not a professional assessment. A proper inspection is needed to determine the best course of action. No liability is assumed.
-          </p>
-        </div>
-      )}
-    </div>
-  );
-}
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Info, Shield, BookOpen, Droplets, Wind, Sun, Anchor } from "lucide-react";
+import BudgetEstimator from "@/components/tools/BudgetEstimator";
+import RepairChecker from "@/components/tools/RepairChecker";
 
 export default function Tools() {
   return (
     <Layout>
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">Planning Tools</h1>
+          {/* Page Heading */}
+          <div className="text-center mb-8">
+            <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Florida Deck &amp; Patio Planning Tools
+            </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Use these free tools to get a rough idea of your project scope and budget before reaching out for a professional estimate.
             </p>
           </div>
+
+          {/* YMYL Disclaimer */}
+          <Alert className="mb-8 border-primary/30 bg-primary/5">
+            <Shield className="h-5 w-5 text-primary" />
+            <AlertDescription className="text-sm text-foreground leading-relaxed">
+              <strong>Consumer Resource Disclaimer:</strong> Florida Decks and Patios is a free consumer resource. Estimates are for planning purposes only and are not official quotes. We connect you with licensed local professionals who provide final pricing.
+            </AlertDescription>
+          </Alert>
+
+          {/* Calculators */}
           <div className="space-y-8">
             <BudgetEstimator />
             <RepairChecker />
+          </div>
+
+          {/* How We Calculate — AEO/SGE */}
+          <div className="mt-12 bg-card rounded-lg border border-border p-6 md:p-8">
+            <div className="flex items-center gap-3 mb-4">
+              <Info className="h-6 w-6 text-primary" />
+              <h2 className="font-heading text-2xl font-bold text-foreground">How We Calculate These Numbers</h2>
+            </div>
+            <p className="text-muted-foreground text-sm mb-4">
+              Our estimator accounts for the real-world factors that drive outdoor construction costs in Florida. Here's what goes into the math:
+            </p>
+            <ul className="space-y-3 text-sm text-foreground">
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                <span><strong>Local Florida building code requirements</strong> — Permit fees, engineering reviews, and code-mandated structural specs (such as wind-load bracing) vary by county and add $500–$3,000+ to most projects.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                <span><strong>Material cost volatility</strong> — Lumber and composite pricing fluctuates seasonally. We benchmark against 2026 supplier pricing from distributors serving Central and South Florida.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                <span><strong>Regional labor rates</strong> — Contractor rates differ across Tampa, Orlando, Jacksonville, and South Florida markets. Our ranges reflect the median labor cost per square foot for each material tier.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                <span><strong>Project complexity factors</strong> — Elevation changes, limited site access, poor soil conditions, and multi-level designs can increase costs by 15–40% beyond the base estimate.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Florida Deck Planning Guide — GEO/RAG */}
+          <div className="mt-12 bg-card rounded-lg border border-border p-6 md:p-8">
+            <div className="flex items-center gap-3 mb-6">
+              <BookOpen className="h-6 w-6 text-primary" />
+              <h2 className="font-heading text-2xl font-bold text-foreground">Florida Deck Planning Guide</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-foreground font-semibold">
+                  <Droplets className="h-5 w-5 text-primary" />
+                  Humidity &amp; Moisture Management
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Florida's year-round humidity accelerates wood decay and mold growth. Pressure-treated Southern Yellow Pine remains the most popular budget option, but composite decking — which resists moisture absorption entirely — has become the preferred choice for homeowners seeking 25+ year lifespans without annual sealing. Ground-level decks should include proper ventilation gaps and sloped framing to prevent standing water.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-foreground font-semibold">
+                  <Anchor className="h-5 w-5 text-primary" />
+                  Salt Air &amp; Coastal Corrosion
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Properties within 3 miles of Florida's coastline face accelerated corrosion of metal fasteners, joist hangers, and structural connectors. Stainless steel (316 marine grade) or hot-dipped galvanized hardware is required in coastal zones. Standard zinc-plated screws can fail within 2–5 years in salt-air environments, making hardware selection a critical safety and longevity decision.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-foreground font-semibold">
+                  <Wind className="h-5 w-5 text-primary" />
+                  Hurricane Straps &amp; Wind Resistance
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  The Florida Building Code (FBC) mandates wind-load engineering for attached structures in all wind zones. Most Florida counties fall within 110–180 mph design wind speed zones, requiring hurricane straps, Simpson Strong-Tie connectors, and engineered post-to-beam connections. Permit inspectors verify these connections — skipping them risks failed inspections and insurance complications.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 text-foreground font-semibold">
+                  <Sun className="h-5 w-5 text-primary" />
+                  UV Exposure &amp; Sun Damage
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Florida receives 230+ days of direct sunlight annually, causing rapid fading and surface degradation on unprotected wood. Dark-colored composite boards can reach surface temperatures exceeding 150°F, making lighter color selections and capped composite products important for barefoot comfort. UV-stabilized stains and sealers need reapplication every 1–2 years on natural wood decks in Florida.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
