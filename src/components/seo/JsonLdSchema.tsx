@@ -24,7 +24,7 @@ export function LocalBusinessSchema() {
     "@type": "HomeAndConstructionBusiness",
     name: COMPANY.name,
     description: "Referral network connecting homeowners with DBPR-licensed, insured Florida contractors for custom deck building, patio installation, and outdoor living spaces. All contractors verified before project begins.",
-    url: "https://backyard-decks.lovable.app",
+    url: "https://florida-decks-and-patios.lovable.app",
     telephone: COMPANY.phone,
     email: COMPANY.email,
     address: {
@@ -46,6 +46,18 @@ export function LocalBusinessSchema() {
       { "@type": "City", name: "Melbourne", addressRegion: "FL" },
       { "@type": "City", name: "West Palm Beach", addressRegion: "FL" },
       { "@type": "City", name: "St. Augustine", addressRegion: "FL" },
+      { "@type": "City", name: "Fort Myers", addressRegion: "FL" },
+      { "@type": "City", name: "Cape Coral", addressRegion: "FL" },
+      { "@type": "City", name: "Gainesville", addressRegion: "FL" },
+      { "@type": "City", name: "Daytona Beach", addressRegion: "FL" },
+      { "@type": "City", name: "Bradenton", addressRegion: "FL" },
+      { "@type": "City", name: "Clearwater", addressRegion: "FL" },
+      { "@type": "City", name: "Lakeland", addressRegion: "FL" },
+      { "@type": "City", name: "Port Charlotte", addressRegion: "FL" },
+      { "@type": "City", name: "Jupiter", addressRegion: "FL" },
+      { "@type": "City", name: "Fort Pierce", addressRegion: "FL" },
+      { "@type": "City", name: "The Villages", addressRegion: "FL" },
+      { "@type": "City", name: "Kissimmee", addressRegion: "FL" },
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
@@ -163,7 +175,7 @@ export function CityServiceSchema({ cityName, slug, description }: CityServiceSc
       addressCountry: "US",
     },
     description,
-    url: `https://backyard-decks.lovable.app/${slug}`,
+    url: `https://florida-decks-and-patios.lovable.app/${slug}`,
   };
   return <JsonLd schema={schema} />;
 }
@@ -183,19 +195,19 @@ export function TechArticleSchema({ title, description, slug, datePublished, dat
     "@type": "TechArticle",
     headline: title,
     description,
-    url: `https://backyard-decks.lovable.app/blog/${slug}`,
+    url: `https://florida-decks-and-patios.lovable.app/blog/${slug}`,
     datePublished,
     dateModified: dateModified || datePublished,
     proficiencyLevel: "Beginner",
     author: {
       "@type": "Organization",
       name: COMPANY.name,
-      url: "https://backyard-decks.lovable.app",
+      url: "https://florida-decks-and-patios.lovable.app",
     },
     publisher: {
       "@type": "Organization",
       name: COMPANY.name,
-      url: "https://backyard-decks.lovable.app",
+      url: "https://florida-decks-and-patios.lovable.app",
     },
     about: {
       "@type": "Thing",
