@@ -400,7 +400,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Miami-Dade and Broward counties represent Florida's most demanding — and most lucrative — deck building market. The HVHZ (High-Velocity Hurricane Zone) designation makes this region unique in all of North America.\n\nWhat sets Miami apart:\n\n- **HVHZ NOA Requirement**: Every material used in outdoor construction must carry a Miami-Dade Notice of Acceptance (NOA) number. This eliminates many standard products and requires specialized sourcing\n- **Digitally sealed engineering**: All decks over 30 inches or 200 sq ft require digitally signed and sealed structural drawings by a licensed Florida PE — no exceptions\n- **Luxury high-rise terraces**: Miami's condo market creates demand for rooftop and balcony deck installations using lightweight aluminum and porcelain paver systems rated for HVHZ wind uplift\n- **316-grade mandatory zone**: Within 3,000 feet of the coastline, only 316-grade stainless steel or marine-grade aluminum fasteners are acceptable. Standard hardware will catastrophically fail\n- **Bilingual project management**: Miami's diverse population requires Spanish-language permit coordination and client communication capabilities\n- **Premium material preference**: Ipe (Brazilian Walnut), Cumaru, and aluminum framing dominate the Miami luxury market, with budgets regularly exceeding $50,000 for waterfront properties",
   },
   {
-    slug: "melbourne-decks",
+    slug: "melbourne-cocoa-beach-decks-patios",
     name: "Melbourne / Cocoa Beach",
     county: "Brevard County",
     region: "Central East Coast",
