@@ -6,6 +6,8 @@ import CostEstimator from "@/components/tools/CostEstimator";
 import PermitChecker from "@/components/tools/PermitChecker";
 import RepairChecker from "@/components/tools/RepairChecker";
 import ViolationDecoder from "@/components/tools/ViolationDecoder";
+import DesignIdeaGenerator from "@/components/tools/DesignIdeaGenerator";
+import ROICalculator from "@/components/tools/ROICalculator";
 import { FAQSchema } from "@/components/seo/JsonLdSchema";
 import { permitFAQs } from "@/data/permitRules";
 
@@ -53,6 +55,12 @@ export default function Tools() {
           {/* Calculators */}
           <div className="space-y-8" id="budget">
             <CostEstimator />
+            <div id="design">
+              <DesignIdeaGenerator />
+            </div>
+            <div id="roi">
+              <ROICalculator />
+            </div>
             <div id="permits">
               <PermitChecker />
             </div>
