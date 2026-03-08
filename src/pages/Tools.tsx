@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Info, Shield, BookOpen, Droplets, Wind, Sun, Anchor, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import BudgetEstimator from "@/components/tools/BudgetEstimator";
+import CostEstimator from "@/components/tools/CostEstimator";
 import PermitChecker from "@/components/tools/PermitChecker";
 import RepairChecker from "@/components/tools/RepairChecker";
 import ViolationDecoder from "@/components/tools/ViolationDecoder";
@@ -20,10 +20,16 @@ const violationFAQs = [
   { question: "When do I need an engineer for a failed deck inspection?", answer: "An engineer is typically required when the deck exceeds prescriptive code limits — unusual heights, heavy loads (hot tubs, outdoor kitchens), structural damage repairs, or when field work doesn't match the original plans. The building department will tell you if engineering is needed." },
 ];
 
+const costFAQs = [
+  { question: "How much does a deck cost in Florida in 2026?", answer: "Florida deck costs range from $35–$125+ per square foot installed depending on material, location, and complexity. A typical 300 sq ft composite deck costs $12,000–$27,000 in most markets. Miami-Dade HVHZ projects can exceed $50,000 due to mandatory engineering and NOA-approved materials." },
+  { question: "What is the cheapest deck material in Florida?", answer: "Pressure-treated Southern Yellow Pine is the most affordable at $8–$16 per square foot for materials only ($35–$85/sq ft installed). However, it requires 30–40 hours of annual maintenance and typically lasts only 10–15 years in Florida's climate. Composite decking costs more upfront but has lower total cost of ownership over 25+ years." },
+  { question: "How long does it take to build a deck in Florida?", answer: "Including permitting, a typical Florida deck project takes 3–10 weeks total. Permit processing takes 1–6 weeks depending on the city (faster in Ocala/Tallahassee, slower in Miami-Dade). Construction takes 1–8 weeks depending on size and complexity." },
+];
+
 export default function Tools() {
   return (
     <Layout>
-      <FAQSchema questions={[...violationFAQs, ...permitFAQs]} />
+      <FAQSchema questions={[...violationFAQs, ...permitFAQs, ...costFAQs]} />
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
           {/* Page Heading */}
@@ -46,8 +52,10 @@ export default function Tools() {
 
           {/* Calculators */}
           <div className="space-y-8" id="budget">
-            <BudgetEstimator />
-            <PermitChecker />
+            <CostEstimator />
+            <div id="permits">
+              <PermitChecker />
+            </div>
             <div id="repair">
               <RepairChecker />
             </div>
@@ -73,7 +81,7 @@ export default function Tools() {
             <ViolationDecoder />
           </div>
 
-          {/* How We Calculate — AEO/SGE */}
+          {/* How We Calculate */}
           <div className="mt-12 bg-card rounded-lg border border-border p-6 md:p-8">
             <div className="flex items-center gap-3 mb-4">
               <Info className="h-6 w-6 text-primary" />
@@ -102,7 +110,7 @@ export default function Tools() {
             </ul>
           </div>
 
-          {/* Florida Deck Planning Guide — GEO/RAG */}
+          {/* Florida Deck Planning Guide */}
           <div className="mt-12 bg-card rounded-lg border border-border p-6 md:p-8">
             <div className="flex items-center gap-3 mb-6">
               <BookOpen className="h-6 w-6 text-primary" />
@@ -148,7 +156,22 @@ export default function Tools() {
             </div>
           </div>
 
-          {/* Permit FAQ Section */}
+          {/* Cost FAQ */}
+          <div className="mt-12 bg-card rounded-lg border border-border p-6 md:p-8">
+            <h2 className="font-heading text-2xl font-bold text-foreground mb-6">
+              Florida Deck Cost FAQs
+            </h2>
+            <div className="space-y-5">
+              {costFAQs.map((faq, i) => (
+                <div key={i}>
+                  <h3 className="text-base font-semibold text-foreground mb-1">{faq.question}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Permit FAQ */}
           <div className="mt-12 bg-card rounded-lg border border-border p-6 md:p-8">
             <h2 className="font-heading text-2xl font-bold text-foreground mb-6">
               Florida Deck Permit FAQs
