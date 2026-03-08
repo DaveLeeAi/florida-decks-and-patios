@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { ArrowLeft } from "lucide-react";
 import ExpertCredentials from "@/components/ExpertCredentials";
+import { TechArticleSchema } from "@/components/seo/JsonLdSchema";
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
