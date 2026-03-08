@@ -5,11 +5,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { FAQSchema } from "@/components/seo/JsonLdSchema";
 import { faqEntries, FAQ_CATEGORIES, type FAQCategory } from "@/data/faqData";
-import RelatedContent from "@/components/RelatedContent";
 import { Search, Shield, ArrowRight, HelpCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 export default function FAQ() {
   const [search, setSearch] = useState("");
@@ -31,7 +32,6 @@ export default function FAQ() {
     return items;
   }, [search, activeTab]);
 
-  // Group filtered items by category for display
   const grouped = useMemo(() => {
     const map = new Map<FAQCategory, typeof faqEntries>();
     for (const entry of filtered) {
@@ -42,7 +42,6 @@ export default function FAQ() {
     return map;
   }, [filtered]);
 
-  // Schema data for SEO
   const schemaQuestions = useMemo(
     () => faqEntries.map((e) => ({ question: e.question, answer: e.answer })),
     []
@@ -50,6 +49,10 @@ export default function FAQ() {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Florida Deck & Patio FAQ | Common Questions About Outdoor Living</title>
+        <meta name="description" content="Answers to common questions about deck installation, patio design, permits, costs, and materials for Florida homeowners. Learn about building outdoor living spaces in Florida's climate." />
+      </Helmet>
       <FAQSchema questions={schemaQuestions} />
 
       {/* Hero */}
@@ -63,8 +66,7 @@ export default function FAQ() {
               Florida Deck &amp; Patio FAQ
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              {faqEntries.length}+ answers to the most common questions about
-              building, permitting, and maintaining decks in Florida.
+              Answers to common questions about building, permitting, and maintaining decks and patios in Florida's unique climate.
             </p>
           </div>
 
@@ -72,7 +74,7 @@ export default function FAQ() {
           <div className="relative max-w-xl mx-auto mb-8">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
-              placeholder="Search FAQs… e.g. 'hurricane straps' or 'permit cost'"
+              placeholder="Search FAQs… e.g. 'composite' or 'permit'"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="pl-10 h-12 text-base"
@@ -102,7 +104,6 @@ export default function FAQ() {
               })}
             </TabsList>
 
-            {/* Content — works for "all" and individual tabs */}
             <TabsContent value={activeTab} forceMount className="mt-0">
               {filtered.length === 0 ? (
                 <div className="text-center py-12 text-muted-foreground">
@@ -127,9 +128,16 @@ export default function FAQ() {
                                 {faq.question}
                               </AccordionTrigger>
                               <AccordionContent>
-                                <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                                  {faq.answer}
-                                </p>
+                                {faq.answerHtml ? (
+                                  <p
+                                    className="text-sm text-muted-foreground leading-relaxed mb-3"
+                                    dangerouslySetInnerHTML={{ __html: faq.answerHtml }}
+                                  />
+                                ) : (
+                                  <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                                    {faq.answer}
+                                  </p>
+                                )}
                                 {(faq.relatedTools || faq.cta) && (
                                   <div className="flex flex-wrap items-center gap-2">
                                     {faq.relatedTools?.map((tool) => (
@@ -144,7 +152,7 @@ export default function FAQ() {
                                       </Link>
                                     ))}
                                     {faq.cta && (
-                                      <Link to="/contact">
+                                      <Link to="/portfolio">
                                         <Badge className="bg-primary text-primary-foreground cursor-pointer">
                                           {faq.cta}
                                           <ArrowRight className="ml-1 h-3 w-3" />
@@ -176,8 +184,30 @@ export default function FAQ() {
               licensed contractor for project-specific guidance.
             </AlertDescription>
           </Alert>
+        </div>
+      </section>
 
-          <RelatedContent topics={["general", "design"]} title="Explore More Resources" maxLinks={6} className="mt-8" />
+      {/* CTA Section */}
+      <section className="section-padding bg-primary text-primary-foreground">
+        <div className="container-narrow mx-auto text-center">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+            Planning a Deck or Patio in Florida?
+          </h2>
+          <p className="text-primary-foreground/80 text-lg mb-8 max-w-2xl mx-auto">
+            Browse our portfolio of completed Florida deck and patio projects for inspiration, or explore our free planning tools to estimate costs, check permits, and design your outdoor living space.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link to="/portfolio">
+              <Button size="lg" variant="secondary" className="text-base px-8">
+                View Recent Projects
+              </Button>
+            </Link>
+            <Link to="/tools">
+              <Button size="lg" variant="outline" className="text-base px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                Explore Deck &amp; Patio Tools
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
     </Layout>
