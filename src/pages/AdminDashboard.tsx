@@ -464,8 +464,8 @@ export default function AdminDashboard() {
   useAdminGuard();
   const navigate = useNavigate();
 
-  const logout = () => {
-    sessionStorage.removeItem("admin_auth");
+  const logout = async () => {
+    await supabase.auth.signOut();
     navigate("/admin/login");
   };
 
