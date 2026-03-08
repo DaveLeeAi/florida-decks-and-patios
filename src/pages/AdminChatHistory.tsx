@@ -135,8 +135,8 @@ export default function AdminChatHistory() {
             variant="ghost"
             size="sm"
             className="text-muted-foreground gap-1"
-            onClick={() => {
-              sessionStorage.removeItem("admin_auth");
+            onClick={async () => {
+              await supabase.auth.signOut();
               navigate("/admin/login");
             }}
           >
