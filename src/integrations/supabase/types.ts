@@ -72,6 +72,7 @@ export type Database = {
         Row: {
           budget: string | null
           city: string | null
+          contacted: boolean
           created_at: string
           email: string
           id: string
@@ -83,6 +84,7 @@ export type Database = {
         Insert: {
           budget?: string | null
           city?: string | null
+          contacted?: boolean
           created_at?: string
           email: string
           id?: string
@@ -94,6 +96,7 @@ export type Database = {
         Update: {
           budget?: string | null
           city?: string | null
+          contacted?: boolean
           created_at?: string
           email?: string
           id?: string

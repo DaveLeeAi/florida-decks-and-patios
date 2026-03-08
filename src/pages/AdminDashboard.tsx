@@ -481,11 +481,14 @@ export default function AdminDashboard() {
             <span className="text-border">|</span>
             <span className="font-heading font-bold text-foreground">Admin Dashboard</span>
             <span className="text-border">|</span>
+            <Link to="/admin/leads" className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1">
+              Leads
+            </Link>
             <Link to="/admin/chats" className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1">
-              Chat History
+              Chats
             </Link>
             <Link to="/admin/kb" className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1">
-              Knowledge Base
+              KB
             </Link>
           </div>
           <Button variant="ghost" size="sm" className="text-muted-foreground gap-1" onClick={logout}>
