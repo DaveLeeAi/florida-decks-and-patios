@@ -80,6 +80,7 @@ export const QUICK_FILTERS = [
   { label: "Ledger", keyword: "ledger" },
   { label: "Flashing", keyword: "flashing" },
   { label: "Footings", keyword: "footing" },
+  { label: "Connectors", keyword: "connector" },
   { label: "Railing", keyword: "railing" },
   { label: "Stairs", keyword: "stair" },
   { label: "Permit Issues", keyword: "permit" },
@@ -87,6 +88,8 @@ export const QUICK_FILTERS = [
   { label: "Electrical", keyword: "electrical" },
   { label: "Drainage", keyword: "drainage" },
   { label: "Hurricane", keyword: "hurricane" },
+  { label: "Inspection Order", keyword: "sequence" },
+  { label: "Product Approvals", keyword: "product approval" },
 ] as const;
 
 export const POPULAR_ISSUES = [
