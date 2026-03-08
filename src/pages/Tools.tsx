@@ -9,29 +9,27 @@ import ViolationDecoder from "@/components/tools/ViolationDecoder";
 import DesignIdeaGenerator from "@/components/tools/DesignIdeaGenerator";
 import ROICalculator from "@/components/tools/ROICalculator";
 import { FAQSchema } from "@/components/seo/JsonLdSchema";
-import { permitFAQs } from "@/data/permitRules";
+import { faqEntries } from "@/data/faqData";
 
-const violationFAQs = [
-  { question: "What does a failed deck inspection mean in Florida?", answer: "A failed deck inspection means the inspector found one or more issues that don't meet Florida Building Code requirements. Common reasons include improper ledger connections, missing hurricane straps, railing height violations, or permit documentation issues. Most failures can be corrected and reinspected." },
-  { question: "Can I use my deck after it fails inspection?", answer: "Generally, you should not use a deck that has failed inspection, especially for critical structural issues. A failed inspection means the structure hasn't been verified as safe. Consult your inspector's notes and a licensed contractor to understand the severity before using the deck." },
-  { question: "Do I need a reinspection after fixing a deck code issue?", answer: "In most cases, yes. Critical and moderate violations typically require a reinspection after repairs to verify the work was done correctly. Minor issues like drainage may not always require reinspection, but check with your local building department." },
-  { question: "What happens if my deck was built without a permit in Florida?", answer: "Unpermitted deck work in Florida can result in fines of $500–$5,000 per day, forced removal, insurance claim denials, and complications when selling. You can apply for an after-the-fact permit, but fees are typically double the standard permit fee and the structure must pass all required inspections." },
-  { question: "What is a ledger board failure on a deck?", answer: "A ledger board failure means the board that attaches your deck to your house is not properly secured. Florida code (FBC R507.2) requires specific lag screws or through-bolts at 16\" on center spacing. Improper ledger connections are the #1 cause of deck collapses." },
-  { question: "What is the difference between a code violation and a permit issue?", answer: "A code violation means the physical construction doesn't meet building code requirements (wrong materials, improper spacing, missing hardware). A permit issue relates to the paperwork — missing permits, skipped inspections, or plans that don't match the actual construction. Both can cause a failed inspection." },
-  { question: "What is an NOA issue in Miami-Dade?", answer: "A Notice of Acceptance (NOA) is a Miami-Dade County approval confirming that a building product meets High-Velocity Hurricane Zone (HVHZ) requirements. If your deck materials don't have valid NOAs, the inspection will automatically fail and materials must be replaced with approved alternatives." },
-  { question: "When do I need an engineer for a failed deck inspection?", answer: "An engineer is typically required when the deck exceeds prescriptive code limits — unusual heights, heavy loads (hot tubs, outdoor kitchens), structural damage repairs, or when field work doesn't match the original plans. The building department will tell you if engineering is needed." },
-];
+const toolsFAQs = faqEntries
+  .filter((e) => ["inspections", "permits", "costs"].includes(e.category))
+  .slice(0, 15)
+  .map((e) => ({ question: e.question, answer: e.answer }));
 
-const costFAQs = [
-  { question: "How much does a deck cost in Florida in 2026?", answer: "Florida deck costs range from $35–$125+ per square foot installed depending on material, location, and complexity. A typical 300 sq ft composite deck costs $12,000–$27,000 in most markets. Miami-Dade HVHZ projects can exceed $50,000 due to mandatory engineering and NOA-approved materials." },
-  { question: "What is the cheapest deck material in Florida?", answer: "Pressure-treated Southern Yellow Pine is the most affordable at $8–$16 per square foot for materials only ($35–$85/sq ft installed). However, it requires 30–40 hours of annual maintenance and typically lasts only 10–15 years in Florida's climate. Composite decking costs more upfront but has lower total cost of ownership over 25+ years." },
-  { question: "How long does it take to build a deck in Florida?", answer: "Including permitting, a typical Florida deck project takes 3–10 weeks total. Permit processing takes 1–6 weeks depending on the city (faster in Ocala/Tallahassee, slower in Miami-Dade). Construction takes 1–8 weeks depending on size and complexity." },
-];
+const costFAQs = faqEntries
+  .filter((e) => e.category === "costs")
+  .slice(0, 3)
+  .map((e) => ({ question: e.question, answer: e.answer }));
+
+const permitFAQsDisplay = faqEntries
+  .filter((e) => e.category === "permits")
+  .slice(0, 5)
+  .map((e) => ({ question: e.question, answer: e.answer }));
 
 export default function Tools() {
   return (
     <Layout>
-      <FAQSchema questions={[...violationFAQs, ...permitFAQs, ...costFAQs]} />
+      <FAQSchema questions={toolsFAQs} />
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
           {/* Page Heading */}
@@ -185,7 +183,7 @@ export default function Tools() {
               Florida Deck Permit FAQs
             </h2>
             <div className="space-y-5">
-              {permitFAQs.map((faq, i) => (
+              {permitFAQsDisplay.map((faq, i) => (
                 <div key={i}>
                   <h3 className="text-base font-semibold text-foreground mb-1">{faq.question}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
