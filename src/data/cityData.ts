@@ -115,7 +115,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Tampa Bay leads Florida in new deck construction volume, driven by explosive growth in master-planned communities across Hillsborough and Pasco counties. Communities like FishHawk Ranch, Watergrass, Epperson, and Bexley are adding thousands of homes annually — many with builder-grade patios that homeowners want to upgrade to full composite deck systems.\n\nThe Tampa market is characterized by:\n\n- **High HOA prevalence**: Over 60% of Tampa homes are in HOA communities with specific architectural review requirements for deck projects\n- **Master-planned community standards**: Many communities require composite or PVC decking (no pressure-treated wood) and pre-approved color palettes\n- **Volume pricing advantage**: The high demand in Tampa means competitive contractor pricing and shorter wait times compared to coastal luxury markets\n- **Family-oriented designs**: Multi-level decks with play areas, built-in storage, and screened sections for year-round family use",
   },
   {
-    slug: "orlando-patios",
+    slug: "orlando-decks-patios",
     name: "Orlando",
     county: "Orange County",
     region: "Central Florida",
