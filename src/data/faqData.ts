@@ -296,7 +296,7 @@ export const faqEntries: FAQEntry[] = [
   {
     category: "materials",
     question: "What joist hangers do I need for a Florida deck?",
-    answer: "Use Simpson Strong-Tie or USP galvanized joist hangers rated for the wind zone in your area. In coastal areas (within 3 miles), use stainless steel or G185 galvanized hangers. Standard zinc-plated hangers will corrode. Hurricane/seismic joist hangers (like Simpson?"H" series) are required in high-wind zones.",
+    answer: "Use Simpson Strong-Tie or USP galvanized joist hangers rated for the wind zone in your area. In coastal areas (within 3 miles), use stainless steel or G185 galvanized hangers. Standard zinc-plated hangers will corrode. Hurricane/seismic joist hangers (like Simpson H series) are required in high-wind zones.",
     relatedTools: [{ label: "Materials Hub", href: "/materials" }],
   },
   {
