@@ -127,6 +127,8 @@ export const cityPages: CityData[] = [
     heroSubheadline: "Family-friendly outdoor spaces designed for Central Florida's year-round lifestyle — permitted and built to code in Orange County.",
     permitLink: "https://www.orangecountyfl.net/BuildingPermitting.aspx",
     permitDepartment: "Orange County Building Division",
+    cityMultiplier: 1.03,
+    cityMultiplierLabel: "+3% Outdoor Living Bonus",
     permitPhone: "(407) 836-5540",
     climateProfile: {
       primary: "Inland subtropical with heavy summer rainfall",
