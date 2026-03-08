@@ -55,6 +55,12 @@ export default function Tools() {
           {/* Calculators */}
           <div className="space-y-8" id="budget">
             <CostEstimator />
+            <div id="design">
+              <DesignIdeaGenerator />
+            </div>
+            <div id="roi">
+              <ROICalculator />
+            </div>
             <div id="permits">
               <PermitChecker />
             </div>
