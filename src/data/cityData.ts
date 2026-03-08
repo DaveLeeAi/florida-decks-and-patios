@@ -571,7 +571,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "St. Augustine and St. Johns County offer a unique blend of historic character and modern growth that creates distinct opportunities for outdoor living projects.\n\nKey St. Augustine market characteristics:\n\n- **Historic overlay districts**: Properties within St. Augustine's historic districts require architectural review for exterior modifications, including deck design, materials, and color choices. We navigate this process as part of our project management\n- **Nocatee & Ponte Vedra premium market**: St. Johns County's master-planned communities represent a premium sub-market with design expectations and budgets comparable to Sarasota and Palm Beach\n- **Freeze-thaw engineering**: Unlike South Florida, St. Augustine's winter freezes require specific expansion gap calculations and fastener systems designed for thermal cycling\n- **Minor Work permit advantage**: St. Johns County's exemption for unattached decks under 200 sq ft provides a fast-track option for budget-conscious projects like ground-level patios and freestanding platforms\n- **Nor'easter exposure**: Unlike typical Florida hurricane prep, St. Augustine also faces Atlantic nor'easters from November through March, requiring consideration of wind-driven rain from the northeast — an unusual direction for Florida construction",
   },
   {
-    slug: "lakeland-decks",
+    slug: "lakeland-decks-patios",
     name: "Lakeland",
     county: "Polk County",
     region: "Central Florida",
