@@ -66,6 +66,11 @@ export default function Contact() {
   if (submitted) {
     return (
       <Layout>
+        <Helmet>
+          <title>Get a Free Deck & Patio Estimate in Florida | Florida Decks and Patios</title>
+          <meta name="description" content="Request a free project estimate for your Florida deck, patio, pergola, or outdoor kitchen. We respond within 24 hours." />
+          <link rel="canonical" href="https://florida-decks-and-patios.lovable.app/contact" />
+        </Helmet>
         <section className="section-padding bg-background min-h-[60vh] flex items-center justify-center">
           <div className="text-center max-w-md">
             <CheckCircle className="h-16 w-16 text-primary mx-auto mb-6" />
