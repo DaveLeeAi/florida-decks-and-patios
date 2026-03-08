@@ -28,6 +28,7 @@ const Glossary = lazy(() => import("./pages/Glossary"));
 const CitySeoLanding = lazy(() => import("./pages/CitySeoLanding"));
 const MaterialsHub = lazy(() => import("./pages/MaterialsHub"));
 const FAQ = lazy(() => import("./pages/FAQ"));
+const Diagrams = lazy(() => import("./pages/Diagrams"));
 
 const queryClient = new QueryClient();
 
