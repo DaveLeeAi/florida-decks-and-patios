@@ -21,6 +21,7 @@ const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const CityLanding = lazy(() => import("./pages/CityLanding"));
 const AdminKB = lazy(() => import("./pages/AdminKB"));
+const AdminChatHistory = lazy(() => import("./pages/AdminChatHistory"));
 const DataHub = lazy(() => import("./pages/DataHub"));
 const Glossary = lazy(() => import("./pages/Glossary"));
 
