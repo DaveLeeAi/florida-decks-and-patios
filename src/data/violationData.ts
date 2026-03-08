@@ -92,6 +92,40 @@ export const COMMON_INSPECTOR_NOTES = [
   { note: "\"Framing concealed before required inspection — remove decking.\"", issueId: "concealment-reinspection" },
 ] as const;
 
+export const EXAMPLE_INSPECTION_NOTES = [
+  {
+    label: "Missing ledger flashing + wrong fasteners",
+    text: "Failed due to missing ledger flashing and improper fasteners. Nails used at ledger — lag screws required per R507.2.",
+  },
+  {
+    label: "Guard rail height + stair riser issue",
+    text: "Guard rail height below 36\" minimum — measured at 31\". Stair risers inconsistent, variation exceeds 3/8 inch.",
+  },
+  {
+    label: "No permit on file",
+    text: "No permit on file for this structure. Stop work until after-the-fact permit is obtained. Reinspection required.",
+  },
+  {
+    label: "HVHZ materials not approved",
+    text: "Provide Miami-Dade NOA for patio cover attachment hardware. Connectors do not have valid notice of acceptance for HVHZ.",
+  },
+  {
+    label: "Multiple structural issues",
+    text: "Hurricane ties not installed. Post-to-beam connection inadequate — no approved connector. Joist hangers missing at ledger. Footings undersized.",
+  },
+] as const;
+
+export const MOST_COMMON_ISSUES: string[] = [
+  "ledger-connection",
+  "ledger-flashing",
+  "hurricane-straps",
+  "railing-height",
+  "no-permit",
+  "stair-riser",
+  "missing-joist-hangers",
+  "deck-pulling-away",
+] as const;
+
 export const PERMIT_DECISION_TREE = {
   title: "Built Without a Permit? Start Here",
   disclaimer: "This is general guidance only — not legal advice. Requirements vary by county.",
