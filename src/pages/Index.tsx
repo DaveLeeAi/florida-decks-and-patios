@@ -155,7 +155,7 @@ export default function Index() {
               <Button size="lg" className="bg-amber text-amber-foreground hover:bg-amber-dark font-semibold text-base px-8 h-12">{settings.ctaText}</Button>
             </Link>
             <a href={`tel:${company.phone}`}>
-              <Button size="lg" variant="outline" className="border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10 font-semibold text-base px-8 h-12">
+              <Button size="lg" className="bg-card text-foreground hover:bg-card/90 border border-border font-semibold text-base px-8 h-12">
                 Call {company.phoneDisplay}
               </Button>
             </a>
