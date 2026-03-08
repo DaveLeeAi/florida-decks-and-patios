@@ -34,6 +34,11 @@ export default function Glossary() {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Florida Deck & Construction Glossary | 100+ Terms Explained</title>
+        <meta name="description" content="Plain-English definitions of Florida deck building terms, permit codes, material names, and construction jargon." />
+        <link rel="canonical" href="https://florida-decks-and-patios.lovable.app/glossary" />
+      </Helmet>
       <FAQSchema questions={faqQuestions} />
 
       <section className="section-padding bg-background">

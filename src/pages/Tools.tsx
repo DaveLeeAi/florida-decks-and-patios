@@ -30,6 +30,11 @@ const permitFAQsDisplay = faqEntries
 export default function Tools() {
   return (
     <Layout>
+      <Helmet>
+        <title>Free Florida Deck Planning Tools | Cost Estimator, Permit Checker & More</title>
+        <meta name="description" content="Interactive tools for Florida homeowners: deck cost estimator, permit checker, ROI calculator, repair checker, and design idea generator." />
+        <link rel="canonical" href="https://florida-decks-and-patios.lovable.app/tools" />
+      </Helmet>
       <FAQSchema questions={toolsFAQs} />
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">

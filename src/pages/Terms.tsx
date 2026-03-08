@@ -5,6 +5,11 @@ import { COMPANY } from "@/data/siteData";
 export default function Terms() {
   return (
     <Layout>
+      <Helmet>
+        <title>Terms of Service | Florida Decks and Patios</title>
+        <meta name="description" content="Terms of service for Florida Decks and Patios." />
+        <link rel="canonical" href="https://florida-decks-and-patios.lovable.app/terms" />
+      </Helmet>
       <section className="section-padding bg-background">
         <div className="container-narrow mx-auto max-w-3xl">
           <h1 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-8">Terms of Service</h1>

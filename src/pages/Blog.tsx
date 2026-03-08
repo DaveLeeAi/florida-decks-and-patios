@@ -9,6 +9,11 @@ export default function Blog() {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Florida Deck & Patio Blog | Tips, Codes & Project Guides</title>
+        <meta name="description" content="Expert articles on Florida deck building codes, materials, permits, costs, and outdoor living design. Updated for 2026." />
+        <link rel="canonical" href="https://florida-decks-and-patios.lovable.app/blog" />
+      </Helmet>
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
           <div className="text-center mb-12">

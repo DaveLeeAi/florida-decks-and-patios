@@ -44,6 +44,11 @@ export default function BlogPost() {
 
   return (
     <Layout>
+      <Helmet>
+        <title>{post.title} | Florida Decks and Patios</title>
+        <meta name="description" content={post.excerpt} />
+        <link rel="canonical" href={`https://florida-decks-and-patios.lovable.app/blog/${post.slug}`} />
+      </Helmet>
       <TechArticleSchema
         title={post.title}
         description={post.excerpt}

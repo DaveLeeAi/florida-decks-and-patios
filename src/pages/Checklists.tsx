@@ -182,6 +182,11 @@ export default function Checklists() {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Free Florida Deck Checklists | Inspection, Permit & Contractor Guides</title>
+        <meta name="description" content="Download free checklists for Florida deck inspections, permit applications, contractor vetting, and project planning." />
+        <link rel="canonical" href="https://florida-decks-and-patios.lovable.app/checklists" />
+      </Helmet>
       <section className="py-12 md:py-16 bg-muted/30">
         <div className="container-narrow mx-auto px-4 md:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10">

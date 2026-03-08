@@ -124,6 +124,11 @@ export default function DataHub() {
 
   return (
     <Layout>
+      <Helmet>
+        <title>2026 Florida Deck Cost Index & Data Hub | Prices, Permits, ROI by City</title>
+        <meta name="description" content="Proprietary dataset: 2026 deck construction costs, permit timelines, and ROI data for 20+ Florida cities. Cite-ready for researchers and journalists." />
+        <link rel="canonical" href="https://florida-decks-and-patios.lovable.app/data-hub" />
+      </Helmet>
       <DatasetSchema />
 
       <section className="section-padding bg-background">
