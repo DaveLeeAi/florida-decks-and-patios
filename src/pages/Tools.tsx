@@ -3,9 +3,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Info, Shield, BookOpen, Droplets, Wind, Sun, Anchor, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import BudgetEstimator from "@/components/tools/BudgetEstimator";
+import PermitChecker from "@/components/tools/PermitChecker";
 import RepairChecker from "@/components/tools/RepairChecker";
 import ViolationDecoder from "@/components/tools/ViolationDecoder";
 import { FAQSchema } from "@/components/seo/JsonLdSchema";
+import { permitFAQs } from "@/data/permitRules";
 
 const violationFAQs = [
   { question: "What does a failed deck inspection mean in Florida?", answer: "A failed deck inspection means the inspector found one or more issues that don't meet Florida Building Code requirements. Common reasons include improper ledger connections, missing hurricane straps, railing height violations, or permit documentation issues. Most failures can be corrected and reinspected." },
@@ -21,7 +23,7 @@ const violationFAQs = [
 export default function Tools() {
   return (
     <Layout>
-      <FAQSchema questions={violationFAQs} />
+      <FAQSchema questions={[...violationFAQs, ...permitFAQs]} />
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
           {/* Page Heading */}
@@ -43,13 +45,16 @@ export default function Tools() {
           </Alert>
 
           {/* Calculators */}
-          <div className="space-y-8">
+          <div className="space-y-8" id="budget">
             <BudgetEstimator />
-            <RepairChecker />
+            <PermitChecker />
+            <div id="repair">
+              <RepairChecker />
+            </div>
           </div>
 
           {/* ═══ Inspection Failure Explainer Section ═══ */}
-          <div className="mt-12">
+          <div className="mt-12" id="violations">
             <div className="text-center mb-6">
               <h2 className="font-heading text-3xl font-bold text-foreground mb-3">
                 Florida Deck &amp; Patio Inspection Failure Explainer
@@ -140,6 +145,21 @@ export default function Tools() {
                   Florida receives 230+ days of direct sunlight annually, causing rapid fading and surface degradation on unprotected wood. Dark-colored composite boards can reach surface temperatures exceeding 150°F, making lighter color selections and capped composite products important for barefoot comfort. UV-stabilized stains and sealers need reapplication every 1–2 years on natural wood decks in Florida.
                 </p>
               </div>
+            </div>
+          </div>
+
+          {/* Permit FAQ Section */}
+          <div className="mt-12 bg-card rounded-lg border border-border p-6 md:p-8">
+            <h2 className="font-heading text-2xl font-bold text-foreground mb-6">
+              Florida Deck Permit FAQs
+            </h2>
+            <div className="space-y-5">
+              {permitFAQs.map((faq, i) => (
+                <div key={i}>
+                  <h3 className="text-base font-semibold text-foreground mb-1">{faq.question}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
