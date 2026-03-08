@@ -55,10 +55,10 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <a
             href={`tel:${company.phone}`}
-            className="hidden md:flex items-center gap-2 text-sm font-semibold text-primary hover:text-forest-dark transition-colors"
+            className="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-forest-dark transition-colors leading-none"
           >
-            <Phone className="h-4 w-4" />
-            {company.phoneDisplay}
+            <Phone className="h-5 w-5 shrink-0" />
+            <span className="leading-none">{company.phoneDisplay}</span>
           </a>
           <Link to={settings.ctaLink}>
             <Button size="default" className="hidden sm:inline-flex bg-amber text-charcoal hover:bg-amber-dark font-bold text-sm px-6 shadow-md">
