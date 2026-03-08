@@ -55,6 +55,23 @@ export const QUICK_FILTERS = [
   { label: "Hurricane", keyword: "hurricane" },
 ] as const;
 
+export const POPULAR_ISSUES = [
+  { label: "My deck is pulling away from the house", searchTerm: "ledger" },
+  { label: "Inspector said I need hurricane straps", searchTerm: "hurricane strap" },
+  { label: "Railing is too short", searchTerm: "railing height" },
+  { label: "Built without a permit", searchTerm: "no permit" },
+  { label: "Steps are uneven", searchTerm: "stair riser" },
+  { label: "Water pooling under my deck", searchTerm: "drainage" },
+] as const;
+
+export const COMMON_INSPECTOR_NOTES = [
+  { note: "\"Ledger attachment does not comply — nails used, lag screws required.\"", issueId: "ledger-connection" },
+  { note: "\"Hurricane ties not installed at joist-to-beam connections.\"", issueId: "hurricane-straps" },
+  { note: "\"Guard height does not meet 36\" minimum — measured at 32\".\"", issueId: "railing-height" },
+  { note: "\"No permit on record for this structure.\"", issueId: "no-permit" },
+  { note: "\"Framing concealed before required inspection — remove decking.\"", issueId: "concealment-reinspection" },
+] as const;
+
 export const VIOLATIONS: ViolationEntry[] = [
   // ═══════════════════════════════════════════
   // STRUCTURAL / DECK FRAMING
