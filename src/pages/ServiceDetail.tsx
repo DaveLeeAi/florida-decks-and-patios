@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { ArrowLeft, Check } from "lucide-react";
@@ -13,19 +14,19 @@ export default function ServiceDetail() {
 
   return (
     <Layout>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            name: service.title,
-            description: service.description,
-            provider: { "@type": "LocalBusiness", name: company.name },
-            areaServed: { "@type": "State", name: "Georgia" },
-          }),
-        }}
-      />
+      <Helmet>
+        <title>{service.title} in Florida | Florida Decks and Patios</title>
+        <meta name="description" content={service.description + " Serving all of Florida. Free estimates."} />
+        <link rel="canonical" href={"https://florida-decks-and-patios.lovable.app/services/" + service.slug} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: service.title,
+          description: service.description,
+          provider: { "@type": "LocalBusiness", name: company.name },
+          areaServed: { "@type": "State", name: "Florida" },
+        })}</script>
+      </Helmet>
 
       <section className="section-padding bg-background">
         <div className="container-narrow mx-auto max-w-3xl">
