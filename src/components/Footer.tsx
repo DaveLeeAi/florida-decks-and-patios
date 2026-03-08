@@ -64,10 +64,10 @@ export default function Footer() {
             </ul>
             <h3 className="font-heading font-semibold text-lg mt-6 mb-3">Service Areas</h3>
             <ul className="space-y-2">
-              {cityPages.map((city) => (
-                <li key={city.slug}>
-                  <Link to={`/areas/${city.slug}`} className="text-sm text-primary-foreground/70 hover:text-amber transition-colors">
-                    {city.name}
+              {citySeoPages.map((city) => (
+                <li key={city.citySlug}>
+                  <Link to={`/city/${city.citySlug}`} className="text-sm text-primary-foreground/70 hover:text-amber transition-colors">
+                    {city.cityName}
                   </Link>
                 </li>
               ))}

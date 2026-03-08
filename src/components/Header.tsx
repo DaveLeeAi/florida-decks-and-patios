@@ -166,24 +166,24 @@ export default function Header() {
               <ChevronDown className={`h-4 w-4 transition-transform ${mobileAreasOpen ? "rotate-180" : ""}`} />
             </button>
 
-            {mobileAreasOpen && (
-              <div className="ml-4 flex flex-col gap-1">
-                {cityPages.map((city) => (
-                  <Link
-                    key={city.slug}
-                    to={`/areas/${city.slug}`}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-colors ${
-                      location.pathname === `/areas/${city.slug}`
-                        ? "text-primary bg-primary/10"
-                        : "text-foreground/80 hover:text-primary hover:bg-primary/5"
-                    }`}
-                  >
-                    <MapPin className="h-3.5 w-3.5" />
-                    {city.name}
-                  </Link>
-                ))}
-              </div>
-            )}
+             {mobileAreasOpen && (
+               <div className="ml-4 flex flex-col gap-1">
+                 {citySeoPages.map((city) => (
+                   <Link
+                     key={city.citySlug}
+                     to={`/city/${city.citySlug}`}
+                     className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-colors ${
+                       location.pathname === `/city/${city.citySlug}`
+                         ? "text-primary bg-primary/10"
+                         : "text-foreground/80 hover:text-primary hover:bg-primary/5"
+                     }`}
+                   >
+                     <MapPin className="h-3.5 w-3.5" />
+                     {city.cityName}
+                   </Link>
+                 ))}
+               </div>
+             )}
 
             <a
               href={phoneIsPlaceholder ? "/contact" : `tel:${company.phone}`}
