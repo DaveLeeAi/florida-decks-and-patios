@@ -121,7 +121,7 @@ export const cityPages: CityData[] = [
     region: "Central Florida",
     tagline: "Sustainable Growth & Family Living",
     metaTitle: "Orlando Deck & Patio Builders | Custom Outdoor Spaces in Orange County FL",
-    metaDescription: "Orlando's premier deck and patio builder. Composite decks, screened porches, and outdoor kitchens built for Central Florida's climate. See local costs and permits.",
+    metaDescription: "Explore Orlando's 2026 deck building guide. Navigate Orange County zoning laws easily with our local permit hub. See why capped composite is the 'Sustainable Growth' leader for Central Florida sun and UV protection.",
     focusKeyword: "deck builder Orlando",
     heroHeadline: "Orlando's Expert Deck & Patio Builders",
     heroSubheadline: "Family-friendly outdoor spaces designed for Central Florida's year-round lifestyle — permitted and built to code in Orange County.",
