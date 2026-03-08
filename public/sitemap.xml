@@ -1,32 +1,95 @@
-<!-- TODO: Update all URLs to production domain before launch -->
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Pages -->
   <url><loc>https://florida-decks-and-patios.lovable.app/</loc><lastmod>2026-03-08</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/services</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/services/deck-installation</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/services/deck-repair</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/services/composite-decking</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/services/permits-compliance</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/services/pergolas-patios</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/services/porches</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/services/outdoor-kitchens</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog</loc><lastmod>2026-03-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/contact</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/tools</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/data-hub</loc><lastmod>2026-03-08</lastmod><changefreq>quarterly</changefreq><priority>0.9</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/glossary</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/tools</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/contact</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/blog</loc><lastmod>2026-03-08</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/blog/pressure-treated-vs-composite</loc><lastmod>2026-02-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/blog/deck-maintenance-seasonal-guide</loc><lastmod>2026-02-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/blog/how-much-does-deck-cost</loc><lastmod>2026-01-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/blog/do-i-need-permit-for-deck</loc><lastmod>2026-01-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/blog/best-deck-design-trends-2026</loc><lastmod>2026-01-12</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/blog/pergola-vs-gazebo-vs-pavilion</loc><lastmod>2026-01-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/blog/increase-home-value-outdoor-space</loc><lastmod>2025-12-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/blog/choosing-right-deck-railing</loc><lastmod>2025-12-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/blog/florida-deck-building-codes-2026</loc><lastmod>2025-12-15</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://florida-decks-and-patios.lovable.app/blog/florida-deck-cost-breakdown-data</loc><lastmod>2025-12-10</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <!-- City Landing Pages (Service Areas) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/faq</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/materials</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/diagrams</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/checklists</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Service Detail Pages (9) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/services/deck-installation</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/services/deck-repair</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/services/composite-decking</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/services/pool-deck-installation</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/services/patio-paver-installation</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/services/pergola-construction</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/services/porches</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/services/outdoor-kitchens</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/services/permits-compliance</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- City SEO Landing Pages (10 cities) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/miami</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/tampa</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/orlando</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/jacksonville</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/st-petersburg</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-lauderdale</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/sarasota</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/naples</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/palm-beach</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/tallahassee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- City + Service Combo Pages (40 total, priority 0.9) -->
+  <!-- Miami (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/miami/deck-construction-miami</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/miami/deck-repair-miami</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/miami/patio-construction-miami</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/miami/pergola-construction-miami</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Tampa (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/tampa/deck-construction-tampa</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/tampa/deck-repair-tampa</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/tampa/patio-construction-tampa</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/tampa/pergola-construction-tampa</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Orlando (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/orlando/deck-construction-orlando</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/orlando/deck-repair-orlando</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/orlando/patio-construction-orlando</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/orlando/pergola-construction-orlando</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Jacksonville (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/jacksonville/deck-construction-jacksonville</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/jacksonville/deck-repair-jacksonville</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/jacksonville/patio-construction-jacksonville</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/jacksonville/pergola-construction-jacksonville</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- St. Petersburg (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/st-petersburg/deck-construction-st-petersburg</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/st-petersburg/deck-repair-st-petersburg</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/st-petersburg/patio-construction-st-petersburg</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/st-petersburg/pergola-construction-st-petersburg</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Fort Lauderdale (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-lauderdale/deck-construction-fort-lauderdale</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-lauderdale/deck-repair-fort-lauderdale</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-lauderdale/patio-construction-fort-lauderdale</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-lauderdale/pergola-construction-fort-lauderdale</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Sarasota (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/sarasota/deck-construction-sarasota</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/sarasota/deck-repair-sarasota</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/sarasota/patio-construction-sarasota</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/sarasota/pergola-construction-sarasota</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Naples (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/naples/deck-construction-naples</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/naples/deck-repair-naples</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/naples/patio-construction-naples</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/naples/pergola-construction-naples</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Palm Beach (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/palm-beach/deck-construction-palm-beach</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/palm-beach/deck-repair-palm-beach</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/palm-beach/patio-construction-palm-beach</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/palm-beach/pergola-construction-palm-beach</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Tallahassee (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/tallahassee/deck-construction-tallahassee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/tallahassee/deck-repair-tallahassee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/tallahassee/patio-construction-tallahassee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/tallahassee/pergola-construction-tallahassee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <!-- Area Landing Pages (16 markets) -->
   <url><loc>https://florida-decks-and-patios.lovable.app/areas/tampa-bay-decks-patios</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/areas/orlando-decks-patios</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/areas/sarasota-venice-decks-patios</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -43,7 +106,8 @@
   <url><loc>https://florida-decks-and-patios.lovable.app/areas/panama-city-decks-patios</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/areas/tallahassee-decks-patios</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/areas/fort-walton-beach-decks-patios</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <!-- City Project Hub Pages -->
+
+  <!-- City Project Hub Pages (9) -->
   <url><loc>https://florida-decks-and-patios.lovable.app/projects/miami-decks-patios-projects</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/projects/tampa-deck-patio-projects</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/projects/orlando-outdoor-living-projects</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -53,6 +117,92 @@
   <url><loc>https://florida-decks-and-patios.lovable.app/projects/naples-outdoor-living-projects</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/projects/st-petersburg-deck-projects</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/projects/palm-beach-deck-patio-projects</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Portfolio Detail Pages (30) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/tampa-composite-deck-rebuild</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/miami-pool-deck-renovation</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/orlando-backyard-pergola</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/sarasota-covered-patio</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/jacksonville-deck-repair</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/st-petersburg-waterfront-deck</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/fort-lauderdale-rooftop-deck</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/naples-luxury-patio-deck</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/palm-beach-coastal-deck</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/tampa-screened-porch-deck</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/orlando-multi-level-deck</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/miami-pergola-patio</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/jacksonville-wood-deck-build</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/sarasota-pool-deck</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/fort-lauderdale-paver-patio</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/naples-pergola-outdoor-kitchen</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/tampa-deck-stair-rebuild</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/orlando-paver-patio-pergola</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/miami-deck-railing-upgrade</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/st-petersburg-ground-level-deck</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/jacksonville-pergola-deck-combo</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/sarasota-concrete-patio</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/palm-beach-elevated-deck</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/tampa-composite-pergola</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/orlando-deck-repair-restoration</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/fort-lauderdale-outdoor-living</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/naples-deck-extension</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/st-petersburg-patio-renovation</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/miami-balcony-deck</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/portfolio/gainesville-backyard-deck</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Blog Posts (36 articles, priority 0.8) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/pressure-treated-vs-composite</loc><lastmod>2026-02-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/deck-maintenance-seasonal-guide</loc><lastmod>2026-02-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/how-much-does-deck-cost</loc><lastmod>2026-01-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/do-i-need-permit-for-deck</loc><lastmod>2026-01-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/best-deck-design-trends-2026</loc><lastmod>2026-01-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/pergola-vs-gazebo-vs-pavilion</loc><lastmod>2026-01-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/increase-home-value-outdoor-space</loc><lastmod>2025-12-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/choosing-right-deck-railing</loc><lastmod>2025-12-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/florida-deck-building-codes-2026</loc><lastmod>2025-12-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/florida-deck-cost-breakdown-data</loc><lastmod>2026-02-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/how-to-choose-deck-builder-florida</loc><lastmod>2026-02-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/best-decking-materials-florida-climate</loc><lastmod>2026-02-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/outdoor-kitchen-planning-florida</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/deck-vs-patio-florida</loc><lastmod>2026-01-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/miami-vs-tampa-deck-building</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/316-vs-304-stainless-steel-deck-hardware</loc><lastmod>2026-03-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/salt-air-deck-maintenance-atlantic-vs-gulf</loc><lastmod>2026-02-25</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/composite-vs-pvc-decking-florida-heat</loc><lastmod>2026-02-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/algae-proof-deck-boards-florida</loc><lastmod>2026-02-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/ipe-vs-composite-25-year-cost</loc><lastmod>2026-02-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/hvhz-miami-dade-deck-permits-guide</loc><lastmod>2026-02-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/175mph-wind-load-deck-anchoring</loc><lastmod>2026-02-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/asce-7-22-florida-building-codes-2026</loc><lastmod>2026-02-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/miami-dade-noa-approved-materials</loc><lastmod>2026-02-12</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/deck-elevation-flood-zones-tampa-sarasota</loc><lastmod>2026-02-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/2026-deck-roi-report-florida</loc><lastmod>2026-02-26</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/wood-vs-composite-10-year-maintenance-cost</loc><lastmod>2026-02-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/financing-florida-deck-2026</loc><lastmod>2026-02-14</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/phased-backyard-build-budget-plan</loc><lastmod>2026-02-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/building-without-permit-resale-penalty</loc><lastmod>2026-02-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/florida-deck-inspection-failures-top-10-code-violations</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/outdoor-kitchen-deck-reinforcement</loc><lastmod>2026-02-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/screened-in-vs-open-air-deck-florida</loc><lastmod>2026-02-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/hidden-fastener-systems-guide-2026</loc><lastmod>2026-02-11</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/smart-deck-lighting-orlando-jacksonville</loc><lastmod>2026-02-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/small-deck-solutions-florida-townhomes</loc><lastmod>2026-02-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/eco-friendly-decking-brands-florida-2026</loc><lastmod>2026-02-21</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/fsc-certified-ipe-tigerwood-verification</loc><lastmod>2026-02-13</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/permeable-patios-vs-decks-rain-management</loc><lastmod>2026-02-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/solar-ready-gazebos-deck-structures</loc><lastmod>2026-02-01</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/florida-deck-inspection-failures</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/deck-permit-vs-code-issue</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/when-you-need-engineer-florida-deck</loc><lastmod>2026-03-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/miami-dade-hvhz-deck-requirements</loc><lastmod>2026-03-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/built-deck-without-permit-florida</loc><lastmod>2026-03-02</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/trex-vs-timbertech-florida-2026</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/best-deck-fasteners-florida</loc><lastmod>2026-03-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/wood-vs-aluminum-railing-florida</loc><lastmod>2026-03-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/deck-board-spacing-florida-humidity</loc><lastmod>2026-03-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/coastal-corrosion-resistant-hardware-guide</loc><lastmod>2026-03-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/blog/hurricane-resistant-deck-design-florida</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
   <!-- Legal -->
   <url><loc>https://florida-decks-and-patios.lovable.app/privacy</loc><lastmod>2026-01-01</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/terms</loc><lastmod>2026-01-01</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
