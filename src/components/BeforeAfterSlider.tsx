@@ -59,73 +59,50 @@ export default function BeforeAfterSlider({
   }, []);
 
   return (
-    <div className={cn("w-full max-w-4xl mx-auto", className)}>
-      <div
-        ref={containerRef}
-        className="relative w-full aspect-[4/3] rounded-xl overflow-hidden border-2 border-border shadow-lg select-none touch-none cursor-col-resize"
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerLeave={handlePointerUp}
-        role="slider"
-        aria-label="Before and after comparison slider"
-        aria-valuenow={Math.round(position)}
-        aria-valuemin={0}
-        aria-valuemax={100}
-        tabIndex={0}
-        onKeyDown={handleKeyDown}
-      >
-        {/* After image (full, underneath) */}
-        <img
-          src={afterSrc}
-          alt={afterAlt}
-          className="absolute inset-0 w-full h-full object-cover"
-          draggable={false}
-        />
-
-        {/* Before image (clipped) */}
+    <Card className={cn("w-full max-w-4xl mx-auto overflow-hidden", className)}>
+      <CardContent className="p-0">
         <div
-          className="absolute inset-0 overflow-hidden"
-          style={{ width: `${position}%` }}
+          ref={containerRef}
+          className="relative w-full aspect-[4/3] select-none touch-none cursor-col-resize"
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerLeave={handlePointerUp}
+          role="slider"
+          aria-label="Before and after comparison slider"
+          aria-valuenow={Math.round(position)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          tabIndex={0}
+          onKeyDown={handleKeyDown}
         >
-          <img
-            src={beforeSrc}
-            alt={beforeAlt}
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ width: containerRef.current?.offsetWidth || "100%", maxWidth: "none" }}
-            draggable={false}
-          />
+          <img src={afterSrc} alt={afterAlt} className="absolute inset-0 w-full h-full object-cover" draggable={false} />
+          <div className="absolute inset-0 overflow-hidden" style={{ width: `${position}%` }}>
+            <img src={beforeSrc} alt={beforeAlt} className="absolute inset-0 w-full h-full object-cover" style={{ width: containerRef.current?.offsetWidth || "100%", maxWidth: "none" }} draggable={false} />
+          </div>
+          <div className="absolute top-0 bottom-0 w-0.5 bg-primary-foreground/90 shadow-[0_0_8px_rgba(0,0,0,0.4)]" style={{ left: `${position}%`, transform: "translateX(-50%)" }}>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-12 w-8 rounded-lg bg-card border-2 border-primary shadow-[0_4px_16px_rgba(0,0,0,0.3)] flex items-center justify-center">
+              <GripVertical className="h-5 w-5 text-primary" />
+            </div>
+          </div>
+          <span className={cn("absolute top-3 left-3 bg-charcoal/70 text-primary-foreground text-xs font-semibold px-2.5 py-1 rounded-md backdrop-blur-sm transition-opacity duration-300", isDragging ? "opacity-0" : "opacity-100")}>Before</span>
+          <span className={cn("absolute top-3 right-3 bg-primary/80 text-primary-foreground text-xs font-semibold px-2.5 py-1 rounded-md backdrop-blur-sm transition-opacity duration-300", isDragging ? "opacity-0" : "opacity-100")}>After</span>
         </div>
 
-        {/* Slider line */}
-        <div
-          className="absolute top-0 bottom-0 w-0.5 bg-primary-foreground/90 shadow-[0_0_8px_rgba(0,0,0,0.4)]"
-          style={{ left: `${position}%`, transform: "translateX(-50%)" }}
-        >
-          {/* Handle */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-12 w-8 rounded-lg bg-card border-2 border-primary shadow-[0_4px_16px_rgba(0,0,0,0.3)] flex items-center justify-center">
-            <GripVertical className="h-5 w-5 text-primary" />
+        {/* Caption */}
+        <div className="px-5 py-4 border-t border-border bg-card">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+            <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+              <MapPin className="h-4 w-4 text-primary shrink-0" />
+              <span>{location}</span>
+            </div>
+            <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+              <Layers className="h-4 w-4 text-primary shrink-0" />
+              <span>{materials}</span>
+            </div>
           </div>
         </div>
-
-        {/* Labels */}
-        <span
-          className={cn(
-            "absolute top-3 left-3 bg-charcoal/70 text-primary-foreground text-xs font-semibold px-2.5 py-1 rounded-md backdrop-blur-sm transition-opacity duration-300",
-            isDragging ? "opacity-0" : "opacity-100"
-          )}
-        >
-          Before
-        </span>
-        <span
-          className={cn(
-            "absolute top-3 right-3 bg-primary/80 text-primary-foreground text-xs font-semibold px-2.5 py-1 rounded-md backdrop-blur-sm transition-opacity duration-300",
-            isDragging ? "opacity-0" : "opacity-100"
-          )}
-        >
-          After
-        </span>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
