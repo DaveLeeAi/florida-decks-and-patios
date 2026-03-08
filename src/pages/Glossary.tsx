@@ -59,6 +59,8 @@ export default function Glossary() {
               </div>
             ))}
           </dl>
+
+          <RelatedContent topics={["materials", "hurricanes", "general"]} title="Related Resources" maxLinks={4} className="mt-10" />
         </div>
       </section>
     </Layout>

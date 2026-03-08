@@ -176,6 +176,8 @@ export default function FAQ() {
               licensed contractor for project-specific guidance.
             </AlertDescription>
           </Alert>
+
+          <RelatedContent topics={["general", "design"]} title="Explore More Resources" maxLinks={6} className="mt-8" />
         </div>
       </section>
     </Layout>
