@@ -514,7 +514,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Palm Beach County and the Treasure Coast represent Florida's premium outdoor living corridor, where exotic hardwoods and waterfront aesthetics define the market.\n\nKey Palm Beach market characteristics:\n\n- **Exotic hardwood preference**: Ipe (Brazilian Walnut) and Tigerwood dominate the luxury segment, prized for natural beauty and salt/UV resistance. Specialized installation with pre-drilling and hidden fasteners is standard\n- **Intracoastal waterfront engineering**: Properties along the Intracoastal Waterway require ASCE 7-22 wind load compliance and careful setback planning with Palm Beach County Planning & Zoning\n- **UV intensity management**: Palm Beach experiences some of the most intense UV radiation in the continental US — material selection and finish choices must account for rapid UV degradation\n- **Martin County permit rigor**: Martin County requires permits for all permanent outdoor structures regardless of size, making permit expertise essential for Port St. Lucie and Stuart projects\n- **Seasonal resident market**: Many Palm Beach homeowners are seasonal residents who require ultra-low-maintenance solutions that look pristine after months of non-use\n- **Resort-quality design expectations**: Palm Beach clients expect landscape-integrated designs with outdoor kitchens, fire features, and seamless indoor-outdoor transitions",
   },
   {
-    slug: "st-augustine-decks",
+    slug: "st-augustine-decks-patios",
     name: "St. Augustine",
     county: "St. Johns County",
     region: "Northeast Florida",
