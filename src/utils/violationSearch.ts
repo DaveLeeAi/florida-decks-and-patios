@@ -1,6 +1,15 @@
 import type { ViolationEntry, Jurisdiction } from "@/data/violationData";
 
 /* ──────────────────────────────────────────
+   SCORED RESULT — carries confidence level
+   ────────────────────────────────────────── */
+export type ScoredResult = {
+  entry: ViolationEntry;
+  score: number;
+  confidence: "high" | "medium" | "low";
+};
+
+/* ──────────────────────────────────────────
    ALIAS MAP — homeowner language → search terms
    ────────────────────────────────────────── */
 const ALIASES: Record<string, string[]> = {
@@ -14,6 +23,7 @@ const ALIASES: Record<string, string[]> = {
   "wobbly railing": ["loose", "guard", "railing", "attachment"],
   "wobbly": ["loose", "guard", "railing"],
   "railing moves": ["loose", "guard", "railing"],
+  "railing wiggling": ["loose", "guard", "railing"],
 
   // Permits
   "no permit": ["permit", "unpermitted", "after-the-fact"],
@@ -24,6 +34,8 @@ const ALIASES: Record<string, string[]> = {
   "do i need a permit": ["permit"],
   "stop work": ["permit", "inspection"],
   "red tag": ["inspection", "failed", "stop work"],
+  "red tagged": ["inspection", "failed", "stop work"],
+  "violation notice": ["permit", "unpermitted", "violation"],
 
   // HVHZ / NOA
   "noa": ["hvhz", "notice of acceptance", "miami-dade", "NOA"],
@@ -56,6 +68,8 @@ const ALIASES: Record<string, string[]> = {
   "deck pulling away": ["ledger", "separating", "pulling away", "detaching"],
   "deck separating": ["ledger", "separating", "pulling away"],
   "gap between deck and house": ["ledger", "separating", "pulling away"],
+  "deck shaking": ["loose", "lateral", "sway", "brace"],
+  "deck wobbles": ["lateral", "sway", "brace", "loose"],
 
   // Water / rot
   "rot": ["rot", "moisture", "water damage", "deteriorated"],
@@ -65,12 +79,14 @@ const ALIASES: Record<string, string[]> = {
   "moldy": ["rot", "moisture", "mold"],
   "standing water": ["drainage", "pooling", "water"],
   "mold on deck": ["rot", "moisture", "mold", "fungus"],
+  "mushy wood": ["rot", "decay", "deteriorated", "soft"],
 
   // Inspection process
   "failed inspection": ["inspection", "failed", "final inspection"],
   "inspection failed": ["inspection", "failed"],
   "failed final": ["final inspection", "failed"],
   "didn't pass inspection": ["inspection", "failed"],
+  "what do i fix": ["inspection", "failed", "correction"],
 
   // Electrical
   "outlet": ["receptacle", "GFCI", "electrical"],
@@ -87,6 +103,7 @@ const ALIASES: Record<string, string[]> = {
   "lanai": ["screen", "enclosure", "screened porch"],
   "pergola": ["pergola", "patio cover", "anchorage"],
   "screen enclosure": ["screen", "enclosure", "lanai", "attachment"],
+  "patio cover": ["pergola", "patio cover", "anchorage"],
 
   // Hardware
   "joist hanger": ["joist hanger", "hanger", "joist"],
@@ -94,6 +111,12 @@ const ALIASES: Record<string, string[]> = {
   "hurricane strap": ["hurricane", "strap", "tie", "uplift"],
   "hurricane clip": ["hurricane", "strap", "tie"],
   "post cap": ["post", "beam", "connection", "post cap"],
+
+  // Cost / process
+  "how much": ["cost", "estimate"],
+  "how to fix": ["fix", "repair", "correction"],
+  "reinspection": ["reinspection", "inspection", "failed"],
+  "close out permit": ["final inspection", "permit", "close"],
 };
 
 /* ──────────────────────────────────────────
@@ -116,6 +139,15 @@ function normalizeCode(raw: string): string {
 }
 
 /* ──────────────────────────────────────────
+   CONFIDENCE THRESHOLDS
+   ────────────────────────────────────────── */
+function scoreToConfidence(score: number): "high" | "medium" | "low" {
+  if (score >= 40) return "high";
+  if (score >= 18) return "medium";
+  return "low";
+}
+
+/* ──────────────────────────────────────────
    JURISDICTION MATCHING
    ────────────────────────────────────────── */
 const JURISDICTION_HIERARCHY: Record<Jurisdiction, Jurisdiction[]> = {
@@ -131,24 +163,24 @@ function jurisdictionScore(entryJurisdiction: Jurisdiction, selectedJurisdiction
   const hierarchy = JURISDICTION_HIERARCHY[selectedJurisdiction];
   if (!hierarchy) return 0;
   const idx = hierarchy.indexOf(entryJurisdiction);
-  if (idx === -1) return -5; // deprioritize non-matching
-  if (idx === 0) return 15; // exact match bonus
+  if (idx === -1) return -5;
+  if (idx === 0) return 15;
   if (idx === 1) return 5;
   return 0;
 }
 
 /* ──────────────────────────────────────────
-   MAIN SEARCH
+   MAIN SEARCH — returns scored results
    ────────────────────────────────────────── */
 export function searchViolations(
   query: string,
   violations: ViolationEntry[],
   jurisdiction?: Jurisdiction | null
-): ViolationEntry[] {
+): ScoredResult[] {
   const q = normalizeQuery(query);
   if (!q) return [];
 
-  const scored: { entry: ViolationEntry; score: number }[] = [];
+  const scored: ScoredResult[] = [];
   const qCode = normalizeCode(query);
   const qTokens = q.split(" ").filter(Boolean);
 
@@ -173,11 +205,8 @@ export function searchViolations(
     // 1. Exact code match
     if (entry.code) {
       const entryCode = normalizeCode(entry.code);
-      if (entryCode === qCode) {
-        score += 100;
-      } else if (entryCode.includes(qCode) || qCode.includes(entryCode)) {
-        score += 50;
-      }
+      if (entryCode === qCode) score += 100;
+      else if (entryCode.includes(qCode) || qCode.includes(entryCode)) score += 50;
     }
 
     // 2. Keyword match
@@ -189,13 +218,12 @@ export function searchViolations(
       }
     }
 
-    // 3. Alias match (entry-level aliases)
+    // 3. Alias match (entry-level)
     if (entry.aliases) {
       for (const alias of entry.aliases) {
         const aliasLower = alias.toLowerCase();
-        if (q.includes(aliasLower) || aliasLower.includes(q)) {
-          score += 25;
-        } else {
+        if (q.includes(aliasLower) || aliasLower.includes(q)) score += 25;
+        else {
           for (const term of expandedTerms) {
             if (aliasLower.includes(term)) score += 8;
           }
@@ -231,32 +259,30 @@ export function searchViolations(
     }
 
     // 8. Search weight bonus
-    if (entry.searchWeight && score > 0) {
-      score += entry.searchWeight;
-    }
+    if (entry.searchWeight && score > 0) score += entry.searchWeight;
 
     // 9. Jurisdiction bonus/penalty
     score += jurisdictionScore(entry.jurisdiction, jurisdiction ?? null);
 
     if (score > 0) {
-      scored.push({ entry, score });
+      scored.push({ entry, score, confidence: scoreToConfidence(score) });
     }
   }
 
   scored.sort((a, b) => b.score - a.score);
-  return scored.map((s) => s.entry);
+  return scored;
 }
 
 /* ──────────────────────────────────────────
-   CATEGORY FILTER
+   CATEGORY FILTER — returns scored results
    ────────────────────────────────────────── */
 export function filterByCategory(
   keyword: string,
   violations: ViolationEntry[],
   jurisdiction?: Jurisdiction | null
-): ViolationEntry[] {
+): ScoredResult[] {
   const kw = keyword.toLowerCase();
-  let filtered = violations.filter(
+  const filtered = violations.filter(
     (v) =>
       v.keywords.some((k) => k.toLowerCase().includes(kw)) ||
       v.type.replace(/_/g, " ").includes(kw) ||
@@ -272,46 +298,38 @@ export function filterByCategory(
     });
   }
 
-  return filtered;
+  return filtered.map((entry) => ({ entry, score: 30, confidence: "high" as const }));
 }
 
 /* ──────────────────────────────────────────
-   PASTE-NOTE PARSER
-   Extracts keywords/phrases from pasted inspection text
-   and matches against the violation dataset.
+   PASTE-NOTE PARSER — returns scored results
    ────────────────────────────────────────── */
 export function parseInspectionNote(
   noteText: string,
   violations: ViolationEntry[],
   jurisdiction?: Jurisdiction | null
-): { matches: ViolationEntry[]; extractedPhrases: string[] } {
+): { matches: ScoredResult[]; extractedPhrases: string[] } {
   const text = noteText.toLowerCase().trim();
   if (text.length < 5) return { matches: [], extractedPhrases: [] };
 
   const extractedPhrases: string[] = [];
   const matchScores = new Map<string, number>();
 
-  // Split into sentences/phrases
   const sentences = text.split(/[.\n;]+/).map((s) => s.trim()).filter((s) => s.length > 3);
 
   for (const sentence of sentences) {
-    // Check each violation's keywords, aliases, and inspector language
     for (const entry of violations) {
       let sentenceScore = 0;
 
       // Check keywords
       for (const kw of entry.keywords) {
-        if (sentence.includes(kw.toLowerCase())) {
-          sentenceScore += 15;
-        }
+        if (sentence.includes(kw.toLowerCase())) sentenceScore += 15;
       }
 
       // Check aliases
       if (entry.aliases) {
         for (const alias of entry.aliases) {
-          if (sentence.includes(alias.toLowerCase())) {
-            sentenceScore += 20;
-          }
+          if (sentence.includes(alias.toLowerCase())) sentenceScore += 20;
         }
       }
 
@@ -323,11 +341,10 @@ export function parseInspectionNote(
           .map((p) => p.trim().replace(/^["']|["']$/g, ""));
 
         for (const phrase of inspectorPhrases) {
-          // Check if significant words from the inspector phrase appear in the sentence
           const phraseWords = phrase.split(/\s+/).filter((w) => w.length > 3);
           const matchedWords = phraseWords.filter((w) => sentence.includes(w));
-          if (matchedWords.length >= Math.ceil(phraseWords.length * 0.5)) {
-            sentenceScore += 30;
+          if (matchedWords.length >= Math.ceil(phraseWords.length * 0.4)) {
+            sentenceScore += 35;
           }
         }
       }
@@ -336,9 +353,7 @@ export function parseInspectionNote(
       if (entry.code) {
         const codeNorm = entry.code.toLowerCase().replace(/\s+/g, "");
         const sentenceNorm = sentence.replace(/\s+/g, "");
-        if (sentenceNorm.includes(codeNorm)) {
-          sentenceScore += 50;
-        }
+        if (sentenceNorm.includes(codeNorm)) sentenceScore += 50;
       }
 
       if (sentenceScore > 0) {
@@ -351,35 +366,34 @@ export function parseInspectionNote(
     }
   }
 
-  // Also run against alias map
-  for (const [alias, expansions] of Object.entries(ALIASES)) {
-    if (text.includes(alias)) {
-      if (!extractedPhrases.some((p) => p.includes(alias))) {
-        extractedPhrases.push(alias);
-      }
+  // Also check alias map for extracted phrases
+  for (const [alias] of Object.entries(ALIASES)) {
+    if (text.includes(alias) && !extractedPhrases.some((p) => p.includes(alias))) {
+      extractedPhrases.push(alias);
     }
   }
 
-  // Sort by score and return matched entries
   const sortedIds = [...matchScores.entries()]
     .sort((a, b) => b[1] - a[1])
-    .map(([id]) => id);
+    .map(([id, score]) => ({ id, score }));
 
-  const matches = sortedIds
-    .map((id) => violations.find((v) => v.id === id))
-    .filter(Boolean) as ViolationEntry[];
+  let matches = sortedIds
+    .map(({ id, score }) => {
+      const entry = violations.find((v) => v.id === id);
+      if (!entry) return null;
+      return { entry, score, confidence: scoreToConfidence(score) } as ScoredResult;
+    })
+    .filter(Boolean) as ScoredResult[];
 
   // Apply jurisdiction prioritization
   if (jurisdiction && jurisdiction !== "General") {
     const hierarchy = JURISDICTION_HIERARCHY[jurisdiction];
     matches.sort((a, b) => {
-      const aScore = matchScores.get(a.id) || 0;
-      const bScore = matchScores.get(b.id) || 0;
-      const aJuris = hierarchy.indexOf(a.jurisdiction) === 0 ? 10 : 0;
-      const bJuris = hierarchy.indexOf(b.jurisdiction) === 0 ? 10 : 0;
-      return (bScore + bJuris) - (aScore + aJuris);
+      const aJuris = hierarchy.indexOf(a.entry.jurisdiction) === 0 ? 10 : 0;
+      const bJuris = hierarchy.indexOf(b.entry.jurisdiction) === 0 ? 10 : 0;
+      return (b.score + bJuris) - (a.score + aJuris);
     });
   }
 
-  return { matches, extractedPhrases: extractedPhrases.slice(0, 5) };
+  return { matches, extractedPhrases: extractedPhrases.slice(0, 6) };
 }
