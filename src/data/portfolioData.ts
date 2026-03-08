@@ -749,6 +749,22 @@ const rawProjects: PortfolioProject[] = [
   },
 ];
 
+const getImg = (name: string) => new URL(`../assets/${name}`, import.meta.url).href;
+
+export const portfolioProjects: PortfolioProject[] = rawProjects.map(p => ({
+  ...p,
+  beforeImage: getImg(`deck-project-${String(p.id).padStart(2, '0')}-before.jpg`),
+  afterImage: getImg(`deck-project-${String(p.id).padStart(2, '0')}-after.jpg`),
+  galleryImages: [
+    getImg(`deck-project-${String(p.id).padStart(2, '0')}-before.jpg`),
+    getImg(`deck-project-${String(p.id).padStart(2, '0')}-after.jpg`),
+    getImg(`deck-project-${String(p.id).padStart(2, '0')}-progress.jpg`),
+    getImg(`deck-project-${String(p.id).padStart(2, '0')}-railing.jpg`),
+    getImg(`deck-project-${String(p.id).padStart(2, '0')}-closeup.jpg`),
+    getImg(`deck-project-${String(p.id).padStart(2, '0')}-finished.jpg`)
+  ]
+}));
+
 export const PROJECT_TYPES: ProjectType[] = ["Deck", "Patio", "Pergola", "Repair"];
 export const MATERIAL_TYPES: MaterialType[] = ["Composite", "Pressure Treated Wood", "Pavers", "Concrete", "Aluminum", "Mixed Materials"];
 export const CITY_TYPES: CityType[] = ["Miami", "Tampa", "Orlando", "Jacksonville", "St Petersburg", "Fort Lauderdale", "Sarasota", "Naples", "Palm Beach", "Other Florida"];
