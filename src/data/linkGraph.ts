@@ -77,6 +77,17 @@ export const LINK_GRAPH: Record<string, RelatedLink[]> = {
     { label: "Glossary", href: "/glossary", description: "Deck building terminology explained", type: "page" },
     { label: "Contact Us", href: "/contact", description: "Get a free estimate from verified pros", type: "page" },
   ],
+  cityProjects: [
+    { label: "Miami Projects", href: "/projects/miami-decks-patios-projects", description: "Completed deck & patio projects in Miami", type: "city" },
+    { label: "Tampa Projects", href: "/projects/tampa-deck-patio-projects", description: "Deck & patio installations in Tampa Bay", type: "city" },
+    { label: "Orlando Projects", href: "/projects/orlando-outdoor-living-projects", description: "Outdoor living projects in Orlando", type: "city" },
+    { label: "Jacksonville Projects", href: "/projects/jacksonville-deck-patio-projects", description: "Deck projects in Jacksonville", type: "city" },
+    { label: "Sarasota Projects", href: "/projects/sarasota-deck-patio-projects", description: "Patio & deck installations in Sarasota", type: "city" },
+    { label: "Fort Lauderdale Projects", href: "/projects/fort-lauderdale-deck-projects", description: "Deck projects in Fort Lauderdale", type: "city" },
+    { label: "Naples Projects", href: "/projects/naples-outdoor-living-projects", description: "Luxury outdoor living in Naples", type: "city" },
+    { label: "St. Petersburg Projects", href: "/projects/st-petersburg-deck-projects", description: "Waterfront deck projects in St. Pete", type: "city" },
+    { label: "Palm Beach Projects", href: "/projects/palm-beach-deck-patio-projects", description: "Deck & patio projects in Palm Beach", type: "city" },
+  ],
 };
 
 export function getRelatedLinks(topics: string[], maxLinks = 6): RelatedLink[] {
