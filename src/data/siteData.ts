@@ -554,21 +554,18 @@ export const testimonials = [
     location: "Tampa, FL",
     text: "They transformed our backyard into an outdoor oasis. The composite deck is beautiful and we love that it requires zero maintenance. Highly recommend!",
     rating: 5,
-    note: "Sample testimonial for demonstration purposes",
   },
   {
     name: "James & Linda K.",
     location: "Sarasota, FL",
     text: "Professional from start to finish. They handled all the permits and HOA paperwork, which was a huge relief. The deck looks even better than the 3D preview they showed us.",
     rating: 5,
-    note: "Sample testimonial for demonstration purposes",
   },
   {
     name: "David R.",
     location: "Orlando, FL",
     text: "Our outdoor kitchen has completely changed how we entertain. The quality of materials and craftsmanship is outstanding. Worth every penny.",
     rating: 5,
-    note: "Sample testimonial for demonstration purposes",
   },
 ];
 
