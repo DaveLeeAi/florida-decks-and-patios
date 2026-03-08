@@ -175,7 +175,7 @@ export function CityServiceSchema({ cityName, slug, description }: CityServiceSc
       addressCountry: "US",
     },
     description,
-    url: `https://backyard-decks.lovable.app/${slug}`,
+    url: `https://florida-decks-and-patios.lovable.app/${slug}`,
   };
   return <JsonLd schema={schema} />;
 }
