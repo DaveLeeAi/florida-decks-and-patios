@@ -26,6 +26,7 @@ const AdminChatHistory = lazy(() => import("./pages/AdminChatHistory"));
 const DataHub = lazy(() => import("./pages/DataHub"));
 const Glossary = lazy(() => import("./pages/Glossary"));
 const CitySeoLanding = lazy(() => import("./pages/CitySeoLanding"));
+const MaterialsHub = lazy(() => import("./pages/MaterialsHub"));
 
 const queryClient = new QueryClient();
 
