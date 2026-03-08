@@ -288,6 +288,34 @@ export default function CityLanding() {
         </div>
       </section>
 
+      {/* Expert Guides — Topic Cluster Links */}
+      <section className="section-padding bg-section-alt">
+        <div className="container-narrow mx-auto">
+          <div className="flex items-center gap-3 mb-6">
+            <BookOpen className="h-6 w-6 text-primary" />
+            <h2 className="font-heading text-xl md:text-2xl font-bold text-foreground">
+              Expert Guides for {city.name} Homeowners
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {blogPosts.slice(0, 3).map((post) => (
+              <Link
+                key={post.slug}
+                to={`/blog/${post.slug}`}
+                className="group bg-card rounded-lg border border-border p-5 hover:border-primary/30 hover:shadow-md transition-all"
+              >
+                <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">{post.category}</span>
+                <h3 className="font-heading font-semibold text-foreground group-hover:text-primary transition-colors text-sm mt-3 mb-2 line-clamp-2">{post.title}</h3>
+                <p className="text-xs text-muted-foreground line-clamp-2">{post.excerpt}</p>
+                <span className="text-xs text-primary font-medium flex items-center gap-1 mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  Read Guide <ArrowRight className="h-3 w-3" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="section-padding bg-primary text-primary-foreground">
         <div className="container-narrow mx-auto text-center">
