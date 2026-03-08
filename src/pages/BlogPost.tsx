@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
@@ -21,6 +22,12 @@ export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const { blogPosts } = useSiteData();
   const post = blogPosts.find((p) => p.slug === slug);
+
+  // Scroll to top when navigating between blog posts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }, [slug]);
+
   if (!post) return <Navigate to="/blog" replace />;
 
   // Related posts from relatedSlugs if available, otherwise fallback to category + recency
