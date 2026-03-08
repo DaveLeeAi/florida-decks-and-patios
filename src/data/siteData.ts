@@ -570,8 +570,7 @@ export const testimonials = [
 ];
 
 export const trustBadges = [
-  // TODO: Replace [LICENSE_PLACEHOLDER] with real Florida contractor license number before launch
-  { icon: "Shield", title: "Licensed & Insured", text: "Florida Licensed Contractor | License # [LICENSE_PLACEHOLDER] — verify at myfloridalicense.com" },
+  { icon: "Shield", title: "Verified Contractors Only", text: "We only refer DBPR-licensed, insured Florida contractors — every pro in our network is verified before your project begins" },
   { icon: "Award", title: "5-Year Workmanship Warranty", text: "We stand behind every project we build" },
   { icon: "FileCheck", title: "Permit & HOA Experts", text: "We handle all the paperwork for you" },
   { icon: "Users", title: "Local Crew", text: "Experienced local craftsmen who care about your community" },
