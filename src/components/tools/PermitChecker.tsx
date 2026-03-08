@@ -36,10 +36,10 @@ import { useSiteData } from "@/contexts/SiteDataContext";
 const TOTAL_STEPS = 4;
 
 const heightOptions = [
-  { value: "ground", label: "Ground Level (<12\")", tip: "Typically the simplest permit scenario." },
-  { value: "low", label: "Low Deck (12–30\")", tip: "Most jurisdictions require permits at 30\" above grade." },
-  { value: "elevated", label: "Elevated Deck (30–72\")", tip: "Elevated decks typically require additional structural review and engineering." },
-  { value: "second-story", label: "Second Story (72\"+)", tip: "Always requires engineered plans and full permitting." },
+  { value: "ground", label: 'Ground Level (under 12")', tip: "Typically the simplest permit scenario." },
+  { value: "low", label: 'Low Deck (12\u201330")', tip: "Most jurisdictions require permits at 30 inches above grade." },
+  { value: "elevated", label: 'Elevated Deck (30\u201372")', tip: "Elevated decks typically require additional structural review and engineering." },
+  { value: "second-story", label: 'Second Story (72"+)', tip: "Always requires engineered plans and full permitting." },
 ];
 
 const attachmentOptions = [
