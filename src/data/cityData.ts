@@ -343,7 +343,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Ocala represents Florida's affordable outdoor living frontier. With median home prices 25–40% lower than coastal markets, Ocala homeowners get more deck for their dollar — and the ROI is among the highest in the state.\n\nWhat makes the Ocala market unique:\n\n- **New build additions**: Many Ocala homes are new construction with builder-basic concrete patios. Upgrading to a composite deck or adding a screened porch is the most popular outdoor improvement in the area\n- **Retirement community demand**: Communities like On Top of the World, Del Webb Stone Creek, and Oak Run have active homeowner populations looking for low-maintenance outdoor spaces for entertaining and relaxation\n- **First-time homeowner budget**: Ocala's affordability attracts first-time buyers who want quality outdoor living at entry-level pricing — pressure-treated wood decks starting under $5,000 for a 300 sq ft platform\n- **Horse country aesthetic**: Ocala's identity as Florida's Horse Capital influences design preferences — natural wood tones, ranch-style layouts, and open-air designs that connect to the pastoral landscape\n- **Lower regulatory burden**: Marion County's lower wind zone requirements and faster permitting process mean quicker project timelines and lower overhead costs passed to homeowners",
   },
   {
-    slug: "miami-decks",
+    slug: "miami-fort-lauderdale-decks-patios",
     name: "Miami / Fort Lauderdale",
     county: "Miami-Dade / Broward",
     region: "Southeast Florida",
