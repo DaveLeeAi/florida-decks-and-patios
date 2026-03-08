@@ -54,7 +54,7 @@ export default function Tools() {
           </div>
 
           {/* ═══ Inspection Failure Explainer Section ═══ */}
-          <div className="mt-12">
+          <div className="mt-12" id="violations">
             <div className="text-center mb-6">
               <h2 className="font-heading text-3xl font-bold text-foreground mb-3">
                 Florida Deck &amp; Patio Inspection Failure Explainer
