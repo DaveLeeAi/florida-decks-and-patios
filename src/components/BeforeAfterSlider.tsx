@@ -20,6 +20,8 @@ export default function BeforeAfterSlider({
   afterSrc = afterImg,
   beforeAlt = "Weathered deck before restoration",
   afterAlt = "Restored deck after professional refinishing",
+  location = "Tampa, FL",
+  materials = "Composite decking with hidden fasteners",
   className,
 }: BeforeAfterSliderProps) {
   const [position, setPosition] = useState(50);
