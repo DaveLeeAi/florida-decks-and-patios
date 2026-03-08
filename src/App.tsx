@@ -34,6 +34,8 @@ const Diagrams = lazy(() => import("./pages/Diagrams"));
 const Checklists = lazy(() => import("./pages/Checklists"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const CityProjectHub = lazy(() => import("./pages/CityProjectHub"));
+const PermitsHub = lazy(() => import("./pages/PermitsHub"));
+const PermitCounty = lazy(() => import("./pages/PermitCounty"));
 
 const queryClient = new QueryClient();
 
