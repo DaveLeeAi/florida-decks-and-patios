@@ -76,6 +76,7 @@ const App = () => (
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/kb" element={<AdminKB />} />
               <Route path="/admin/chats" element={<AdminChatHistory />} />
+              <Route path="/admin/leads" element={<AdminLeads />} />
               <Route path="/data-hub" element={<DataHub />} />
               <Route path="/glossary" element={<Glossary />} />
               <Route path="/materials" element={<MaterialsHub />} />
