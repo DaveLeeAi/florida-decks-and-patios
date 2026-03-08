@@ -751,19 +751,54 @@ const rawProjects: PortfolioProject[] = [
 
 const getImg = (name: string) => new URL(`../assets/${name}`, import.meta.url).href;
 
-export const portfolioProjects: PortfolioProject[] = rawProjects.map(p => ({
-  ...p,
-  beforeImage: getImg(`deck-project-${String(p.id).padStart(2, '0')}-before.jpg`),
-  afterImage: getImg(`deck-project-${String(p.id).padStart(2, '0')}-after.jpg`),
-  galleryImages: [
-    getImg(`deck-project-${String(p.id).padStart(2, '0')}-before.jpg`),
-    getImg(`deck-project-${String(p.id).padStart(2, '0')}-after.jpg`),
-    getImg(`deck-project-${String(p.id).padStart(2, '0')}-progress.jpg`),
-    getImg(`deck-project-${String(p.id).padStart(2, '0')}-railing.jpg`),
-    getImg(`deck-project-${String(p.id).padStart(2, '0')}-closeup.jpg`),
-    getImg(`deck-project-${String(p.id).padStart(2, '0')}-finished.jpg`)
-  ]
-}));
+const MAX_PROJECT_IMAGES = 10; // We have deck-project-01 through deck-project-10
+
+// Bonus images for projects beyond 10
+const bonusImages = Array.from({ length: 20 }, (_, i) =>
+  getImg(`deck-bonus-${String(i + 1).padStart(2, '0')}.jpg`)
+);
+
+// Old portfolio images as additional pool
+const portfolioImages = Array.from({ length: 15 }, (_, i) =>
+  getImg(`portfolio-${i + 1}.jpg`)
+);
+
+export const portfolioProjects: PortfolioProject[] = rawProjects.map(p => {
+  const mappedId = ((p.id - 1) % MAX_PROJECT_IMAGES) + 1;
+  const pad = String(mappedId).padStart(2, '0');
+
+  if (p.id <= MAX_PROJECT_IMAGES) {
+    // Projects 1-10: use their dedicated 6-image sets
+    return {
+      ...p,
+      afterImage: getImg(`deck-project-${pad}-finished.jpg`),
+      galleryImages: [
+        getImg(`deck-project-${pad}-after.jpg`),
+        getImg(`deck-project-${pad}-progress.jpg`),
+        getImg(`deck-project-${pad}-railing.jpg`),
+        getImg(`deck-project-${pad}-closeup.jpg`),
+        getImg(`deck-project-${pad}-finished.jpg`),
+      ]
+    };
+  }
+
+  // Projects 11-30: mix bonus + portfolio images, unique per project
+  const offset = (p.id - 11) * 3;
+  const heroIdx = offset % bonusImages.length;
+  const gallery = [
+    bonusImages[heroIdx],
+    bonusImages[(heroIdx + 1) % bonusImages.length],
+    bonusImages[(heroIdx + 2) % bonusImages.length],
+    portfolioImages[offset % portfolioImages.length],
+    portfolioImages[(offset + 1) % portfolioImages.length],
+  ];
+
+  return {
+    ...p,
+    afterImage: bonusImages[heroIdx],
+    galleryImages: gallery,
+  };
+});
 
 export const PROJECT_TYPES: ProjectType[] = ["Deck", "Patio", "Pergola", "Repair"];
 export const MATERIAL_TYPES: MaterialType[] = ["Composite", "Pressure Treated Wood", "Pavers", "Concrete", "Aluminum", "Mixed Materials"];
