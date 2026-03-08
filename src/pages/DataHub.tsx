@@ -112,13 +112,13 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 export default function DataHub() {
   const { company } = useSiteData();
 
-  const apaCitation = `Florida Decks and Patios. (2026). 2026 Florida Deck Construction & ROI Cost Index [Data set]. https://backyard-decks.lovable.app/data-hub`;
-  const mlaCitation = `"2026 Florida Deck Construction & ROI Cost Index." Florida Decks and Patios, 2026, backyard-decks.lovable.app/data-hub.`;
+  const apaCitation = `Florida Decks and Patios. (2026). 2026 Florida Deck Construction & ROI Cost Index [Data set]. https://florida-decks-and-patios.lovable.app/data-hub`;
+  const mlaCitation = `"2026 Florida Deck Construction & ROI Cost Index." Florida Decks and Patios, 2026, florida-decks-and-patios.lovable.app/data-hub.`;
   const bibtexCitation = `@misc{FLDeckIndex2026,
   author = {Florida Decks and Patios},
   title = {2026 {F}lorida {D}eck {C}onstruction \\& {ROI} {C}ost {I}ndex},
   year = {2026},
-  howpublished = {\\url{https://backyard-decks.lovable.app/data-hub}}
+  howpublished = {\\url{https://florida-decks-and-patios.lovable.app/data-hub}}
 }`;
 
   return (

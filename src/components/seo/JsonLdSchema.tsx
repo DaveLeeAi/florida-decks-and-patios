@@ -202,12 +202,12 @@ export function TechArticleSchema({ title, description, slug, datePublished, dat
     author: {
       "@type": "Organization",
       name: COMPANY.name,
-      url: "https://backyard-decks.lovable.app",
+      url: "https://florida-decks-and-patios.lovable.app",
     },
     publisher: {
       "@type": "Organization",
       name: COMPANY.name,
-      url: "https://backyard-decks.lovable.app",
+      url: "https://florida-decks-and-patios.lovable.app",
     },
     about: {
       "@type": "Thing",
