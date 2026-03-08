@@ -107,6 +107,7 @@ const defaultNavLinks: NavLink[] = [
   { label: "Tools", path: "/tools" },
   { label: "Portfolio", path: "/portfolio" },
   { label: "Blog", path: "/blog" },
+  { label: "Permits", path: "/permits" },
   { label: "FAQ", path: "/faq" },
   { label: "Contact", path: "/contact" },
 ];
