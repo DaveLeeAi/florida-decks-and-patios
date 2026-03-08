@@ -1,21 +1,3 @@
-import portfolio1 from "@/assets/portfolio-1.jpg";
-import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
-import portfolio4 from "@/assets/portfolio-4.jpg";
-import portfolio5 from "@/assets/portfolio-5.jpg";
-import portfolio6 from "@/assets/portfolio-6.jpg";
-import portfolio7 from "@/assets/portfolio-7.jpg";
-import portfolio8 from "@/assets/portfolio-8.jpg";
-import portfolio9 from "@/assets/portfolio-9.jpg";
-import portfolio10 from "@/assets/portfolio-10.jpg";
-import portfolio11 from "@/assets/portfolio-11.jpg";
-import portfolio12 from "@/assets/portfolio-12.jpg";
-import portfolio13 from "@/assets/portfolio-13.jpg";
-import portfolio14 from "@/assets/portfolio-14.jpg";
-import portfolio15 from "@/assets/portfolio-15.jpg";
-import beforeImg from "@/assets/before-deck.jpg";
-import afterImg from "@/assets/after-deck.jpg";
-
 export type ProjectType = "Deck" | "Patio" | "Pergola" | "Repair";
 export type MaterialType = "Composite" | "Pressure Treated Wood" | "Pavers" | "Concrete" | "Aluminum" | "Mixed Materials";
 export type CityType = "Miami" | "Tampa" | "Orlando" | "Jacksonville" | "St Petersburg" | "Fort Lauderdale" | "Sarasota" | "Naples" | "Palm Beach" | "Other Florida";
@@ -40,9 +22,11 @@ export interface PortfolioProject {
   galleryImages: string[];
 }
 
-const img = (i: number) => [portfolio1, portfolio2, portfolio3, portfolio4, portfolio5, portfolio6, portfolio7, portfolio8, portfolio9, portfolio10, portfolio11, portfolio12, portfolio13, portfolio14, portfolio15][(i - 1) % 15];
+const img = (i: number) => '';
+const beforeImg = '';
+const afterImg = '';
 
-export const portfolioProjects: PortfolioProject[] = [
+const rawProjects: PortfolioProject[] = [
   {
     id: 1,
     slug: "tampa-composite-deck-rebuild",
