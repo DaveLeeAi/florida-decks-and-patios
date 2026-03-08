@@ -23,6 +23,13 @@ export default function Portfolio() {
             </p>
           </div>
 
+          {/* Before/After Comparison */}
+          <div className="mb-16">
+            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground text-center mb-2">See the Transformation</h2>
+            <p className="text-muted-foreground text-center mb-8 max-w-lg mx-auto">Drag the slider to compare a weathered deck with its professional restoration.</p>
+            <BeforeAfterSlider />
+          </div>
+
           <div className="flex flex-wrap justify-center gap-2 mb-10">
             {categories.map((cat) => (
               <button key={cat} onClick={() => setFilter(cat)}
