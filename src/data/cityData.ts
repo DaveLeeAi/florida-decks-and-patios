@@ -286,7 +286,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Jacksonville is Florida's best-value deck market and offers the highest ROI for outdoor living investments. Several factors make Jacksonville unique:\n\n- **Military-family market**: With NAS Jacksonville, Mayport Naval Station, and Camp Blanding nearby, a significant portion of the housing market serves military families. These buyers prioritize durable, low-maintenance outdoor spaces they can enjoy during their 2–4 year assignment without worrying about annual upkeep\n- **VA loan prevalence**: Many Jacksonville home purchases use VA financing, and well-maintained outdoor spaces help homes appraise at higher values — critical for VA loans that require homes to meet appraised value\n- **Cost advantage**: Jacksonville's labor rates are 15–20% lower than Tampa or Sarasota, making it possible to get a premium composite deck at near-budget prices\n- **St. Johns County growth**: Rapidly growing St. Johns County (Nocatee, Ponte Vedra) represents a premium sub-market with higher budgets and design expectations\n- **Climate advantage**: Northeast Florida's more moderate climate means materials last longer, delivering better long-term value for the investment",
   },
   {
-    slug: "ocala-outdoor-living",
+    slug: "ocala-decks-patios",
     name: "Ocala",
     county: "Marion County",
     region: "North Central Florida",
