@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { ArrowRight, BookOpen, Wrench, Shield, Droplets, Wind } from "lucide-react";
+import RelatedContent from "@/components/RelatedContent";
 import { Button } from "@/components/ui/button";
 import { FAQSchema } from "@/components/seo/JsonLdSchema";
 import { useEffect } from "react";
