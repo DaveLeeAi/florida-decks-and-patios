@@ -183,7 +183,7 @@ export default function Tools() {
               Florida Deck Permit FAQs
             </h2>
             <div className="space-y-5">
-              {permitFAQs.map((faq, i) => (
+              {permitFAQsDisplay.map((faq, i) => (
                 <div key={i}>
                   <h3 className="text-base font-semibold text-foreground mb-1">{faq.question}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
