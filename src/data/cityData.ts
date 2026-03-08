@@ -799,7 +799,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Destin represents Florida's most prestigious beach market with ultra-high-end outdoor living expectations.",
   },
   {
-    slug: "panama-city-decks",
+    slug: "panama-city-decks-patios",
     name: "Panama City",
     county: "Bay County",
     region: "Panhandle",
