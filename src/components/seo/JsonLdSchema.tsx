@@ -24,7 +24,7 @@ export function LocalBusinessSchema() {
     "@type": "HomeAndConstructionBusiness",
     name: COMPANY.name,
     description: "Referral network connecting homeowners with DBPR-licensed, insured Florida contractors for custom deck building, patio installation, and outdoor living spaces. All contractors verified before project begins.",
-    url: "https://backyard-decks.lovable.app",
+    url: "https://florida-decks-and-patios.lovable.app",
     telephone: COMPANY.phone,
     email: COMPANY.email,
     address: {
