@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import { FAQSchema } from "@/components/seo/JsonLdSchema";
+import RelatedContent from "@/components/RelatedContent";
 
 const glossaryTerms = [
   { term: "HVHZ (High-Velocity Hurricane Zone)", definition: "A geographic area designated by the Florida Building Code — covering all of Miami-Dade County and portions of Broward County — where building materials and construction methods must meet enhanced wind-load standards of 175+ MPH. All deck materials in HVHZ zones must carry a valid Miami-Dade NOA." },
