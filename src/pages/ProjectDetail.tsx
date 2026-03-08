@@ -99,7 +99,7 @@ export default function ProjectDetail() {
       {/* Project Overview */}
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
             <OverviewCard icon={Ruler} label="Deck Size" value={project.deckSize} />
             <OverviewCard icon={Layers} label="Materials" value={project.materials} />
             <OverviewCard icon={Layers} label="Materials" value={project.materials} />

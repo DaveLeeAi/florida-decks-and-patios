@@ -77,7 +77,7 @@ export default function PortfolioCard({ project }: { project: PortfolioProject }
           </p>
 
           <div className="flex items-center justify-between">
-            <span className="text-xs text-muted-foreground/70">{project.deckSize} · {project.completionYear}</span>
+            <span className="text-xs text-muted-foreground/70">{project.deckSize}</span>
             <span className="text-primary text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
               View Project <ArrowRight className="h-3.5 w-3.5" />
             </span>
