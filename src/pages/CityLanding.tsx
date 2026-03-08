@@ -342,8 +342,15 @@ export default function CityLanding() {
         </div>
       </section>
 
-      {/* Other Cities */}
+      {/* E-E-A-T Authority Footer */}
       <section className="section-padding bg-background">
+        <div className="container-narrow mx-auto max-w-3xl">
+          <ExpertCredentials />
+        </div>
+      </section>
+
+      {/* Other Cities */}
+      <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
           <h2 className="font-heading text-xl md:text-2xl font-bold text-foreground mb-6">
             We Also Serve These Florida Areas

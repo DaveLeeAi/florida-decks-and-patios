@@ -73,6 +73,8 @@ export default function BlogPost() {
             })}
           </div>
 
+          <ExpertCredentials />
+
           <div className="mt-16 pt-8 border-t border-border">
             <h3 className="font-heading text-xl font-semibold text-foreground mb-6">More Articles</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
