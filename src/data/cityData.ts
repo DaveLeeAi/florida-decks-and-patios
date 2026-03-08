@@ -178,7 +178,7 @@ export const cityPages: CityData[] = [
     region: "Southwest Florida",
     tagline: "Premium Coastal Living",
     metaTitle: "Sarasota Deck Builders | Premium Outdoor Living in Sarasota & Venice FL",
-    metaDescription: "Sarasota's luxury deck and outdoor living specialists. Salt-air resistant composite and PVC decking engineered for coastal Florida. See Sarasota County costs and permits.",
+    metaDescription: "The Sarasota authority for salt-air durable decks. Get 2026 pricing on 316-grade stainless hardware and premium PVC. Access Sarasota County V-Zone permit requirements and high-ROI coastal material reports.",
     focusKeyword: "deck builder Sarasota",
     heroHeadline: "Sarasota's Premium Outdoor Living Specialists",
     heroSubheadline: "Luxury decks and outdoor spaces built with salt-air resistant materials — engineered for Sarasota's coastal climate and lifestyle.",
