@@ -386,7 +386,7 @@ function ContentTab() {
                 <Field label="Rating (1-5)" value={String(t.rating)} onChange={(v) => setTests(prev => prev.map((s, j) => j === i ? { ...s, rating: Math.min(5, Math.max(1, parseInt(v) || 5)) } : s))} type="number" />
               </div>
               <Field label="Text" value={t.text} onChange={(v) => setTests(prev => prev.map((s, j) => j === i ? { ...s, text: v } : s))} rows={2} />
-              <Field label="Note" value={t.note} onChange={(v) => setTests(prev => prev.map((s, j) => j === i ? { ...s, note: v } : s))} />
+              
             </div>
           ))}
           <Button variant="outline" size="sm" className="gap-1" onClick={() => setTests(prev => [...prev, { name: "New Reviewer", location: "", text: "", rating: 5, note: "" }])}>
