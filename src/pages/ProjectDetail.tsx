@@ -1,7 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { portfolioProjects } from "@/data/portfolioData";
-import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 import { MapPin, Calendar, Ruler, Layers, Clock, DollarSign, ArrowLeft, ArrowRight, Wrench, Shield, AlertTriangle, Camera, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,6 +9,8 @@ import { useState } from "react";
 import { X, ZoomIn } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
+const GALLERY_LABELS = ["Finished deck", "Completed project", "Construction progress", "Railing detail", "Material closeup", "Final result"];
+
 export default function ProjectDetail() {
   const { slug } = useParams();
   const project = portfolioProjects.find(p => p.slug === slug);
@@ -17,9 +18,15 @@ export default function ProjectDetail() {
 
   if (!project) return <Navigate to="/portfolio" replace />;
 
+  const cityDisplay = project.city === "Other Florida" ? "Gainesville" : project.city;
+
   const similar = portfolioProjects
     .filter(p => p.id !== project.id && (p.city === project.city || p.projectType === project.projectType))
     .slice(0, 3);
+
+  // Use afterImage as hero, rest of gallery minus duplicates
+  const heroImage = project.afterImage;
+  const galleryImages = project.galleryImages.filter(img => img !== heroImage);
 
   return (
     <Layout>
@@ -63,19 +70,30 @@ export default function ProjectDetail() {
             </h1>
             <div className="flex items-center gap-1.5 text-muted-foreground">
               <MapPin className="h-4 w-4 text-primary" />
-              <span>{project.city === "Other Florida" ? "Gainesville" : project.city}, Florida</span>
+              <span>{cityDisplay}, Florida</span>
             </div>
           </div>
 
-          {/* Before/After Slider */}
-          <BeforeAfterSlider
-            beforeSrc={project.beforeImage}
-            afterSrc={project.afterImage}
-            beforeAlt={`${project.title} — before`}
-            afterAlt={`${project.title} — after`}
-            location={`${project.city === "Other Florida" ? "Gainesville" : project.city}, FL`}
-            materials={project.materials}
-          />
+          {/* Hero Image */}
+          <button
+            onClick={() => setLightboxImg(heroImage)}
+            className="group relative w-full aspect-[16/9] rounded-lg overflow-hidden border border-border"
+          >
+            <img
+              src={heroImage}
+              alt={`${project.title} — completed project in ${cityDisplay}, Florida`}
+              className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+              width={1200}
+              height={675}
+            />
+            <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors flex items-center justify-center">
+              <ZoomIn className="h-8 w-8 text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
+            </div>
+            <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-card/80 backdrop-blur-sm text-foreground text-xs font-medium px-3 py-1.5 rounded-md">
+              <MapPin className="h-3.5 w-3.5 text-primary" />
+              {cityDisplay}, FL · {project.materials}
+            </div>
+          </button>
         </div>
       </section>
 
@@ -88,7 +106,7 @@ export default function ProjectDetail() {
             <OverviewCard icon={Calendar} label="Completed" value={String(project.completionYear)} />
             <OverviewCard icon={Clock} label="Duration" value={project.duration} />
             <OverviewCard icon={DollarSign} label="Budget Range" value={project.budgetRange} />
-            <OverviewCard icon={MapPin} label="Location" value={`${project.city === "Other Florida" ? "Gainesville" : project.city}, FL`} />
+            <OverviewCard icon={MapPin} label="Location" value={`${cityDisplay}, FL`} />
           </div>
 
           <p className="text-foreground/90 text-lg leading-relaxed max-w-3xl">
@@ -101,7 +119,6 @@ export default function ProjectDetail() {
       <section className="section-padding bg-background">
         <div className="container-narrow mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Problem */}
             <Card className="border-destructive/20">
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-4">
@@ -114,7 +131,6 @@ export default function ProjectDetail() {
               </CardContent>
             </Card>
 
-            {/* Solution */}
             <Card className="border-primary/20">
               <CardContent className="p-6">
                 <div className="flex items-center gap-2 mb-4">
@@ -162,16 +178,26 @@ export default function ProjectDetail() {
             <h2 className="font-heading text-2xl font-bold text-foreground">Project Gallery</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {project.galleryImages.map((img, i) => (
+            {galleryImages.map((img, i) => (
               <button
                 key={i}
                 onClick={() => setLightboxImg(img)}
                 className="group relative aspect-[4/3] rounded-lg overflow-hidden border border-border"
               >
-                <img src={img} alt={`${project.title} — photo ${i + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                <img
+                  src={img}
+                  alt={`${project.title} — ${GALLERY_LABELS[i] || `photo ${i + 1}`}`}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  width={600}
+                  height={450}
+                />
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors flex items-center justify-center">
                   <ZoomIn className="h-6 w-6 text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
                 </div>
+                <span className="absolute bottom-2 left-2 text-xs text-primary-foreground bg-foreground/50 backdrop-blur-sm px-2 py-0.5 rounded">
+                  {GALLERY_LABELS[i] || `Photo ${i + 1}`}
+                </span>
               </button>
             ))}
           </div>
@@ -220,7 +246,7 @@ export default function ProjectDetail() {
             Interested in a Similar {project.projectType} Project?
           </h2>
           <p className="text-primary-foreground/80 text-lg mb-6 max-w-2xl mx-auto">
-            Get a free, no-obligation estimate for your {project.projectType.toLowerCase()} project in {project.city === "Other Florida" ? "Florida" : project.city}.
+            Get a free, no-obligation estimate for your {project.projectType.toLowerCase()} project in {cityDisplay === "Gainesville" ? "Florida" : cityDisplay}.
           </p>
           <Link to="/contact">
             <Button size="lg" variant="secondary" className="text-base px-8">
