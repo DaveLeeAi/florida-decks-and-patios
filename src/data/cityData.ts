@@ -742,7 +742,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Pensacola offers affordable Gulf Coast living with growing demand for quality outdoor spaces.",
   },
   {
-    slug: "destin-decks",
+    slug: "destin-decks-patios",
     name: "Destin",
     county: "Okaloosa County",
     region: "Northwest Florida / Panhandle",
