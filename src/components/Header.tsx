@@ -120,9 +120,9 @@ export default function Header() {
             <Phone className="h-4 w-4 shrink-0" />
             <span>{phoneIsPlaceholder ? "Call for Estimate" : company.phoneDisplay}</span>
           </a>
-          <Link to={settings.ctaLink}>
+          <Link to="/free-quotes">
             <Button size="default" className="hidden sm:inline-flex bg-amber text-charcoal hover:bg-amber-dark font-bold text-sm px-5 shadow-md whitespace-nowrap">
-              {settings.ctaText}
+              Get Free Quotes
             </Button>
           </Link>
           <button
@@ -192,9 +192,9 @@ export default function Header() {
               <Phone className="h-4 w-4" />
               {phoneIsPlaceholder ? "Call for Estimate" : company.phoneDisplay}
             </a>
-            <Link to={settings.ctaLink} className="mt-2">
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-[hsl(var(--forest-dark))] font-semibold">
-                {settings.ctaText}
+            <Link to="/free-quotes" className="mt-2">
+              <Button className="w-full bg-amber text-charcoal hover:bg-amber-dark font-bold">
+                Get Free Quotes
               </Button>
             </Link>
           </div>
