@@ -37,7 +37,7 @@ const featuredProjects = [
   },
   {
     title: "Orlando Paver Patio with Pergola",
-    slug: "orlando-paver-patio-pergola",
+    slug: "orlando-backyard-pergola",
     description: "A custom paver patio with attached cedar pergola, string lighting, and integrated seating in an Orlando backyard.",
     location: "Orlando, FL",
     type: "Patio & Pergola",
