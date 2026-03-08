@@ -1,18 +1,21 @@
 import Layout from "@/components/Layout";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Info, Shield, BookOpen, Droplets, Wind, Sun, Anchor } from "lucide-react";
+import { Info, Shield, BookOpen, Droplets, Wind, Sun, Anchor, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import BudgetEstimator from "@/components/tools/BudgetEstimator";
 import RepairChecker from "@/components/tools/RepairChecker";
 import ViolationDecoder from "@/components/tools/ViolationDecoder";
 import { FAQSchema } from "@/components/seo/JsonLdSchema";
 
 const violationFAQs = [
-  { question: "What is FBC R507.2 — ledger board connection failure?", answer: "FBC R507.2 requires deck ledger boards to be attached with through-bolts or lag screws at 16\" on center in a staggered pattern. Nails alone are never acceptable. This is the #1 cause of deck collapses in Florida. Repair costs range from $800–$2,500." },
-  { question: "What happens if my Florida deck was built without a permit?", answer: "Building a deck without a permit in Florida can result in fines of $500–$5,000 per day, forced demolition orders, insurance claim denials, and complications when selling. You can apply for an after-the-fact permit, but fees are typically double the standard permit fee." },
-  { question: "What are hurricane straps and why does my Florida deck need them?", answer: "Hurricane straps (e.g., Simpson Strong-Tie H2.5A) are metal connectors required at every joist-to-beam and beam-to-post connection on Florida decks. They prevent uplift during high winds. Missing straps are one of the most common failed inspection items, costing $600–$2,000 to retrofit." },
-  { question: "What is the minimum railing height for a deck in Florida?", answer: "Florida Building Code requires guard rails on any deck 30\" or more above grade. The minimum height is 36\" for residential decks, though many Florida counties have adopted the 42\" standard. Baluster spacing cannot exceed 4\" to prevent child entrapment." },
-  { question: "What are HVHZ requirements for decks in Miami-Dade County?", answer: "Properties in the High-Velocity Hurricane Zone (Miami-Dade and Broward counties) must use materials with a valid Notice of Acceptance (NOA). Standard materials approved elsewhere in Florida are NOT automatically approved in HVHZ zones. Non-compliant materials result in automatic inspection failure." },
-  { question: "How much does it cost to fix a failed deck inspection in Florida?", answer: "Costs vary by violation: ledger board fixes run $800–$2,500, missing hurricane straps $600–$2,000, footing corrections $1,200–$4,000, and unpermitted work penalties $1,500–$8,000+. Most violations require a re-inspection after repairs." },
+  { question: "What does a failed deck inspection mean in Florida?", answer: "A failed deck inspection means the inspector found one or more issues that don't meet Florida Building Code requirements. Common reasons include improper ledger connections, missing hurricane straps, railing height violations, or permit documentation issues. Most failures can be corrected and reinspected." },
+  { question: "Can I use my deck after it fails inspection?", answer: "Generally, you should not use a deck that has failed inspection, especially for critical structural issues. A failed inspection means the structure hasn't been verified as safe. Consult your inspector's notes and a licensed contractor to understand the severity before using the deck." },
+  { question: "Do I need a reinspection after fixing a deck code issue?", answer: "In most cases, yes. Critical and moderate violations typically require a reinspection after repairs to verify the work was done correctly. Minor issues like drainage may not always require reinspection, but check with your local building department." },
+  { question: "What happens if my deck was built without a permit in Florida?", answer: "Unpermitted deck work in Florida can result in fines of $500–$5,000 per day, forced removal, insurance claim denials, and complications when selling. You can apply for an after-the-fact permit, but fees are typically double the standard permit fee and the structure must pass all required inspections." },
+  { question: "What is a ledger board failure on a deck?", answer: "A ledger board failure means the board that attaches your deck to your house is not properly secured. Florida code (FBC R507.2) requires specific lag screws or through-bolts at 16\" on center spacing. Improper ledger connections are the #1 cause of deck collapses." },
+  { question: "What is the difference between a code violation and a permit issue?", answer: "A code violation means the physical construction doesn't meet building code requirements (wrong materials, improper spacing, missing hardware). A permit issue relates to the paperwork — missing permits, skipped inspections, or plans that don't match the actual construction. Both can cause a failed inspection." },
+  { question: "What is an NOA issue in Miami-Dade?", answer: "A Notice of Acceptance (NOA) is a Miami-Dade County approval confirming that a building product meets High-Velocity Hurricane Zone (HVHZ) requirements. If your deck materials don't have valid NOAs, the inspection will automatically fail and materials must be replaced with approved alternatives." },
+  { question: "When do I need an engineer for a failed deck inspection?", answer: "An engineer is typically required when the deck exceeds prescriptive code limits — unusual heights, heavy loads (hot tubs, outdoor kitchens), structural damage repairs, or when field work doesn't match the original plans. The building department will tell you if engineering is needed." },
 ];
 
 export default function Tools() {
@@ -43,6 +46,25 @@ export default function Tools() {
           <div className="space-y-8">
             <BudgetEstimator />
             <RepairChecker />
+          </div>
+
+          {/* ═══ Inspection Failure Explainer Section ═══ */}
+          <div className="mt-12">
+            <div className="text-center mb-6">
+              <h2 className="font-heading text-3xl font-bold text-foreground mb-3">
+                Florida Deck &amp; Patio Inspection Failure Explainer
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Got a failed inspection notice for your deck, patio, porch, pergola, or outdoor stairs? Enter the code or issue below to get a plain-English explanation, common repair steps, and what to do next.
+              </p>
+              <p className="text-xs text-muted-foreground mt-2">
+                Related reading:{" "}
+                <Link to="/blog/florida-deck-inspection-failures" className="text-primary underline hover:text-primary/80">
+                  Florida Deck Inspection Failures — Full Guide
+                </Link>
+              </p>
+            </div>
+
             <ViolationDecoder />
           </div>
 
