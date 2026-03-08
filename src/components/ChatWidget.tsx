@@ -165,6 +165,20 @@ export default function ChatWidget() {
           }
         }
       }
+      // Log the assistant response
+      if (assistantSoFar && sid) {
+        fetch(CHAT_URL.replace("kb-chat", "kb-chat"), {
+          // Use supabase insert via the client
+        });
+        // Log assistant response to DB
+        const { supabase } = await import("@/integrations/supabase/client");
+        await supabase.from("chat_logs").insert({
+          session_id: sid || sessionId || "unknown",
+          role: "assistant",
+          content: assistantSoFar,
+          context_used: [],
+        });
+      }
     } catch (e) {
       console.error("Chat error:", e);
       setMessages((prev) => [
