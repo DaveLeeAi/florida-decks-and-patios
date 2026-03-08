@@ -1,0 +1,12 @@
+Region,City,Material_Type,Avg_Cost_Per_SqFt_2026,Permit_Avg_Days,Maintenance_Hours_Year,ROI_Percentage
+West Coast,Tampa,Capped Composite,78.50,21,2,82%
+West Coast,Sarasota,Premium PVC,92.00,28,1,85%
+West Coast,St. Petersburg,Capped Composite,80.00,24,2,80%
+East Coast,Miami (HVHZ),HVHZ Composite,115.00,45,2,78%
+East Coast,Fort Lauderdale,PVC,105.00,35,1,80%
+East Coast,West Palm Beach,Capped Composite,88.00,30,2,82%
+East Coast,Jacksonville,Pressure Treated Wood,42.00,14,35,65%
+East Coast,Melbourne,Capped Composite,72.00,18,2,78%
+East Coast,St. Augustine,Composite,68.00,16,2,75%
+Central,Orlando,Capped Composite,72.00,18,2,80%
+Inland,Ocala,Pressure Treated Wood,38.50,12,40,62%

@@ -167,3 +167,41 @@ export function CityServiceSchema({ cityName, slug, description }: CityServiceSc
   };
   return <JsonLd schema={schema} />;
 }
+
+interface TechArticleSchemaProps {
+  title: string;
+  description: string;
+  slug: string;
+  datePublished: string;
+  dateModified?: string;
+  category: string;
+}
+
+export function TechArticleSchema({ title, description, slug, datePublished, dateModified, category }: TechArticleSchemaProps) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: title,
+    description,
+    url: `https://backyard-decks.lovable.app/blog/${slug}`,
+    datePublished,
+    dateModified: dateModified || datePublished,
+    proficiencyLevel: "Beginner",
+    author: {
+      "@type": "Organization",
+      name: COMPANY.name,
+      url: "https://backyard-decks.lovable.app",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: COMPANY.name,
+      url: "https://backyard-decks.lovable.app",
+    },
+    about: {
+      "@type": "Thing",
+      name: category,
+    },
+    inLanguage: "en-US",
+  };
+  return <JsonLd schema={schema} />;
+}

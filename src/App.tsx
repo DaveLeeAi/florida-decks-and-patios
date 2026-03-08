@@ -21,6 +21,8 @@ const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const CityLanding = lazy(() => import("./pages/CityLanding"));
 const AdminKB = lazy(() => import("./pages/AdminKB"));
+const DataHub = lazy(() => import("./pages/DataHub"));
+const Glossary = lazy(() => import("./pages/Glossary"));
 
 const queryClient = new QueryClient();
 
@@ -54,6 +56,8 @@ const App = () => (
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/kb" element={<AdminKB />} />
+              <Route path="/data-hub" element={<DataHub />} />
+              <Route path="/glossary" element={<Glossary />} />
               <Route path="/:slug" element={<CityLanding />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
