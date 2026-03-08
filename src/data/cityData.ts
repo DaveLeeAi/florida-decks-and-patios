@@ -292,7 +292,7 @@ export const cityPages: CityData[] = [
     region: "North Central Florida",
     tagline: "Affordable New Build Additions",
     metaTitle: "Ocala Deck Builders | Affordable Decks & Patios in Marion County FL",
-    metaDescription: "Ocala's affordable deck and patio builder. New build additions, budget-friendly composite decks, and patio designs for Marion County homeowners. See local costs.",
+    metaDescription: "Affordable 2026 deck solutions for Ocala new builds. Access Marion County permit shortcuts and local cost data ($35-$85/sq-ft). Learn how to protect your investment from inland termite pressure with inorganic materials.",
     focusKeyword: "deck builder Ocala",
     heroHeadline: "Ocala's Affordable Deck & Patio Experts",
     heroSubheadline: "Quality outdoor living spaces at North Central Florida's best prices — perfect for new builds, first-time homeowners, and retirement communities.",
