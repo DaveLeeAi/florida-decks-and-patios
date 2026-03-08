@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import { Helmet } from "react-helmet-async";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Info, Shield, BookOpen, Droplets, Wind, Sun, Anchor, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
