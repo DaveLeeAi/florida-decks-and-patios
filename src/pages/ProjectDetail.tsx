@@ -63,7 +63,6 @@ export default function ProjectDetail() {
             <div className="flex flex-wrap items-center gap-2 mb-3">
               <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">{project.projectType}</Badge>
               <Badge variant="outline">{project.materials}</Badge>
-              <Badge variant="outline">{project.completionYear}</Badge>
             </div>
             <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
               {project.title}
