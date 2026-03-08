@@ -147,6 +147,21 @@ export default function Tools() {
               </div>
             </div>
           </div>
+
+          {/* Permit FAQ Section */}
+          <div className="mt-12 bg-card rounded-lg border border-border p-6 md:p-8">
+            <h2 className="font-heading text-2xl font-bold text-foreground mb-6">
+              Florida Deck Permit FAQs
+            </h2>
+            <div className="space-y-5">
+              {permitFAQs.map((faq, i) => (
+                <div key={i}>
+                  <h3 className="text-base font-semibold text-foreground mb-1">{faq.question}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </Layout>
