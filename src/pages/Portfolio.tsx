@@ -2,10 +2,11 @@ import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { portfolioProjects, PROJECT_TYPES, MATERIAL_TYPES, CITY_TYPES, type ProjectType, type MaterialType, type CityType } from "@/data/portfolioData";
-import { MapPin, ArrowRight, Filter, X, ChevronDown } from "lucide-react";
+import { Filter, X, ChevronDown, ArrowRight, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import BeforeAfterSlider from "@/components/BeforeAfterSlider";
+import PortfolioCard from "@/components/PortfolioCard";
 import { Helmet } from "react-helmet-async";
 
 export default function Portfolio() {
@@ -16,8 +17,10 @@ export default function Portfolio() {
 
   const activeFilterCount = [typeFilter, materialFilter, cityFilter].filter(f => f !== "All").length;
 
+  const featuredProject = portfolioProjects[0];
+
   const filtered = useMemo(() => {
-    return portfolioProjects.filter(p => {
+    return portfolioProjects.slice(1).filter(p => {
       if (typeFilter !== "All" && p.projectType !== typeFilter) return false;
       if (materialFilter !== "All" && p.materials !== materialFilter) return false;
       if (cityFilter !== "All" && p.city !== cityFilter) return false;
@@ -46,7 +49,7 @@ export default function Portfolio() {
           </h1>
           <p className="text-muted-foreground text-lg md:text-xl max-w-3xl mx-auto mb-8">
             Browse {portfolioProjects.length}+ completed deck, patio, and pergola projects across Florida.
-            Every project includes before/after photos, materials used, and inspection insights.
+            Every project includes real photos, materials used, and inspection insights.
           </p>
           <div className="flex flex-wrap justify-center gap-3 text-sm text-muted-foreground">
             <span className="bg-card border border-border rounded-full px-4 py-1.5">{portfolioProjects.filter(p => p.projectType === "Deck").length} Deck Projects</span>
@@ -57,12 +60,33 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Before/After Feature */}
+      {/* Featured Project — Before/After */}
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground text-center mb-2">See the Transformation</h2>
-          <p className="text-muted-foreground text-center mb-8 max-w-lg mx-auto">Drag the slider to compare a weathered deck with its professional restoration.</p>
-          <BeforeAfterSlider />
+          <div className="text-center mb-8">
+            <Badge variant="outline" className="mb-3 text-xs uppercase tracking-wider">Featured Project</Badge>
+            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-2">
+              {featuredProject.title}
+            </h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Drag the slider to see this {featuredProject.city} transformation — from weathered structure to a professionally finished outdoor space.
+            </p>
+          </div>
+          <BeforeAfterSlider
+            beforeSrc={featuredProject.beforeImage}
+            afterSrc={featuredProject.afterImage}
+            beforeAlt={`Before: ${featuredProject.title}`}
+            afterAlt={`After: ${featuredProject.title}`}
+            location={`${featuredProject.city}, FL`}
+            materials={featuredProject.materials}
+          />
+          <div className="text-center mt-6">
+            <Link to={`/portfolio/${featuredProject.slug}`}>
+              <Button variant="outline" className="gap-2">
+                View Full Project Details <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -80,12 +104,7 @@ export default function Portfolio() {
                   <X className="h-4 w-4 mr-1" /> Clear
                 </Button>
               )}
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowFilters(!showFilters)}
-                className="gap-2"
-              >
+              <Button variant="outline" size="sm" onClick={() => setShowFilters(!showFilters)} className="gap-2">
                 <Filter className="h-4 w-4" />
                 Filters
                 {activeFilterCount > 0 && (
@@ -102,7 +121,6 @@ export default function Portfolio() {
           {showFilters && (
             <div className="bg-card border border-border rounded-lg p-5 mb-8 animate-fade-in">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Project Type */}
                 <div>
                   <label className="text-sm font-medium text-foreground mb-2 block">Project Type</label>
                   <div className="flex flex-wrap gap-1.5">
@@ -112,8 +130,6 @@ export default function Portfolio() {
                     ))}
                   </div>
                 </div>
-
-                {/* Materials */}
                 <div>
                   <label className="text-sm font-medium text-foreground mb-2 block">Materials</label>
                   <div className="flex flex-wrap gap-1.5">
@@ -123,8 +139,6 @@ export default function Portfolio() {
                     ))}
                   </div>
                 </div>
-
-                {/* Location */}
                 <div>
                   <label className="text-sm font-medium text-foreground mb-2 block">Location</label>
                   <div className="flex flex-wrap gap-1.5">
@@ -141,45 +155,7 @@ export default function Portfolio() {
           {/* Project Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((project) => (
-              <Link
-                key={project.id}
-                to={`/portfolio/${project.slug}`}
-                className="group bg-card rounded-lg border border-border overflow-hidden hover:shadow-lg hover:border-primary/30 transition-all"
-              >
-                <div className="h-52 overflow-hidden relative">
-                  <img
-                    src={project.afterImage}
-                    alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 flex gap-1.5">
-                    <Badge variant="secondary" className="text-xs bg-primary/90 text-primary-foreground border-0">
-                      {project.projectType}
-                    </Badge>
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-heading text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
-                    {project.title}
-                  </h3>
-                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-2">
-                    <MapPin className="h-3.5 w-3.5 text-primary" />
-                    <span>{project.city === "Other Florida" ? "Gainesville" : project.city}, FL</span>
-                    <span className="text-border">•</span>
-                    <span>{project.materials}</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                    {project.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">{project.deckSize} · {project.completionYear}</span>
-                    <span className="text-primary text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
-                      View Project <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
-                </div>
-              </Link>
+              <PortfolioCard key={project.id} project={project} />
             ))}
           </div>
 
