@@ -58,7 +58,7 @@ export interface CityData {
 
 export const cityPages: CityData[] = [
   {
-    slug: "tampa-decks",
+    slug: "tampa-bay-decks-patios",
     name: "Tampa Bay",
     county: "Hillsborough / Pasco",
     region: "Central West Florida",
@@ -115,7 +115,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Tampa Bay leads Florida in new deck construction volume, driven by explosive growth in master-planned communities across Hillsborough and Pasco counties. Communities like FishHawk Ranch, Watergrass, Epperson, and Bexley are adding thousands of homes annually — many with builder-grade patios that homeowners want to upgrade to full composite deck systems.\n\nThe Tampa market is characterized by:\n\n- **High HOA prevalence**: Over 60% of Tampa homes are in HOA communities with specific architectural review requirements for deck projects\n- **Master-planned community standards**: Many communities require composite or PVC decking (no pressure-treated wood) and pre-approved color palettes\n- **Volume pricing advantage**: The high demand in Tampa means competitive contractor pricing and shorter wait times compared to coastal luxury markets\n- **Family-oriented designs**: Multi-level decks with play areas, built-in storage, and screened sections for year-round family use",
   },
   {
-    slug: "orlando-patios",
+    slug: "orlando-decks-patios",
     name: "Orlando",
     county: "Orange County",
     region: "Central Florida",
@@ -172,7 +172,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Orlando's explosive population growth — over 1,000 new residents per week — creates unique opportunities and challenges for outdoor living projects. The city's family-centric demographics drive demand for practical, multi-functional deck designs that serve daily life, not just weekend entertaining.\n\nKey Orlando market characteristics:\n\n- **Zoning-conscious layouts**: Orange County's residential zoning requires careful setback planning, especially on smaller lots in communities like Lake Nona, Horizon West, and Windermere\n- **Sustainable material demand**: Orlando homeowners increasingly request eco-friendly composite options made from recycled materials, aligning with the city's sustainability initiatives\n- **Family-first design**: Play-safe surfaces, built-in gates for toddler safety, and covered homework/remote-work zones are common Orlando-specific requests\n- **HOA integration**: Many Orlando communities require architectural review — we handle all coordination as part of our project process",
   },
   {
-    slug: "sarasota-outdoor-living",
+    slug: "sarasota-venice-decks-patios",
     name: "Sarasota / Venice",
     county: "Sarasota County",
     region: "Southwest Florida",
@@ -229,7 +229,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Sarasota and Venice represent Florida's premium outdoor living market. Homeowners here expect resort-quality materials and finishes, and the coastal environment demands them.\n\nAfter Hurricanes Ian (2022) and Milton (2024), Sarasota County has significantly tightened enforcement of building codes for outdoor structures. This creates both challenges and opportunities:\n\n- **Post-hurricane rebuilding surge**: Many homes need new or rebuilt decks, creating high contractor demand and the opportunity to upgrade to modern, storm-resistant designs\n- **Salt-air material selection**: PVC decking (like AZEK and TimberTech Advanced PVC) is the #1 recommended material for Sarasota coastal properties due to zero moisture absorption and complete salt resistance\n- **Premium design expectations**: Sarasota clients typically request cable railings for view preservation, integrated lighting, and multi-zone layouts for entertaining\n- **Stricter wind engineering**: Coastal Sarasota projects routinely require stamped engineering drawings rated for 140–150+ mph winds, adding $1,500–$3,000 to project costs\n- **Flood zone compliance**: Many Sarasota properties fall within FEMA flood zones, requiring elevated deck designs that meet Base Flood Elevation (BFE) requirements",
   },
   {
-    slug: "jacksonville-decks",
+    slug: "jacksonville-decks-patios",
     name: "Jacksonville",
     county: "St. Johns / Duval County",
     region: "Northeast Florida",
@@ -286,7 +286,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Jacksonville is Florida's best-value deck market and offers the highest ROI for outdoor living investments. Several factors make Jacksonville unique:\n\n- **Military-family market**: With NAS Jacksonville, Mayport Naval Station, and Camp Blanding nearby, a significant portion of the housing market serves military families. These buyers prioritize durable, low-maintenance outdoor spaces they can enjoy during their 2–4 year assignment without worrying about annual upkeep\n- **VA loan prevalence**: Many Jacksonville home purchases use VA financing, and well-maintained outdoor spaces help homes appraise at higher values — critical for VA loans that require homes to meet appraised value\n- **Cost advantage**: Jacksonville's labor rates are 15–20% lower than Tampa or Sarasota, making it possible to get a premium composite deck at near-budget prices\n- **St. Johns County growth**: Rapidly growing St. Johns County (Nocatee, Ponte Vedra) represents a premium sub-market with higher budgets and design expectations\n- **Climate advantage**: Northeast Florida's more moderate climate means materials last longer, delivering better long-term value for the investment",
   },
   {
-    slug: "ocala-outdoor-living",
+    slug: "ocala-decks-patios",
     name: "Ocala",
     county: "Marion County",
     region: "North Central Florida",
@@ -343,7 +343,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Ocala represents Florida's affordable outdoor living frontier. With median home prices 25–40% lower than coastal markets, Ocala homeowners get more deck for their dollar — and the ROI is among the highest in the state.\n\nWhat makes the Ocala market unique:\n\n- **New build additions**: Many Ocala homes are new construction with builder-basic concrete patios. Upgrading to a composite deck or adding a screened porch is the most popular outdoor improvement in the area\n- **Retirement community demand**: Communities like On Top of the World, Del Webb Stone Creek, and Oak Run have active homeowner populations looking for low-maintenance outdoor spaces for entertaining and relaxation\n- **First-time homeowner budget**: Ocala's affordability attracts first-time buyers who want quality outdoor living at entry-level pricing — pressure-treated wood decks starting under $5,000 for a 300 sq ft platform\n- **Horse country aesthetic**: Ocala's identity as Florida's Horse Capital influences design preferences — natural wood tones, ranch-style layouts, and open-air designs that connect to the pastoral landscape\n- **Lower regulatory burden**: Marion County's lower wind zone requirements and faster permitting process mean quicker project timelines and lower overhead costs passed to homeowners",
   },
   {
-    slug: "miami-decks",
+    slug: "miami-fort-lauderdale-decks-patios",
     name: "Miami / Fort Lauderdale",
     county: "Miami-Dade / Broward",
     region: "Southeast Florida",
@@ -400,7 +400,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Miami-Dade and Broward counties represent Florida's most demanding — and most lucrative — deck building market. The HVHZ (High-Velocity Hurricane Zone) designation makes this region unique in all of North America.\n\nWhat sets Miami apart:\n\n- **HVHZ NOA Requirement**: Every material used in outdoor construction must carry a Miami-Dade Notice of Acceptance (NOA) number. This eliminates many standard products and requires specialized sourcing\n- **Digitally sealed engineering**: All decks over 30 inches or 200 sq ft require digitally signed and sealed structural drawings by a licensed Florida PE — no exceptions\n- **Luxury high-rise terraces**: Miami's condo market creates demand for rooftop and balcony deck installations using lightweight aluminum and porcelain paver systems rated for HVHZ wind uplift\n- **316-grade mandatory zone**: Within 3,000 feet of the coastline, only 316-grade stainless steel or marine-grade aluminum fasteners are acceptable. Standard hardware will catastrophically fail\n- **Bilingual project management**: Miami's diverse population requires Spanish-language permit coordination and client communication capabilities\n- **Premium material preference**: Ipe (Brazilian Walnut), Cumaru, and aluminum framing dominate the Miami luxury market, with budgets regularly exceeding $50,000 for waterfront properties",
   },
   {
-    slug: "melbourne-decks",
+    slug: "melbourne-cocoa-beach-decks-patios",
     name: "Melbourne / Cocoa Beach",
     county: "Brevard County",
     region: "Central East Coast",
@@ -457,7 +457,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "The Space Coast represents a unique intersection of high-tech aerospace culture and coastal living demands. Brevard County's rapid growth, driven by SpaceX, Blue Origin, and L3Harris expansion, creates a market of discerning, engineering-minded homeowners.\n\nKey Space Coast market characteristics:\n\n- **Aerospace workforce demographics**: Tech-sector professionals prefer data-driven material comparisons, maintenance schedules, and lifecycle cost analyses when making purchasing decisions\n- **Salt-fog severity**: The Space Coast's persistent onshore Atlantic winds create salt-fog conditions more severe than many Gulf Coast locations, requiring specialized maintenance protocols\n- **Barrier island premium**: Cocoa Beach, Satellite Beach, and Indialantic properties command 20–30% higher deck project budgets due to full marine-grade hardware requirements\n- **30-day fast-track permitting**: Brevard County's new 2026 residential permit processing timeline benefits standard deck projects under 7,500 sq ft\n- **Cape Canaveral proximity**: Properties near launch facilities experience unique vibrational and acoustic considerations that may affect structural design choices",
   },
   {
-    slug: "west-palm-beach-decks",
+    slug: "west-palm-beach-decks-patios",
     name: "West Palm Beach / Port St. Lucie",
     county: "Palm Beach / Martin County",
     region: "Southeast Florida",
@@ -514,7 +514,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Palm Beach County and the Treasure Coast represent Florida's premium outdoor living corridor, where exotic hardwoods and waterfront aesthetics define the market.\n\nKey Palm Beach market characteristics:\n\n- **Exotic hardwood preference**: Ipe (Brazilian Walnut) and Tigerwood dominate the luxury segment, prized for natural beauty and salt/UV resistance. Specialized installation with pre-drilling and hidden fasteners is standard\n- **Intracoastal waterfront engineering**: Properties along the Intracoastal Waterway require ASCE 7-22 wind load compliance and careful setback planning with Palm Beach County Planning & Zoning\n- **UV intensity management**: Palm Beach experiences some of the most intense UV radiation in the continental US — material selection and finish choices must account for rapid UV degradation\n- **Martin County permit rigor**: Martin County requires permits for all permanent outdoor structures regardless of size, making permit expertise essential for Port St. Lucie and Stuart projects\n- **Seasonal resident market**: Many Palm Beach homeowners are seasonal residents who require ultra-low-maintenance solutions that look pristine after months of non-use\n- **Resort-quality design expectations**: Palm Beach clients expect landscape-integrated designs with outdoor kitchens, fire features, and seamless indoor-outdoor transitions",
   },
   {
-    slug: "st-augustine-decks",
+    slug: "st-augustine-decks-patios",
     name: "St. Augustine",
     county: "St. Johns County",
     region: "Northeast Florida",
@@ -571,7 +571,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "St. Augustine and St. Johns County offer a unique blend of historic character and modern growth that creates distinct opportunities for outdoor living projects.\n\nKey St. Augustine market characteristics:\n\n- **Historic overlay districts**: Properties within St. Augustine's historic districts require architectural review for exterior modifications, including deck design, materials, and color choices. We navigate this process as part of our project management\n- **Nocatee & Ponte Vedra premium market**: St. Johns County's master-planned communities represent a premium sub-market with design expectations and budgets comparable to Sarasota and Palm Beach\n- **Freeze-thaw engineering**: Unlike South Florida, St. Augustine's winter freezes require specific expansion gap calculations and fastener systems designed for thermal cycling\n- **Minor Work permit advantage**: St. Johns County's exemption for unattached decks under 200 sq ft provides a fast-track option for budget-conscious projects like ground-level patios and freestanding platforms\n- **Nor'easter exposure**: Unlike typical Florida hurricane prep, St. Augustine also faces Atlantic nor'easters from November through March, requiring consideration of wind-driven rain from the northeast — an unusual direction for Florida construction",
   },
   {
-    slug: "lakeland-decks",
+    slug: "lakeland-decks-patios",
     name: "Lakeland",
     county: "Polk County",
     region: "Central Florida",
@@ -628,7 +628,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Lakeland offers an affordable alternative to coastal Florida markets while providing quality outdoor living solutions.",
   },
   {
-    slug: "key-west-decks",
+    slug: "key-west-decks-patios",
     name: "Key West",
     county: "Monroe County",
     region: "Florida Keys",
@@ -685,7 +685,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Key West represents the most challenging and rewarding outdoor living market in Florida.",
   },
   {
-    slug: "pensacola-decks",
+    slug: "pensacola-decks-patios",
     name: "Pensacola",
     county: "Escambia County",
     region: "Northwest Florida",
@@ -742,7 +742,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Pensacola offers affordable Gulf Coast living with growing demand for quality outdoor spaces.",
   },
   {
-    slug: "destin-decks",
+    slug: "destin-decks-patios",
     name: "Destin",
     county: "Okaloosa County",
     region: "Northwest Florida / Panhandle",
@@ -799,7 +799,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Destin represents Florida's most prestigious beach market with ultra-high-end outdoor living expectations.",
   },
   {
-    slug: "panama-city-decks",
+    slug: "panama-city-decks-patios",
     name: "Panama City",
     county: "Bay County",
     region: "Panhandle",
@@ -856,7 +856,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Panama City offers an accessible beach market with strong outdoor living potential.",
   },
   {
-    slug: "tallahassee-decks",
+    slug: "tallahassee-decks-patios",
     name: "Tallahassee",
     county: "Leon County",
     region: "North Florida",
@@ -913,7 +913,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Tallahassee offers affordable North Florida outdoor living with lower humidity and wind exposure.",
   },
   {
-    slug: "fort-walton-beach-decks",
+    slug: "fort-walton-beach-decks-patios",
     name: "Fort Walton Beach",
     county: "Okaloosa County",
     region: "Northwest Florida / Panhandle",
