@@ -111,7 +111,7 @@ export default function CityLanding() {
           <p className="text-muted-foreground mb-8">Average installed costs for the {city.county} market</p>
 
           <div className="overflow-x-auto mb-8">
-            <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
+            <table className="w-full min-w-[600px] text-sm border border-border rounded-lg overflow-hidden">
               <thead>
                 <tr className="bg-muted">
                   <th className="px-4 py-3 text-left font-semibold text-foreground">Material</th>
