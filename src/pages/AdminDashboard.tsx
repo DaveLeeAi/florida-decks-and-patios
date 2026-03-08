@@ -9,9 +9,13 @@ import { toast } from "sonner";
 function useAdminGuard() {
   const navigate = useNavigate();
   useEffect(() => {
-    if (sessionStorage.getItem("admin_auth") !== "true") {
-      navigate("/admin/login", { replace: true });
-    }
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) navigate("/admin/login", { replace: true });
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session) navigate("/admin/login", { replace: true });
+    });
+    return () => subscription.unsubscribe();
   }, [navigate]);
 }
 
