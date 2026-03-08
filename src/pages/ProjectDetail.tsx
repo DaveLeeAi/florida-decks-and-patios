@@ -1,13 +1,18 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { portfolioProjects } from "@/data/portfolioData";
-import { MapPin, Ruler, Layers, Clock, DollarSign, ArrowLeft, ArrowRight, Wrench, Shield, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { MapPin, Ruler, Layers, Clock, DollarSign, ArrowLeft, ArrowRight, Wrench, Shield, AlertTriangle, CheckCircle2, Thermometer, Hammer, BookOpen, TreePine } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 import { X, ZoomIn } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import ProjectHero from "@/components/portfolio/ProjectHero";
+import ProjectDetails from "@/components/portfolio/ProjectDetails";
+import ProjectMaterials from "@/components/portfolio/ProjectMaterials";
+import ProjectClimate from "@/components/portfolio/ProjectClimate";
+import ProjectInspection from "@/components/portfolio/ProjectInspection";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -17,6 +22,7 @@ export default function ProjectDetail() {
   if (!project) return <Navigate to="/portfolio" replace />;
 
   const cityDisplay = project.city === "Other Florida" ? "Gainesville" : project.city;
+  const altText = `${project.projectType.toLowerCase()} ${project.materials.toLowerCase()} installation in ${cityDisplay} Florida`;
 
   const similar = portfolioProjects
     .filter(p => p.id !== project.id && (p.city === project.city || p.projectType === project.projectType))
@@ -76,7 +82,7 @@ export default function ProjectDetail() {
           >
             <img
               src={heroImage}
-              alt={`${project.title} — completed project in ${cityDisplay}, Florida`}
+              alt={altText}
               className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
               width={1200}
               height={675}
@@ -89,26 +95,18 @@ export default function ProjectDetail() {
               {cityDisplay}, FL · {project.materials}
             </div>
           </button>
-        </div>
-      </section>
 
-      {/* Project Overview */}
-      <section className="section-padding bg-section-alt">
-        <div className="container-narrow mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-            <OverviewCard icon={Ruler} label="Deck Size" value={project.deckSize} />
-            <OverviewCard icon={Layers} label="Materials" value={project.materials} />
-            <OverviewCard icon={Clock} label="Duration" value={project.duration} />
-            <OverviewCard icon={DollarSign} label="Budget Range" value={project.budgetRange} />
-          </div>
-
-          <p className="text-foreground/90 text-lg leading-relaxed max-w-3xl">
+          {/* Summary */}
+          <p className="text-foreground/90 text-lg leading-relaxed max-w-3xl mt-6">
             {project.description}
           </p>
         </div>
       </section>
 
-      {/* Problem & Solution */}
+      {/* Project Details */}
+      <ProjectDetails project={project} cityDisplay={cityDisplay} />
+
+      {/* Homeowner Goals & Solution */}
       <section className="section-padding bg-background">
         <div className="container-narrow mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -118,7 +116,7 @@ export default function ProjectDetail() {
                   <div className="h-10 w-10 rounded-full bg-destructive/10 flex items-center justify-center">
                     <AlertTriangle className="h-5 w-5 text-destructive" />
                   </div>
-                  <h2 className="font-heading text-xl font-bold text-foreground">The Problem</h2>
+                  <h2 className="font-heading text-xl font-bold text-foreground">Project Goals</h2>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">{project.problem}</p>
               </CardContent>
@@ -139,29 +137,14 @@ export default function ProjectDetail() {
         </div>
       </section>
 
+      {/* Materials & Design */}
+      <ProjectMaterials materialsDetail={project.materialsDetail} materials={project.materials} />
+
+      {/* Florida Climate Considerations */}
+      <ProjectClimate climateConsiderations={project.climateConsiderations} cityDisplay={cityDisplay} />
+
       {/* Inspection Insights */}
-      <section className="section-padding bg-section-alt">
-        <div className="container-narrow mx-auto">
-          <div className="flex items-center gap-2 mb-6">
-            <Shield className="h-6 w-6 text-primary" />
-            <h2 className="font-heading text-2xl font-bold text-foreground">Inspection Insights</h2>
-          </div>
-          <p className="text-muted-foreground mb-6 max-w-2xl">
-            Key inspection issues identified and corrected during this project, ensuring full Florida Building Code compliance.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-            {project.inspectionInsights.map((insight, i) => (
-              <div key={i} className="flex items-start gap-3 bg-card p-4 rounded-lg border border-border">
-                <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span className="text-sm text-foreground/90">{insight}</span>
-              </div>
-            ))}
-          </div>
-          <Link to="/tools" className="text-primary text-sm font-medium hover:underline flex items-center gap-1">
-            Use our Inspection Failure Decoder tool <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-      </section>
+      <ProjectInspection inspectionInsights={project.inspectionInsights} projectType={project.projectType} />
 
       {/* Gallery placeholder — hidden until verified project images are available */}
       {/* 
@@ -192,16 +175,36 @@ export default function ProjectDetail() {
         </div>
       </section>
 
+      {/* Educational CTA */}
+      <section className="section-padding bg-section-alt">
+        <div className="container-narrow mx-auto">
+          <div className="bg-card border border-border rounded-lg p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+              <BookOpen className="h-6 w-6 text-primary" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-heading text-lg font-semibold text-foreground mb-1">Learn More About Florida Deck Construction</h3>
+              <p className="text-sm text-muted-foreground">
+                Explore our guides on{" "}
+                <Link to="/blog" className="text-primary hover:underline">choosing the right deck materials for Florida climates</Link>,{" "}
+                <Link to="/glossary" className="text-primary hover:underline">understanding construction terminology</Link>, and{" "}
+                <Link to="/data-hub" className="text-primary hover:underline">Florida deck cost data</Link>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Similar Projects */}
       {similar.length > 0 && (
-        <section className="section-padding bg-section-alt">
+        <section className="section-padding bg-background">
           <div className="container-narrow mx-auto">
             <h2 className="font-heading text-2xl font-bold text-foreground mb-6">Similar Projects</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {similar.map(p => (
                 <Link key={p.id} to={`/portfolio/${p.slug}`} className="group bg-card rounded-lg border border-border overflow-hidden hover:shadow-md transition-all">
                   <div className="h-40 overflow-hidden">
-                    <img src={p.afterImage} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
+                    <img src={p.afterImage} alt={`${p.projectType.toLowerCase()} project in ${p.city === "Other Florida" ? "Gainesville" : p.city} Florida`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
                   </div>
                   <div className="p-4">
                     <h3 className="font-heading text-sm font-semibold text-foreground group-hover:text-primary transition-colors">{p.title}</h3>
@@ -225,7 +228,7 @@ export default function ProjectDetail() {
           </p>
           <Link to="/contact">
             <Button size="lg" variant="secondary" className="text-base px-8">
-              Request Deck Estimate
+              Request Free Estimate
             </Button>
           </Link>
         </div>
@@ -243,16 +246,6 @@ export default function ProjectDetail() {
         </div>
       )}
     </Layout>
-  );
-}
-
-function OverviewCard({ icon: Icon, label, value }: { icon: any; label: string; value: string }) {
-  return (
-    <div className="bg-card border border-border rounded-lg p-4 text-center">
-      <Icon className="h-5 w-5 text-primary mx-auto mb-2" />
-      <p className="text-xs text-muted-foreground mb-0.5">{label}</p>
-      <p className="text-sm font-semibold text-foreground">{value}</p>
-    </div>
   );
 }
 
