@@ -90,25 +90,19 @@ export default function Header() {
             </button>
 
             {areasOpen && (
-              <div className="absolute top-full right-0 mt-2 w-[480px] bg-card border border-border rounded-lg shadow-lg overflow-hidden animate-fade-in z-50">
-                <div className="p-3 grid grid-cols-2 gap-1">
+              <div className="absolute top-full right-0 mt-2 w-80 bg-card border border-border rounded-lg shadow-lg overflow-hidden animate-fade-in z-50">
+                <div className="p-4 grid grid-cols-2 gap-x-4 gap-y-2">
                   {cityPages.map((city) => (
                     <Link
                       key={city.slug}
                       to={`/${city.slug}`}
-                      className={`flex items-start gap-2.5 px-3 py-2.5 rounded-md transition-colors ${
+                      className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                         location.pathname === `/${city.slug}`
                           ? "text-primary bg-primary/10"
                           : "text-foreground/80 hover:text-primary hover:bg-primary/5"
                       }`}
                     >
-                      <MapPin className="h-3.5 w-3.5 mt-0.5 shrink-0 text-muted-foreground" />
-                      <div className="min-w-0">
-                        <p className="font-semibold text-sm leading-tight">{city.name}</p>
-                        <p className="text-xs text-muted-foreground leading-tight mt-0.5">
-                          {cityDescriptions[city.slug] || city.tagline}
-                        </p>
-                      </div>
+                      {city.name}
                     </Link>
                   ))}
                 </div>
