@@ -192,9 +192,9 @@ export default function Header() {
               <Phone className="h-4 w-4" />
               {phoneIsPlaceholder ? "Call for Estimate" : company.phoneDisplay}
             </a>
-            <Link to={settings.ctaLink} className="mt-2">
-              <Button className="w-full bg-primary text-primary-foreground hover:bg-[hsl(var(--forest-dark))] font-semibold">
-                {settings.ctaText}
+            <Link to="/free-quotes" className="mt-2">
+              <Button className="w-full bg-amber text-charcoal hover:bg-amber-dark font-bold">
+                Get Free Quotes
               </Button>
             </Link>
           </div>
