@@ -3,10 +3,22 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Info, Shield, BookOpen, Droplets, Wind, Sun, Anchor } from "lucide-react";
 import BudgetEstimator from "@/components/tools/BudgetEstimator";
 import RepairChecker from "@/components/tools/RepairChecker";
+import ViolationDecoder from "@/components/tools/ViolationDecoder";
+import { FAQSchema } from "@/components/seo/JsonLdSchema";
+
+const violationFAQs = [
+  { question: "What is FBC R507.2 — ledger board connection failure?", answer: "FBC R507.2 requires deck ledger boards to be attached with through-bolts or lag screws at 16\" on center in a staggered pattern. Nails alone are never acceptable. This is the #1 cause of deck collapses in Florida. Repair costs range from $800–$2,500." },
+  { question: "What happens if my Florida deck was built without a permit?", answer: "Building a deck without a permit in Florida can result in fines of $500–$5,000 per day, forced demolition orders, insurance claim denials, and complications when selling. You can apply for an after-the-fact permit, but fees are typically double the standard permit fee." },
+  { question: "What are hurricane straps and why does my Florida deck need them?", answer: "Hurricane straps (e.g., Simpson Strong-Tie H2.5A) are metal connectors required at every joist-to-beam and beam-to-post connection on Florida decks. They prevent uplift during high winds. Missing straps are one of the most common failed inspection items, costing $600–$2,000 to retrofit." },
+  { question: "What is the minimum railing height for a deck in Florida?", answer: "Florida Building Code requires guard rails on any deck 30\" or more above grade. The minimum height is 36\" for residential decks, though many Florida counties have adopted the 42\" standard. Baluster spacing cannot exceed 4\" to prevent child entrapment." },
+  { question: "What are HVHZ requirements for decks in Miami-Dade County?", answer: "Properties in the High-Velocity Hurricane Zone (Miami-Dade and Broward counties) must use materials with a valid Notice of Acceptance (NOA). Standard materials approved elsewhere in Florida are NOT automatically approved in HVHZ zones. Non-compliant materials result in automatic inspection failure." },
+  { question: "How much does it cost to fix a failed deck inspection in Florida?", answer: "Costs vary by violation: ledger board fixes run $800–$2,500, missing hurricane straps $600–$2,000, footing corrections $1,200–$4,000, and unpermitted work penalties $1,500–$8,000+. Most violations require a re-inspection after repairs." },
+];
 
 export default function Tools() {
   return (
     <Layout>
+      <FAQSchema questions={violationFAQs} />
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
           {/* Page Heading */}
@@ -31,6 +43,7 @@ export default function Tools() {
           <div className="space-y-8">
             <BudgetEstimator />
             <RepairChecker />
+            <ViolationDecoder />
           </div>
 
           {/* How We Calculate — AEO/SGE */}
