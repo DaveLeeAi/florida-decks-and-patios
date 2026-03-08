@@ -63,7 +63,6 @@ export default function ProjectDetail() {
             <div className="flex flex-wrap items-center gap-2 mb-3">
               <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">{project.projectType}</Badge>
               <Badge variant="outline">{project.materials}</Badge>
-              <Badge variant="outline">{project.completionYear}</Badge>
             </div>
             <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
               {project.title}
@@ -100,10 +99,10 @@ export default function ProjectDetail() {
       {/* Project Overview */}
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
             <OverviewCard icon={Ruler} label="Deck Size" value={project.deckSize} />
             <OverviewCard icon={Layers} label="Materials" value={project.materials} />
-            <OverviewCard icon={Calendar} label="Completed" value={String(project.completionYear)} />
+            <OverviewCard icon={Layers} label="Materials" value={project.materials} />
             <OverviewCard icon={Clock} label="Duration" value={project.duration} />
             <OverviewCard icon={DollarSign} label="Budget Range" value={project.budgetRange} />
             <OverviewCard icon={MapPin} label="Location" value={`${cityDisplay}, FL`} />
