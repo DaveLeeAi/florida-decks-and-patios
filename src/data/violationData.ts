@@ -6,6 +6,7 @@ export type ViolationEntry = {
   title: string;
   severity: "critical" | "moderate" | "minor";
   keywords: string[];
+  aliases?: string[];
   summary: string;
   whyItMatters: string;
   commonInspectorLanguage?: string;
@@ -22,7 +23,18 @@ export type ViolationEntry = {
   slug: string;
   faqQuestion?: string;
   faqAnswer?: string;
+  searchWeight?: number;
 };
+
+export type Jurisdiction = ViolationEntry["jurisdiction"];
+
+export const JURISDICTIONS: { value: Jurisdiction; label: string; description: string }[] = [
+  { value: "Florida", label: "Florida (Statewide)", description: "Standard Florida Building Code" },
+  { value: "HVHZ", label: "HVHZ (Miami-Dade / Broward)", description: "High-Velocity Hurricane Zone" },
+  { value: "Miami-Dade", label: "Miami-Dade County", description: "Strictest HVHZ requirements" },
+  { value: "Broward", label: "Broward County", description: "HVHZ with county-specific rules" },
+  { value: "General", label: "Not Sure / General", description: "Show all applicable issues" },
+];
 
 export const CTA_LABELS: Record<ViolationEntry["ctaType"], string> = {
   structural_review: "Book a Structural Deck Review",
@@ -42,6 +54,12 @@ export const TYPE_LABELS: Record<ViolationEntry["type"], string> = {
   drainage_issue: "Drainage Issue",
 };
 
+export const SEVERITY_LABELS: Record<ViolationEntry["severity"], string> = {
+  critical: "Critical — Stop Using Until Fixed",
+  moderate: "Moderate — Fix Before Reinspection",
+  minor: "Minor — Correct When Possible",
+};
+
 export const QUICK_FILTERS = [
   { label: "Ledger", keyword: "ledger" },
   { label: "Flashing", keyword: "flashing" },
@@ -56,12 +74,14 @@ export const QUICK_FILTERS = [
 ] as const;
 
 export const POPULAR_ISSUES = [
-  { label: "My deck is pulling away from the house", searchTerm: "ledger" },
+  { label: "My deck is pulling away from the house", searchTerm: "deck pulling away" },
   { label: "Inspector said I need hurricane straps", searchTerm: "hurricane strap" },
-  { label: "Railing is too short", searchTerm: "railing height" },
+  { label: "Railing is too short or wobbly", searchTerm: "railing height" },
   { label: "Built without a permit", searchTerm: "no permit" },
-  { label: "Steps are uneven", searchTerm: "stair riser" },
+  { label: "Steps are uneven or too steep", searchTerm: "stair riser" },
   { label: "Water pooling under my deck", searchTerm: "drainage" },
+  { label: "Wood feels soft or spongy", searchTerm: "rot" },
+  { label: "Need Miami-Dade NOA for materials", searchTerm: "noa" },
 ] as const;
 
 export const COMMON_INSPECTOR_NOTES = [
@@ -71,6 +91,110 @@ export const COMMON_INSPECTOR_NOTES = [
   { note: "\"No permit on record for this structure.\"", issueId: "no-permit" },
   { note: "\"Framing concealed before required inspection — remove decking.\"", issueId: "concealment-reinspection" },
 ] as const;
+
+export const PERMIT_DECISION_TREE = {
+  title: "Built Without a Permit? Start Here",
+  disclaimer: "This is general guidance only — not legal advice. Requirements vary by county.",
+  steps: [
+    {
+      question: "Was the structure already built (or partially built) before you got a permit?",
+      yesNext: 1,
+      noMessage: "You likely need a standard building permit. Contact your local building department or reach out for help.",
+    },
+    {
+      question: "Did you receive a violation notice or stop-work order from the county?",
+      yesNext: 2,
+      noNext: 3,
+    },
+    {
+      question: "Is the structure attached to the house (ledger board connection)?",
+      yesMessage: "Attached structures typically require an after-the-fact permit with engineering review. The ledger connection will need inspection — you may need to remove decking to expose framing. Fees are usually 2–4x standard permit cost.",
+      noMessage: "Freestanding structures may have a simpler path to permitting, but you'll still need an after-the-fact permit. Contact your building department to discuss options.",
+    },
+    {
+      question: "Are you in Miami-Dade, Broward, or another HVHZ zone?",
+      yesMessage: "HVHZ zones have the strictest requirements. You'll need NOA-approved materials, sealed engineering, and an enhanced inspection. The after-the-fact process is more expensive here — expect $5,000–$15,000+ including engineering and potential material replacement.",
+      noMessage: "Standard Florida after-the-fact permitting applies. Contact your county building department to start the process. Expect fees of 2x the normal permit cost, plus potential costs to expose concealed work for inspection.",
+    },
+  ],
+} as const;
+
+export const INSPECTION_CHECKLIST = [
+  { section: "Before You Start", items: [
+    "Gather your inspection failure notice and any inspector notes",
+    "Locate your building permit number and approved plans",
+    "Take clear photos of all failed areas mentioned in the notice",
+    "Check if your contractor has already been notified",
+  ]},
+  { section: "Verify Permit Status", items: [
+    "Confirm your permit is still active (not expired)",
+    "Check if additional inspections are outstanding",
+    "Verify the approved plans match what was actually built",
+    "Contact the building department if anything is unclear",
+  ]},
+  { section: "Review the Failed Items", items: [
+    "Read each inspection note carefully — identify the code section cited",
+    "Photograph each area referenced in the failure notice",
+    "Determine if failures are structural, safety, documentation, or permit-related",
+    "Note which items require reinspection after correction",
+  ]},
+  { section: "Check Structural Connections", items: [
+    "Inspect ledger board attachment — are lag screws or through-bolts used?",
+    "Check for flashing above the ledger board",
+    "Verify hurricane straps at joist-to-beam connections",
+    "Inspect post-to-beam and post-to-footing connectors",
+    "Look for signs of corrosion on all metal hardware",
+  ]},
+  { section: "Check Safety Items", items: [
+    "Measure railing height (minimum 36\" in Florida, 42\" in some counties)",
+    "Test baluster spacing with a 4\" sphere",
+    "Check stair riser consistency (max 3/8\" variation)",
+    "Verify handrail has a graspable profile (1-1/4\" to 2\" diameter)",
+    "Test guard rail posts for lateral resistance",
+  ]},
+  { section: "Collect Product Approvals", items: [
+    "Gather product approval numbers for all major materials",
+    "For HVHZ zones: verify valid NOA numbers for every product",
+    "Confirm installation matches manufacturer specifications",
+    "Print approval documents to have on site for reinspection",
+  ]},
+  { section: "Schedule Repairs", items: [
+    "Get quotes from licensed contractors for required corrections",
+    "Prioritize critical/structural items first",
+    "Verify repairs will be done to code before scheduling reinspection",
+    "Plan for any concealed work that needs to be exposed",
+  ]},
+];
+
+export const REINSPECTION_CHECKLIST = [
+  { section: "Before Calling for Reinspection", items: [
+    "All corrections from the failure notice have been completed",
+    "Hardware installed per manufacturer instructions and code requirements",
+    "Approved plans are on site and accessible",
+    "Permit card is posted and visible",
+    "Product approval documentation is printed and available",
+  ]},
+  { section: "Site Preparation", items: [
+    "Clear access path for the inspector to reach all areas",
+    "Remove any temporary covers — all corrected work must be visible",
+    "Ensure the work area is safe for the inspector to walk and inspect",
+    "Take photos of completed repairs before concealment",
+  ]},
+  { section: "Documentation Ready", items: [
+    "Original failure notice with corrections noted",
+    "Engineering letter or sealed plans (if required)",
+    "Product approvals / NOA documents (especially for HVHZ)",
+    "Photos of work completed at each stage",
+    "Contractor license and insurance documentation",
+  ]},
+  { section: "Inspection Sequence", items: [
+    "Verify which inspections are required (footing, framing, final)",
+    "Schedule inspections in the correct order — don't skip stages",
+    "Don't conceal framing until framing inspection passes",
+    "Don't pour concrete until footing inspection passes",
+    "Final inspection comes last — after all corrections and prior inspections pass",
+  ]},
+];
 
 export const VIOLATIONS: ViolationEntry[] = [
   // ═══════════════════════════════════════════
@@ -84,6 +208,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Ledger Board Connection Failure",
     severity: "critical",
     keywords: ["ledger", "connection", "attachment", "collapse", "lag screw", "bolt", "band joist"],
+    aliases: ["deck attached wrong", "deck nailed to house", "ledger board problem", "deck attachment failure"],
     summary: "The deck ledger board is not properly attached to the house. Florida Building Code requires through-bolts or lag screws at specific spacing — typically 1/2\" lag screws at 16\" on center in a staggered pattern. Nails alone are never acceptable.",
     whyItMatters: "Improper ledger connections are the #1 cause of catastrophic deck collapses nationwide. When a ledger pulls away from the house, the entire deck can separate and fall without warning. This is treated as a life-safety issue by inspectors.",
     commonInspectorLanguage: "\"Ledger attachment does not comply with Table R507.2\" or \"Ledger fastened with nails — does not meet code.\"",
@@ -99,6 +224,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     relatedTerms: ["band joist", "through-bolt", "lag screw", "deck attachment"],
     ctaType: "structural_review",
     slug: "ledger-board-connection-failure",
+    searchWeight: 10,
     faqQuestion: "What is a ledger board failure on a deck?",
     faqAnswer: "A ledger board failure means the board that attaches your deck to your house is not properly secured. Florida code requires specific lag screws or through-bolts at precise spacing. This is the most common cause of deck collapses and always requires professional repair.",
   },
@@ -110,6 +236,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Missing or Inadequate Ledger Flashing",
     severity: "critical",
     keywords: ["flashing", "water damage", "rot", "moisture", "siding", "waterproof", "ledger"],
+    aliases: ["no flashing on deck", "water behind ledger", "deck leaking at house"],
     summary: "Flashing prevents water from seeping between the ledger board and the house sheathing. Missing or improperly installed flashing causes wood rot at the band joist — the most common source of hidden structural damage on Florida decks.",
     whyItMatters: "Without flashing, water trapped behind the ledger causes the band joist to rot from the inside out. By the time damage is visible, the structural connection may already be compromised. Florida's heavy rain makes this especially critical.",
     commonInspectorLanguage: "\"No flashing installed at ledger\" or \"Flashing does not extend behind siding.\"",
@@ -123,6 +250,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     reinspectionLikely: true,
     ctaType: "structural_review",
     slug: "missing-ledger-flashing",
+    searchWeight: 9,
   },
   {
     id: "footing-depth",
@@ -132,6 +260,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Improper Footing Depth or Size",
     severity: "critical",
     keywords: ["footing", "foundation", "depth", "pier", "concrete", "settling", "soil", "footer"],
+    aliases: ["deck sinking", "concrete too shallow", "pier not deep enough", "deck is leaning"],
     summary: "Deck post footings must meet minimum depth and diameter requirements based on local soil conditions. In most Florida counties, footings must be at least 12\" deep and 24\" in diameter for standard decks. Sandy coastal soils may require deeper footings or helical piers.",
     whyItMatters: "Undersized or shallow footings cause the deck to settle unevenly over time, leading to structural stress, separated connections, and potential collapse. Florida's sandy soils make proper footings especially important.",
     commonInspectorLanguage: "\"Footings do not meet minimum depth\" or \"Footing diameter insufficient for load.\"",
@@ -157,6 +286,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Missing Post Anchors or Base Connectors",
     severity: "critical",
     keywords: ["post", "anchor", "base", "connector", "footing", "uplift", "standoff"],
+    aliases: ["post sitting on concrete", "no post bracket", "post not bolted down"],
     summary: "Posts must be positively connected to footings using approved metal post bases or anchors. Posts sitting directly on concrete without connectors can shift, rot at the base, and lack required uplift resistance.",
     whyItMatters: "Without proper anchors, posts can slide off footings during storms or shift over time as soil moves. Post bases also lift the wood off concrete, preventing moisture wicking that leads to rot.",
     commonInspectorLanguage: "\"Post not positively connected to footing\" or \"No approved post base installed.\"",
@@ -179,6 +309,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Missing Post-to-Beam Connection Hardware",
     severity: "critical",
     keywords: ["post", "beam", "connection", "hardware", "post cap", "notch", "uplift", "toe-nail"],
+    aliases: ["beam just sitting on post", "no post cap", "beam not bolted"],
     summary: "Posts must be connected to beams using approved metal connectors — not just toe-nailed or notched without hardware. Florida's wind loads require engineered connections that resist both uplift and lateral forces.",
     whyItMatters: "A simple notched post with no hardware can fail under 80+ mph winds, well below Florida's minimum design wind speeds. This is a structural safety issue that inspectors flag consistently.",
     commonInspectorLanguage: "\"Post-to-beam connection inadequate\" or \"No approved connector at post/beam joint.\"",
@@ -201,6 +332,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Improper Beam Splice",
     severity: "moderate",
     keywords: ["beam", "splice", "joint", "connection", "span", "support"],
+    aliases: ["beam joint not over post", "beam held together wrong"],
     summary: "When beams need to be joined (spliced), the splice must occur directly over a post and be connected with approved hardware. Unsupported beam splices create a weak point that can fail under load.",
     whyItMatters: "A beam splice that isn't properly supported acts as a hinge point. Under deck load and wind pressure, it can sag or separate, leading to progressive structural failure.",
     commonInspectorLanguage: "\"Beam splice not supported\" or \"Beam joint does not occur over post.\"",
@@ -223,6 +355,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Undersized Beam",
     severity: "critical",
     keywords: ["beam", "undersized", "span", "sag", "deflection", "structural"],
+    aliases: ["beam too small", "deck sagging in middle", "beam bending"],
     summary: "Beams must be sized according to the span tables in the Florida Building Code. Using beams that are too small for the span causes visible sagging, excessive deflection, and eventual failure.",
     whyItMatters: "An undersized beam means the deck structure is carrying more load than it was designed for. This creates ongoing stress on every connection point and increases collapse risk over time.",
     commonInspectorLanguage: "\"Beam size does not meet span table requirements\" or \"Excessive deflection observed at beam.\"",
@@ -246,6 +379,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Improper Joist Spacing or Excessive Span",
     severity: "moderate",
     keywords: ["joist", "spacing", "span", "sag", "bounce", "sister", "blocking", "deflection"],
+    aliases: ["deck feels bouncy", "deck bounces when I walk", "spongy deck", "joists too far apart"],
     summary: "Deck joists must be spaced and sized according to FBC span tables. Common issues include 2×6 joists spanning more than 9'–9\" at 16\" OC, or joists spaced too far apart for the decking material. Composite decking often requires 12\" OC maximum.",
     whyItMatters: "Overloaded joists cause a bouncy, spongy-feeling deck that worsens over time. The excessive deflection stresses connections and can lead to board fastener failures and structural problems.",
     commonInspectorLanguage: "\"Joist span exceeds table allowance\" or \"Joist spacing does not comply with decking manufacturer requirements.\"",
@@ -268,6 +402,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Missing Lateral Load Connectors",
     severity: "moderate",
     keywords: ["lateral", "load", "connection", "sway", "drift", "brace", "hold-down"],
+    aliases: ["deck swaying", "deck moves side to side", "deck wobbles"],
     summary: "Decks must resist lateral (sideways) forces, not just vertical loads. Lateral load connectors transfer horizontal forces from the deck into the house structure, preventing the deck from pulling away.",
     whyItMatters: "Without lateral bracing, a deck can slowly drift away from the house under repeated wind loads and live loads. This is separate from the ledger connection and is often overlooked during construction.",
     commonInspectorLanguage: "\"No lateral load connection installed\" or \"Lateral load transfer not addressed.\"",
@@ -289,6 +424,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Corroded or Deteriorated Connectors",
     severity: "moderate",
     keywords: ["corrosion", "rust", "connector", "hardware", "coastal", "salt", "deteriorated", "joist hanger"],
+    aliases: ["rusted hardware", "rusty brackets", "metal is corroding", "hardware falling apart"],
     summary: "Metal connectors, joist hangers, and fasteners showing significant corrosion may be flagged during inspection. In Florida's coastal and humid environments, standard zinc-plated hardware can corrode much faster than expected.",
     whyItMatters: "Corroded connectors lose their load-carrying capacity. A joist hanger that's lost 50% of its metal thickness can no longer support the weight it was rated for, creating a hidden safety hazard.",
     commonInspectorLanguage: "\"Hardware shows significant corrosion\" or \"Connectors do not appear serviceable.\"",
@@ -311,6 +447,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Improper Fasteners or Wrong Hardware",
     severity: "minor",
     keywords: ["fastener", "screw", "nail", "corrosion", "board", "loose", "ACQ", "hardware"],
+    aliases: ["wrong screws", "boards popping up", "screws rusting out", "nails backing out"],
     summary: "Deck boards must be fastened with corrosion-resistant screws appropriate for the board material and coastal exposure. Using standard zinc-plated screws in coastal areas or incompatible fasteners with ACQ-treated lumber causes premature failure.",
     whyItMatters: "Wrong fasteners fail in two ways: they corrode and lose holding power, or they react chemically with treated lumber and accelerate wood decay around the fastener hole. Both lead to loose boards and safety concerns.",
     commonInspectorLanguage: "\"Fasteners not compatible with treatment\" or \"Non-corrosion-resistant fasteners used.\"",
@@ -333,6 +470,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Unsupported Cantilever Issue",
     severity: "moderate",
     keywords: ["cantilever", "overhang", "extension", "unsupported", "joist"],
+    aliases: ["deck sticks out too far", "overhang too long", "deck edge unsupported"],
     summary: "Deck joists extending beyond the beam (cantilever) must not exceed code limits — typically no more than 1/4 of the allowable joist span. Excessive cantilevers create a lever effect that can lift the deck off interior supports.",
     whyItMatters: "An overextended cantilever puts upward force on the opposite end of the joist, potentially lifting it off the beam or ledger. This can cause the entire deck to become unstable, especially under concentrated loads at the cantilevered edge.",
     commonInspectorLanguage: "\"Cantilever exceeds allowable length\" or \"Joist overhang not supported.\"",
@@ -359,6 +497,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Guard Rail Height Violation",
     severity: "moderate",
     keywords: ["railing", "rail", "height", "guard", "guardrail", "baluster", "spindle", "child safety"],
+    aliases: ["railing too short", "rail not tall enough", "guardrail height wrong", "banister too low"],
     summary: "Any deck surface 30\" or more above grade requires a guard rail. Florida Building Code requires a minimum height of 36\" for residential decks, though many counties have adopted the 42\" standard. Baluster spacing must not exceed 4\".",
     whyItMatters: "Guard rails prevent falls — the leading cause of deck-related injuries. Short rails, wide baluster gaps, and loose rail posts create real safety hazards, especially for children and elderly household members.",
     commonInspectorLanguage: "\"Guard height does not meet minimum\" or \"Baluster spacing exceeds 4 inches.\"",
@@ -383,6 +522,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Guard Opening / Baluster Spacing Issue",
     severity: "moderate",
     keywords: ["baluster", "spindle", "spacing", "opening", "guard", "child", "4 inch", "sphere"],
+    aliases: ["gaps in railing too wide", "kid could fit through railing", "spindles too far apart"],
     summary: "Guard rails must be constructed so that a 4\" sphere cannot pass through any opening. This applies to balusters, decorative panels, cable rail spacing, and any gaps in the guard assembly.",
     whyItMatters: "The 4\" sphere test exists specifically to prevent small children from getting their heads stuck or falling through rail openings. This is a non-negotiable safety requirement.",
     commonInspectorLanguage: "\"Guard openings exceed 4-inch sphere test\" or \"Baluster spacing non-compliant.\"",
@@ -404,6 +544,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Loose Guard Rail Attachment",
     severity: "moderate",
     keywords: ["loose", "wobbly", "guard", "railing", "post", "attachment", "lateral load"],
+    aliases: ["railing moves when I push it", "wobbly railing", "rail post is loose", "railing wiggles"],
     summary: "Guard rail posts must resist a 200-pound lateral force applied at the top. Loose, wobbly, or poorly anchored rail posts fail this test and are flagged as a safety hazard during inspection.",
     whyItMatters: "A guard rail that gives way when someone leans on it defeats its entire purpose. Loose rails are especially dangerous at elevated deck edges and stair landings.",
     commonInspectorLanguage: "\"Guard post does not resist required lateral load\" or \"Guard rail attachment is loose.\"",
@@ -426,6 +567,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Stair Riser Height Inconsistency",
     severity: "moderate",
     keywords: ["stair", "step", "riser", "tread", "trip", "fall", "stringer", "height", "inconsistent"],
+    aliases: ["steps are uneven", "tripped on stairs", "one step is higher", "stairs different heights"],
     summary: "Deck stairs must have a maximum riser height of 7-3/4\" and a minimum tread depth of 10\". The variation between the tallest and shortest riser cannot exceed 3/8\". Inconsistent riser heights are a leading cause of trip-and-fall injuries.",
     whyItMatters: "Your body calibrates to the first step height and expects every subsequent step to be the same. Even a 1/2\" difference in riser height can cause a stumble. This is flagged in nearly 30% of Florida deck inspections.",
     commonInspectorLanguage: "\"Riser height variation exceeds 3/8 inch\" or \"Maximum riser height exceeded.\"",
@@ -448,6 +590,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Tread Depth Violation",
     severity: "moderate",
     keywords: ["tread", "depth", "stair", "step", "nosing", "run"],
+    aliases: ["steps too shallow", "not enough room for my foot", "stair treads narrow"],
     summary: "Stair treads must have a minimum depth of 10\" measured from nosing to nosing. Shallow treads don't provide enough foot surface area for safe descent, especially in wet conditions common in Florida.",
     whyItMatters: "Shallow stair treads force you to descend on the balls of your feet rather than placing your full foot on each step. Combined with rain-wet surfaces, this significantly increases fall risk.",
     commonInspectorLanguage: "\"Tread depth does not meet minimum 10-inch requirement.\"",
@@ -470,6 +613,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Missing or Non-Graspable Handrail",
     severity: "moderate",
     keywords: ["handrail", "graspable", "stair rail", "grip", "2x4", "flat rail", "profile"],
+    aliases: ["can't grab the railing", "flat board as handrail", "no handrail on stairs", "handrail too wide to grip"],
     summary: "All deck stairs with 4 or more risers require a graspable handrail. The profile must be between 1-1/4\" and 2\" in diameter (circular) or an equivalent graspable shape. Flat 2×4 or 2×6 top rails do NOT qualify.",
     whyItMatters: "A graspable handrail is your last line of defense against a fall on stairs. Flat boards can't be grabbed quickly in a stumble. This is one of the most frequently cited violations on Florida deck stair inspections.",
     commonInspectorLanguage: "\"Handrail does not have graspable profile\" or \"No handrail provided at stair with 4+ risers.\"",
@@ -492,6 +636,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Stair Width or Landing Issue",
     severity: "minor",
     keywords: ["stair", "width", "landing", "platform", "minimum", "36 inch"],
+    aliases: ["stairs too narrow", "no landing at bottom", "stairs don't have a platform"],
     summary: "Deck stairs must be at least 36\" wide (clear width). Landings are required at the top and bottom of stairs and must be at least as wide as the stair. Changes in direction require an intermediate landing.",
     whyItMatters: "Narrow stairs restrict safe passage and make it difficult to carry items. Missing landings at direction changes create fall hazards, especially on elevated decks.",
     commonInspectorLanguage: "\"Stair width less than 36 inches\" or \"Landing not provided at stair direction change.\"",
@@ -518,6 +663,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Work Performed Without Permit",
     severity: "critical",
     keywords: ["permit", "unpermitted", "no permit", "illegal", "fine", "demolition", "after-the-fact"],
+    aliases: ["built without a permit", "didn't get a permit", "illegal deck", "no permit on file", "unpermitted work", "do I need a permit"],
     summary: "Any deck over 200 sq ft, over 30\" above grade, or attached to the house requires a building permit in all Florida counties. Unpermitted deck work can result in forced demolition orders, fines, insurance claim denials, and problems when selling.",
     whyItMatters: "Beyond the legal penalties, an unpermitted deck has never been inspected for safety. Insurance companies can deny claims for injuries or damage involving unpermitted structures. Title companies flag unpermitted work during home sales.",
     commonInspectorLanguage: "\"No permit on record for this structure\" or \"Work completed without required inspections.\"",
@@ -532,8 +678,32 @@ export const VIOLATIONS: ViolationEntry[] = [
     permitReviewNeeded: true,
     ctaType: "permit_help",
     slug: "work-without-permit",
+    searchWeight: 10,
     faqQuestion: "What happens if my deck was built without a permit in Florida?",
     faqAnswer: "Unpermitted deck work in Florida can result in fines, forced removal, insurance denials, and home sale complications. You can apply for an after-the-fact permit, but fees are usually double and the structure must pass all required inspections.",
+  },
+  {
+    id: "permit-expired",
+    type: "permit_issue",
+    jurisdiction: "Florida",
+    title: "Expired Building Permit",
+    severity: "moderate",
+    keywords: ["permit", "expired", "lapsed", "renewal", "inactive"],
+    aliases: ["my permit ran out", "permit is old", "permit expired before I finished"],
+    summary: "Building permits in Florida typically expire if no inspection activity occurs within 180 days (6 months). An expired permit means you'll need to apply for a renewal or a new permit, potentially with updated plans and fees.",
+    whyItMatters: "Working under an expired permit is the same as working without a permit. Any work done after expiration is technically unpermitted and may need to be re-inspected from the beginning.",
+    commonInspectorLanguage: "\"Permit expired — renewal or new permit required\" or \"No active permit on file.\"",
+    howToFix: [
+      "Contact the building department to check permit status",
+      "Apply for permit renewal if within the allowed renewal window",
+      "If renewal isn't possible, apply for a new permit with current plans",
+      "Schedule any outstanding inspections once the permit is active",
+    ],
+    estimatedCost: { low: 200, high: 1500, label: "$200–$1,500" },
+    reinspectionLikely: true,
+    permitReviewNeeded: true,
+    ctaType: "permit_help",
+    slug: "expired-permit",
   },
   {
     id: "missed-inspection",
@@ -542,6 +712,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Failed Due to Missing Required Inspection",
     severity: "moderate",
     keywords: ["inspection", "missed", "concealed", "covered", "footer", "framing"],
+    aliases: ["covered up work before inspection", "forgot to call for inspection", "skipped the framing inspection"],
     summary: "Florida requires inspections at specific construction stages — typically footings (before pouring), framing (before decking), and final. If work was covered up before the required inspection, the inspector may require that finished work be opened up for review.",
     whyItMatters: "Inspections exist to catch problems when they're cheapest to fix. A footing that was poured without inspection may need to be dug up. Framing that was covered with decking may need boards removed.",
     commonInspectorLanguage: "\"Required inspection not called for prior to concealment\" or \"Work covered before inspection — must be exposed.\"",
@@ -564,6 +735,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Approved Plans Not Available on Site",
     severity: "minor",
     keywords: ["plans", "drawings", "on-site", "blueprints", "approved", "documentation"],
+    aliases: ["forgot to bring the plans", "no drawings at job site", "inspector wants to see the plans"],
     summary: "Inspectors require a copy of the approved plans to be available at the job site during inspection. Without plans on site, the inspector cannot verify that the work matches what was approved.",
     whyItMatters: "This is usually a quick fix, but it can delay your inspection. The inspector needs to compare the actual construction against the approved drawings, and they won't proceed without them.",
     commonInspectorLanguage: "\"Approved plans not available for review\" or \"Plans must be on site during inspection.\"",
@@ -585,6 +757,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Field Work Does Not Match Approved Plans",
     severity: "critical",
     keywords: ["mismatch", "plans", "deviation", "change", "modification", "as-built", "field change"],
+    aliases: ["built it different than the plans", "changed the design", "doesn't match the drawings", "modified without approval"],
     summary: "When the actual construction differs from the approved plans — different dimensions, materials, layout, or structural details — the inspector will fail the inspection. Any changes from approved plans require a revision or amendment to the permit.",
     whyItMatters: "Approved plans represent the engineered and reviewed design. Deviating without approval means the changes haven't been verified for structural adequacy, code compliance, or safety.",
     commonInspectorLanguage: "\"Work does not match approved plans\" or \"Unapproved field modifications observed.\"",
@@ -607,6 +780,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Engineering Letter or Sealed Plans Required",
     severity: "moderate",
     keywords: ["engineer", "engineering", "sealed", "stamped", "PE", "structural", "letter"],
+    aliases: ["need an engineer", "inspector wants engineering", "do I need a structural engineer", "PE stamp required"],
     summary: "Some deck configurations require engineered and sealed plans from a licensed Professional Engineer (PE). This includes decks over certain heights, unusual configurations, heavy loads (hot tubs, outdoor kitchens), and repairs to structural members.",
     whyItMatters: "When a project exceeds prescriptive code limits, only an engineer can certify that the design is structurally adequate. The building department may require this before issuing a permit or approving a reinspection.",
     commonInspectorLanguage: "\"Sealed engineering plans required\" or \"Structure exceeds prescriptive limits — PE review needed.\"",
@@ -631,6 +805,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Missing Product Approval or Manufacturer Specs",
     severity: "moderate",
     keywords: ["product approval", "manufacturer", "specs", "specifications", "installation", "documentation"],
+    aliases: ["inspector wants product info", "need to show product approval", "where do I find product specs"],
     summary: "Inspectors may require documentation showing that installed products (decking, connectors, fasteners) have valid Florida Product Approvals and were installed per manufacturer specifications. This is especially common for composite decking and specialty connectors.",
     whyItMatters: "Product approvals confirm that materials meet Florida's building requirements. Without documentation, inspectors cannot verify compliance. Using products outside their approved applications can void warranties and create liability.",
     commonInspectorLanguage: "\"Product approval documentation not provided\" or \"Installation does not match manufacturer specifications.\"",
@@ -652,6 +827,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Reinspection Required Before Concealment",
     severity: "moderate",
     keywords: ["concealment", "cover", "reinspection", "framing", "before decking", "sequence"],
+    aliases: ["put decking on before inspection", "covered the framing", "inspector says remove boards"],
     summary: "Certain structural components must be inspected before they are concealed by subsequent construction. Framing must be inspected before decking is installed. Footings must be inspected before concrete is poured. Covering work before inspection is a common cause of failed final inspections.",
     whyItMatters: "Once framing is covered with decking, inspectors can't verify joist spacing, connector installation, or structural adequacy without costly disassembly. Following the proper inspection sequence saves time and money.",
     commonInspectorLanguage: "\"Framing concealed before inspection\" or \"Cannot verify — remove decking for framing inspection.\"",
@@ -679,6 +855,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Missing Hurricane Straps or Connectors",
     severity: "critical",
     keywords: ["hurricane", "strap", "tie", "wind", "connector", "simpson", "strong-tie", "uplift"],
+    aliases: ["no hurricane ties", "missing wind straps", "inspector wants hurricane clips", "need storm straps"],
     summary: "Florida Building Code mandates hurricane straps or ties at every beam-to-post and joist-to-beam connection on attached decks. In wind zones above 130 mph (most of coastal Florida), engineered connectors are required at every structural joint.",
     whyItMatters: "During a hurricane, wind doesn't just push against a deck — it creates uplift that can pull connections apart from below. Hurricane straps are designed to keep the structure connected under these extreme forces. Missing straps are one of the most common failed inspection items statewide.",
     commonInspectorLanguage: "\"Hurricane ties not installed at joist-to-beam connections\" or \"Uplift connectors missing.\"",
@@ -692,6 +869,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     reinspectionLikely: true,
     ctaType: "structural_review",
     slug: "missing-hurricane-straps",
+    searchWeight: 9,
     faqQuestion: "What are hurricane straps and why does my Florida deck need them?",
     faqAnswer: "Hurricane straps are metal connectors that hold deck framing together during high winds. Florida code requires them at every major structural connection. Missing straps are one of the most common inspection failures and cost $600–$2,000 to retrofit.",
   },
@@ -702,6 +880,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "HVHZ Product Approval / NOA Issue",
     severity: "critical",
     keywords: ["HVHZ", "NOA", "notice of acceptance", "Miami-Dade", "Broward", "product approval", "high velocity hurricane zone"],
+    aliases: ["noa problem", "materials not approved for miami", "need miami dade approval", "hvhz materials rejected"],
     summary: "Properties within the High-Velocity Hurricane Zone (Miami-Dade and Broward counties) must use materials with a valid Notice of Acceptance (NOA) or Florida Product Approval. Standard building materials approved elsewhere in Florida are NOT automatically approved in HVHZ zones.",
     whyItMatters: "HVHZ standards exist because Miami-Dade and Broward face the highest hurricane risk in Florida. Materials that pass standard Florida requirements may not withstand the extreme wind pressures in these zones. Using non-NOA materials results in automatic inspection failure.",
     commonInspectorLanguage: "\"Materials do not have valid NOA\" or \"Product approval not valid for HVHZ.\"",
@@ -716,6 +895,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     permitReviewNeeded: true,
     ctaType: "product_approval_review",
     slug: "hvhz-noa-issue",
+    searchWeight: 9,
     faqQuestion: "What is an NOA issue in Miami-Dade?",
     faqAnswer: "A Notice of Acceptance (NOA) is a Miami-Dade County approval confirming that a building product meets HVHZ (High-Velocity Hurricane Zone) requirements. If your deck materials don't have valid NOAs, the inspection will fail and materials must be replaced with approved alternatives.",
   },
@@ -726,6 +906,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Miami-Dade NOA Mismatch",
     severity: "critical",
     keywords: ["NOA", "mismatch", "wrong product", "Miami-Dade", "substitution", "HVHZ"],
+    aliases: ["installed wrong noa product", "noa doesn't match what was installed", "product doesn't match approval"],
     summary: "Even with NOA-approved products, installation must match the exact specifications in the NOA document. Using the right product in the wrong configuration, with wrong fasteners, or at wrong spacing invalidates the approval.",
     whyItMatters: "An NOA approval is product-and-installation-specific. A connector installed with drywall screws instead of the specified structural screws doesn't meet the NOA, even though the connector itself is approved.",
     commonInspectorLanguage: "\"Installation does not match NOA specifications\" or \"NOA conditions not met.\"",
@@ -747,6 +928,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Connector Corrosion in Coastal Environment",
     severity: "moderate",
     keywords: ["coastal", "corrosion", "salt air", "marine", "stainless", "316", "hardware"],
+    aliases: ["salt air eating my hardware", "connectors corroding near beach", "coastal deck hardware failing"],
     summary: "Within 3 miles of Florida's coastline, standard galvanized hardware corrodes at an accelerated rate. Inspectors in coastal jurisdictions may flag connectors and fasteners that aren't rated for marine exposure.",
     whyItMatters: "Salt air corrosion can reduce the strength of metal connectors by 50% or more within a few years. What looks like surface rust may indicate significant section loss in the metal, compromising structural capacity.",
     commonInspectorLanguage: "\"Hardware not rated for coastal exposure\" or \"Connectors show accelerated corrosion.\"",
@@ -768,6 +950,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Improper Uplift Connection Detail",
     severity: "critical",
     keywords: ["uplift", "wind", "connection", "continuous load path", "hold-down", "anchor"],
+    aliases: ["wind can pull my deck up", "no continuous load path", "deck not anchored for storms"],
     summary: "Florida requires a continuous load path from the deck surface down to the footings to resist wind uplift. Every connection in the chain — decking to joist, joist to beam, beam to post, post to footing — must have hardware rated for the design uplift forces.",
     whyItMatters: "A chain is only as strong as its weakest link. One missing connector in the uplift load path means the entire deck can fail under wind loads, even if all other connections are properly installed.",
     commonInspectorLanguage: "\"Continuous load path not established\" or \"Uplift connection inadequate at [location].\"",
@@ -794,6 +977,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Drainage and Grading Issue Near Footings",
     severity: "minor",
     keywords: ["drainage", "grading", "water", "standing water", "slope", "foundation", "pooling"],
+    aliases: ["water under my deck", "puddles around deck posts", "ground doesn't drain", "water sits under deck"],
     summary: "The area beneath and around a deck must be graded to direct water away from the house foundation. Florida Building Code requires a minimum 6\" fall in the first 10 feet from the foundation. Standing water under decks accelerates post deterioration and can undermine footings.",
     whyItMatters: "In Florida's sandy soils, standing water around footings can erode the soil support and cause footings to settle or shift. Persistent moisture also attracts termites and accelerates wood rot on posts and framing.",
     commonInspectorLanguage: "\"Improper drainage at foundation\" or \"Standing water observed under deck structure.\"",
@@ -815,6 +999,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Water Pooling Around Deck Posts",
     severity: "minor",
     keywords: ["pooling", "water", "post", "standing", "saturated", "rot", "base"],
+    aliases: ["water around posts", "posts sitting in water", "ground always wet around deck"],
     summary: "Water collecting around the base of deck posts accelerates wood rot, even in pressure-treated lumber. In Florida's climate, posts in constantly wet soil can begin deteriorating within a few years.",
     whyItMatters: "Posts are the foundation of your deck structure. Rot at the base can progress upward inside the post before it's visible on the surface, creating a hidden structural weakness.",
     commonInspectorLanguage: "\"Evidence of standing water at post bases\" or \"Post bases showing signs of deterioration.\"",
@@ -836,6 +1021,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Improper Attachment to Stucco or Masonry",
     severity: "critical",
     keywords: ["stucco", "masonry", "block", "concrete", "attachment", "ledger", "cbs"],
+    aliases: ["deck bolted to stucco", "attached to block wall", "ledger on cbs wall", "stucco cracking at deck"],
     summary: "Attaching a deck ledger directly to stucco is not permitted — stucco is a finish material, not structural. In Florida's common CBS (concrete block and stucco) construction, the ledger must be anchored through the stucco into the concrete block or into a wood band joist behind it.",
     whyItMatters: "Stucco cannot support structural loads. A ledger attached only to stucco will eventually pull away, potentially causing a deck collapse. This is particularly common in Florida where CBS construction is standard.",
     commonInspectorLanguage: "\"Ledger attached to stucco — not structural\" or \"Improper ledger attachment to masonry wall.\"",
@@ -858,6 +1044,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Patio Cover or Pergola Anchorage Issue",
     severity: "moderate",
     keywords: ["pergola", "patio cover", "anchorage", "attachment", "freestanding", "wind", "anchor"],
+    aliases: ["pergola not bolted down", "patio cover loose", "pergola blew over", "pergola not anchored"],
     summary: "Pergolas and patio covers in Florida must be anchored to resist wind uplift forces. Freestanding structures need properly sized footings with post anchors. Attached structures must have adequate connections to the house.",
     whyItMatters: "An unsecured pergola can become airborne in Florida wind events. Even a modest 70 mph wind gust can generate significant uplift on an open-roof structure. Proper anchorage protects both the structure and neighboring properties.",
     commonInspectorLanguage: "\"Pergola anchorage insufficient for wind load\" or \"Structure not adequately attached.\"",
@@ -879,6 +1066,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Slab Anchoring Issue",
     severity: "moderate",
     keywords: ["slab", "concrete", "anchor", "post", "bolt", "epoxy", "surface mount"],
+    aliases: ["post on patio slab", "anchoring to existing concrete", "surface mount on concrete"],
     summary: "Posts mounted to existing concrete slabs must use approved anchoring methods. Surface-mounted post bases with wedge anchors or epoxy anchors are common approaches, but the slab must be thick enough and in good condition to support the loads.",
     whyItMatters: "A post anchor in a deteriorated or too-thin slab can pull out under load. The slab condition and thickness directly affect the reliability of the connection and the safety of the entire structure.",
     commonInspectorLanguage: "\"Post anchor installation in slab does not meet requirements\" or \"Slab condition inadequate for anchoring.\"",
@@ -900,6 +1088,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Setback or Zoning Review Flag",
     severity: "minor",
     keywords: ["setback", "zoning", "property line", "easement", "survey", "lot coverage"],
+    aliases: ["deck too close to property line", "zoning issue", "need a variance", "built in easement"],
     summary: "Deck construction may trigger zoning concerns including setback requirements (distance from property lines), lot coverage limits, easement encroachments, or HOA restrictions. These are typically reviewed during the permit process but can be flagged during inspection.",
     whyItMatters: "Building within a setback or easement can result in required removal of the structure. Zoning issues can also affect your ability to sell the property or obtain insurance coverage.",
     commonInspectorLanguage: "\"Structure appears to encroach on setback\" or \"Zoning compliance not verified.\"",
@@ -927,6 +1116,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Missing GFCI Protection on Outdoor Outlets",
     severity: "moderate",
     keywords: ["electrical", "GFCI", "outlet", "receptacle", "shock", "electrocution", "lighting", "outdoor"],
+    aliases: ["no GFCI outside", "outdoor outlet not protected", "got shocked on deck", "plug on deck no GFCI"],
     summary: "All outdoor receptacles on decks and patios must have Ground Fault Circuit Interrupter (GFCI) protection. Outdoor lighting circuits on decks over 6 feet above grade also require GFCI protection. Missing GFCI is an electrocution hazard.",
     whyItMatters: "Water and electricity don't mix. Florida's rain, humidity, and wet conditions mean outdoor outlets are constantly exposed to moisture. GFCI protection can save your life by cutting power in milliseconds if a ground fault occurs.",
     commonInspectorLanguage: "\"No GFCI protection on outdoor receptacle\" or \"Outdoor circuit not GFCI protected.\"",
@@ -948,6 +1138,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Exposed Wiring on Outdoor Structure",
     severity: "critical",
     keywords: ["wiring", "exposed", "conduit", "wire", "electrical", "outdoor", "NM", "romex"],
+    aliases: ["wires showing on deck", "romex outside", "no conduit on wires", "exposed electrical"],
     summary: "Electrical wiring on outdoor structures must be in approved conduit or rated for outdoor/wet locations. Standard indoor NM (Romex) cable is not permitted for outdoor use. Exposed or improperly protected wiring is a shock and fire hazard.",
     whyItMatters: "Indoor-rated wiring exposed to Florida's rain, UV, and humidity degrades rapidly. Deteriorated insulation can create shock hazards, especially near pools, hot tubs, or wet deck surfaces.",
     commonInspectorLanguage: "\"Non-rated wiring used in outdoor/wet location\" or \"Wiring not in approved conduit.\"",
@@ -969,6 +1160,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Improper Outdoor Lighting or Fan Mounting",
     severity: "minor",
     keywords: ["fan", "ceiling fan", "light", "fixture", "mounting", "outdoor", "damp", "wet rated"],
+    aliases: ["indoor fan used outside", "light fixture not outdoor rated", "fan fell from porch ceiling"],
     summary: "Outdoor ceiling fans and light fixtures must be rated for their exposure level — damp-rated for covered areas, wet-rated for uncovered areas. Mounting must use fan-rated boxes for ceiling fans. Using indoor fixtures outdoors voids the product rating.",
     whyItMatters: "Indoor-rated fixtures used outdoors can short-circuit from moisture exposure. Ceiling fans mounted to non-fan-rated boxes can fall — especially in Florida where fans are used heavily on covered porches.",
     commonInspectorLanguage: "\"Fixture not rated for outdoor use\" or \"Fan box not fan-rated.\"",
@@ -990,6 +1182,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Bonding or Grounding Issue",
     severity: "moderate",
     keywords: ["bonding", "grounding", "ground", "pool", "hot tub", "metal", "electrical"],
+    aliases: ["not grounded", "metal railing near pool", "need bonding for hot tub"],
     summary: "Metal components on outdoor structures near pools, hot tubs, or water features may require electrical bonding and grounding per the National Electrical Code. This ensures that all metal surfaces are at the same electrical potential, preventing shock.",
     whyItMatters: "Unbonded metal components near water can create dangerous voltage differences. If you touch a metal railing and a pool ladder simultaneously, an unbonded system could deliver a shock.",
     commonInspectorLanguage: "\"Metal components not bonded\" or \"Grounding not continuous.\"",
@@ -1006,7 +1199,7 @@ export const VIOLATIONS: ViolationEntry[] = [
   },
 
   // ═══════════════════════════════════════════
-  // ADDITIONAL ENTRIES (to reach 35+)
+  // ADDITIONAL COMMON ISSUES
   // ═══════════════════════════════════════════
   {
     id: "deck-pulling-away",
@@ -1015,6 +1208,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Deck Pulling Away from House",
     severity: "critical",
     keywords: ["pulling away", "separating", "gap", "ledger", "detaching", "deck falling"],
+    aliases: ["deck separating from house", "gap between deck and wall", "deck falling off house", "deck detaching"],
     summary: "If your deck is visibly separating from the house, this is typically a ledger board failure in progress. The gap between the deck and the house is growing because the connection hardware is failing, the band joist is rotting, or the ledger was never properly attached.",
     whyItMatters: "A deck pulling away from the house is an active structural failure. This is how deck collapses happen — the ledger separates suddenly under load. This should be treated as an emergency.",
     commonInspectorLanguage: "\"Deck separating from structure — immediate correction required\" or \"Visible gap at ledger connection.\"",
@@ -1029,6 +1223,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     permitReviewNeeded: true,
     ctaType: "structural_review",
     slug: "deck-pulling-away",
+    searchWeight: 10,
     faqQuestion: "What should I do if my deck is pulling away from the house?",
     faqAnswer: "Stop using the deck immediately — this is a sign of ledger board failure, the #1 cause of deck collapses. Contact a licensed contractor for emergency assessment. The fix typically involves reshoring and reinstalling the ledger connection.",
   },
@@ -1040,6 +1235,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Missing Joist Hangers",
     severity: "critical",
     keywords: ["joist hanger", "hanger", "joist", "connection", "simpson", "support"],
+    aliases: ["no joist hangers", "joists just nailed", "hangers missing", "joists toe-nailed"],
     summary: "Joists must be connected to beams and ledgers using approved joist hangers — not just toe-nailed. Joist hangers provide consistent bearing support and resist uplift forces required by Florida's wind load standards.",
     whyItMatters: "Toe-nailed joists can pull out under load or wind uplift. Joist hangers distribute the weight properly and provide the positive connection Florida code requires.",
     commonInspectorLanguage: "\"Joists not supported by approved hangers\" or \"Joist connection inadequate — hangers required.\"",
@@ -1061,6 +1257,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Rotted or Deteriorated Framing Members",
     severity: "critical",
     keywords: ["rot", "rotted", "decay", "deteriorated", "soft", "spongy", "wood damage", "fungus"],
+    aliases: ["wood is soft", "rotting deck", "deck boards mushy", "wood falling apart", "moldy wood", "fungus on deck"],
     summary: "Wood framing members showing signs of rot, decay, or fungal damage are structurally compromised. In Florida's humid climate, rot can progress quickly — especially in areas with poor ventilation or water exposure.",
     whyItMatters: "Rotted wood has dramatically reduced load-carrying capacity. A joist that looks intact on the surface can be soft and crumbling inside, creating a hidden collapse risk.",
     commonInspectorLanguage: "\"Structural member shows evidence of decay\" or \"Wood rot observed at [location] — replacement required.\"",
@@ -1082,6 +1279,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Screen Enclosure Attachment Issue",
     severity: "moderate",
     keywords: ["screen", "screen enclosure", "lanai", "screened porch", "attachment", "frame", "aluminum"],
+    aliases: ["screen porch coming loose", "lanai screen frame", "screen enclosure not attached right"],
     summary: "Screen enclosures on Florida decks and patios must be properly anchored to resist wind loads. The aluminum frame must be attached to a structural base — not just to deck boards or non-structural fascia.",
     whyItMatters: "Florida's wind requirements apply to screen enclosures as well. An improperly attached screen enclosure can peel off during a storm, becoming airborne debris that damages neighboring properties.",
     commonInspectorLanguage: "\"Screen enclosure frame not attached to structural member\" or \"Enclosure anchorage does not meet wind load requirements.\"",
@@ -1103,6 +1301,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Deck Not Engineered for Hot Tub or Heavy Load",
     severity: "critical",
     keywords: ["hot tub", "spa", "jacuzzi", "heavy", "load", "weight", "structural", "reinforcement"],
+    aliases: ["can I put a hot tub on my deck", "spa on deck", "deck strong enough for hot tub", "heavy thing on deck"],
     summary: "A filled hot tub can weigh 3,000–6,000 lbs. Standard deck framing is not designed for this concentrated load. Placing a hot tub on a deck without engineering review and reinforcement is a serious structural concern.",
     whyItMatters: "The weight of a hot tub filled with water and occupants can exceed the deck's design load by 3–5 times. This can cause sudden failure of joists, beams, or footings.",
     commonInspectorLanguage: "\"Deck framing not designed for concentrated load\" or \"Engineering required for hot tub installation.\"",
@@ -1127,6 +1326,7 @@ export const VIOLATIONS: ViolationEntry[] = [
     title: "Termite or Pest Damage to Structural Members",
     severity: "critical",
     keywords: ["termite", "pest", "insect", "damage", "subterranean", "drywood", "infestation"],
+    aliases: ["bugs eating my deck", "termites in deck", "wood has holes", "sawdust under deck", "bugs in wood"],
     summary: "Florida is one of the highest-risk states for termite damage. Subterranean and drywood termites can silently destroy structural framing from the inside. Inspectors may flag visible damage, mud tubes, or frass (termite droppings).",
     whyItMatters: "Termite damage weakens wood from within. A beam or post that looks solid on the outside may be hollow inside. In Florida's warm climate, termite damage can progress rapidly.",
     commonInspectorLanguage: "\"Evidence of termite activity/damage at [location]\" or \"Structural member compromised by pest damage.\"",
@@ -1140,5 +1340,29 @@ export const VIOLATIONS: ViolationEntry[] = [
     reinspectionLikely: true,
     ctaType: "structural_review",
     slug: "termite-damage",
+  },
+  {
+    id: "failed-final-inspection",
+    type: "inspection_issue",
+    jurisdiction: "Florida",
+    title: "Failed Final Inspection — Multiple Items",
+    severity: "moderate",
+    keywords: ["final inspection", "failed", "multiple", "punch list", "corrections"],
+    aliases: ["failed the final", "didn't pass final inspection", "final inspection rejected", "multiple items failed"],
+    summary: "A failed final inspection means one or more items don't meet code at the completion stage. The inspector provides a correction list. All items must be addressed and the deck must pass reinspection before the permit can be closed out.",
+    whyItMatters: "An open (unclosed) permit stays on your property record. It can complicate home sales, refinancing, and insurance claims. Closing out the permit with a passed final inspection protects your investment.",
+    commonInspectorLanguage: "\"Final inspection failed — see correction list\" or \"Items noted must be corrected prior to final approval.\"",
+    howToFix: [
+      "Review each item on the correction list carefully",
+      "Prioritize structural and safety items first",
+      "Make all corrections before scheduling reinspection",
+      "Have your contractor present during reinspection if possible",
+    ],
+    estimatedCost: { low: 200, high: 3000, label: "$200–$3,000 (varies by items)" },
+    reinspectionLikely: true,
+    ctaType: "inspection",
+    slug: "failed-final-inspection",
+    faqQuestion: "What does a failed deck inspection mean in Florida?",
+    faqAnswer: "A failed deck inspection means the inspector found issues that don't meet Florida Building Code. You'll receive a correction list. Most failures can be fixed and reinspected. Common issues include missing hurricane straps, railing height violations, and permit documentation problems.",
   },
 ];
