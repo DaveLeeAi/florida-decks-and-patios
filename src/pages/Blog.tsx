@@ -41,6 +41,8 @@ export default function Blog() {
               </Link>
             ))}
           </div>
+
+          <RelatedContent topics={["general", "design", "materials"]} title="Explore More" maxLinks={4} className="mt-10" />
         </div>
       </section>
     </Layout>
