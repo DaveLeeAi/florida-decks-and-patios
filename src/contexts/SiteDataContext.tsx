@@ -121,19 +121,13 @@ function getInitialData(): SiteData {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
       const parsed = JSON.parse(stored);
-      return {
-        company: parsed.company ?? defaults.COMPANY,
-        heroSlides: parsed.heroSlides ?? defaults.heroSlides,
-        services: parsed.services ?? defaults.services,
-        portfolioProjects: parsed.portfolioProjects ?? defaults.portfolioProjects,
-        blogPosts: parsed.blogPosts ?? defaults.blogPosts,
-        testimonials: parsed.testimonials ?? defaults.testimonials,
-        trustBadges: parsed.trustBadges ?? defaults.trustBadges,
-        navLinks: parsed.navLinks ?? defaultNavLinks,
-        settings: parsed.settings ?? defaultSettings,
-      };
+      return parseSiteData(parsed);
     }
   } catch {}
+  return getDefaults();
+}
+
+function getDefaults(): SiteData {
   return {
     company: defaults.COMPANY,
     heroSlides: defaults.heroSlides as HeroSlide[],
@@ -144,6 +138,21 @@ function getInitialData(): SiteData {
     trustBadges: defaults.trustBadges as TrustBadge[],
     navLinks: defaultNavLinks,
     settings: defaultSettings,
+  };
+}
+
+function parseSiteData(parsed: any): SiteData {
+  const d = getDefaults();
+  return {
+    company: parsed.company ?? d.company,
+    heroSlides: parsed.heroSlides ?? d.heroSlides,
+    services: parsed.services ?? d.services,
+    portfolioProjects: parsed.portfolioProjects ?? d.portfolioProjects,
+    blogPosts: parsed.blogPosts ?? d.blogPosts,
+    testimonials: parsed.testimonials ?? d.testimonials,
+    trustBadges: parsed.trustBadges ?? d.trustBadges,
+    navLinks: parsed.navLinks ?? d.navLinks,
+    settings: parsed.settings ?? d.settings,
   };
 }
 
