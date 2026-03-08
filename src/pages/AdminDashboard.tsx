@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { useNavigate, Link } from "react-router-dom";
 import { useSiteData, type CompanyInfo, type HeroSlide, type Service, type PortfolioProject, type BlogPost, type Testimonial, type TrustBadge, type NavLink as NavLinkType, type SiteSettings } from "@/contexts/SiteDataContext";
 import { Button } from "@/components/ui/button";
