@@ -23,7 +23,7 @@ const violationFAQs = [
 export default function Tools() {
   return (
     <Layout>
-      <FAQSchema questions={violationFAQs} />
+      <FAQSchema questions={[...violationFAQs, ...permitFAQs]} />
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
           {/* Page Heading */}
