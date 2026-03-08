@@ -235,7 +235,7 @@ export const cityPages: CityData[] = [
     region: "Northeast Florida",
     tagline: "Maximum ROI & Military-Friendly",
     metaTitle: "Jacksonville Deck Builders | Durable Decks & Patios in Jacksonville FL",
-    metaDescription: "Jacksonville's trusted deck builder. Military-family-friendly pricing with durable, FBC-compliant composite and wood decks. See St. Johns County costs and permits.",
+    metaDescription: "Maximize your St. Johns home value with a professional 2026 deck build. Compare local Jacksonville costs ($38-$95/sq-ft) and download our durability report on preventing wood warp in coastal Florida temperatures.",
     focusKeyword: "deck builder Jacksonville",
     heroHeadline: "Jacksonville's Durable Deck & Patio Builders",
     heroSubheadline: "Military-family-friendly deck building with maximum ROI — engineered for Northeast Florida's climate and built to last.",
