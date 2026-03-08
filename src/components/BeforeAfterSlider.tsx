@@ -1,6 +1,7 @@
-import { useState, useRef, useCallback, useEffect } from "react";
-import { GripVertical } from "lucide-react";
+import { useState, useRef, useCallback } from "react";
+import { GripVertical, MapPin, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Card, CardContent } from "@/components/ui/card";
 import beforeImg from "@/assets/before-deck.jpg";
 import afterImg from "@/assets/after-deck.jpg";
 
@@ -9,6 +10,8 @@ interface BeforeAfterSliderProps {
   afterSrc?: string;
   beforeAlt?: string;
   afterAlt?: string;
+  location?: string;
+  materials?: string;
   className?: string;
 }
 
