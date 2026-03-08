@@ -34,6 +34,8 @@ const Diagrams = lazy(() => import("./pages/Diagrams"));
 const Checklists = lazy(() => import("./pages/Checklists"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const CityProjectHub = lazy(() => import("./pages/CityProjectHub"));
+const PermitsHub = lazy(() => import("./pages/PermitsHub"));
+const PermitCounty = lazy(() => import("./pages/PermitCounty"));
 
 const queryClient = new QueryClient();
 
@@ -81,6 +83,8 @@ const App = () => (
               <Route path="/city/:citySlug" element={<CitySeoLanding />} />
               <Route path="/city/:citySlug/:serviceSlug" element={<CitySeoLanding />} />
               <Route path="/projects/:hubSlug" element={<CityProjectHub />} />
+              <Route path="/permits" element={<PermitsHub />} />
+              <Route path="/permits/:countySlug" element={<PermitCounty />} />
               <Route path="/areas/:slug" element={<CityLanding />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
