@@ -195,7 +195,7 @@ export function TechArticleSchema({ title, description, slug, datePublished, dat
     "@type": "TechArticle",
     headline: title,
     description,
-    url: `https://backyard-decks.lovable.app/blog/${slug}`,
+    url: `https://florida-decks-and-patios.lovable.app/blog/${slug}`,
     datePublished,
     dateModified: dateModified || datePublished,
     proficiencyLevel: "Beginner",
