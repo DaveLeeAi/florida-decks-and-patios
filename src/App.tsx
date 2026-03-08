@@ -33,6 +33,7 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const Diagrams = lazy(() => import("./pages/Diagrams"));
 const Checklists = lazy(() => import("./pages/Checklists"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const CityProjectHub = lazy(() => import("./pages/CityProjectHub"));
 
 const queryClient = new QueryClient();
 
