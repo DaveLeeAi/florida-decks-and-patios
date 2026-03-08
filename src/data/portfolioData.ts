@@ -749,7 +749,12 @@ const rawProjects: PortfolioProject[] = [
   },
 ];
 
-const getImg = (name: string) => new URL(`../assets/${name}`, import.meta.url).href;
+const allImages = import.meta.glob('../assets/deck-project-*.jpg', { eager: true, import: 'default' }) as Record<string, string>;
+
+const getImg = (name: string): string => {
+  const key = `../assets/${name}`;
+  return allImages[key] || '';
+};
 
 export const portfolioProjects: PortfolioProject[] = rawProjects.map(p => {
   const pad = String(p.id).padStart(2, '0');
