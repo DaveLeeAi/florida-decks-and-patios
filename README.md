@@ -1,73 +1,102 @@
-# Welcome to your Lovable project
+# Florida Decks and Patios
 
-## Project info
+A modern web application for Florida's premier custom deck and patio builders. Built with React, TypeScript, Tailwind CSS, and Lovable Cloud for a full-stack experience with real-time data persistence, contact lead management, and an AI-powered chat knowledge base.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
 
-## How can I edit this code?
+- **Modern Portfolio**: Showcase deck and patio projects with before/after sliders and high-quality imagery
+- **Service Pages**: Detailed information on decks, patios, pergolas, and other outdoor structures
+- **Blog**: Educational content on deck maintenance, design trends, and project guides
+- **Tools & Calculators**: Budget estimators, repair checkers, home value calculator, and violation decoder
+- **Contact Forms**: Lead capture with real Supabase integration and form validation
+- **AI Chat Widget**: Knowledge-based chatbot powered by Lovable AI for customer support
+- **Admin Dashboard**: CMS for managing site content, testimonials, services, and chat knowledge base
+- **Location Pages**: City-specific landing pages for Tampa, Orlando, Miami, Jacksonville, and more
+- **SEO Optimized**: Semantic HTML, structured data, sitemaps, and metadata for search visibility
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui
+- **Backend**: Lovable Cloud (Supabase), PostgreSQL, Edge Functions, Realtime
+- **Authentication**: Supabase Auth for admin access
+- **Database**: PostgreSQL with Row-Level Security policies
+- **State Management**: React Context, TanStack Query
+- **AI/ML**: Lovable AI for embeddings and semantic search
+- **Hosting**: Lovable Cloud / Vercel
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
+- Node.js 16+ and npm
 
-**Use your preferred IDE**
+### Development
+```bash
+# Install dependencies
+npm install
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start dev server with hot reload
 npm run dev
+
+# Build for production
+npm run build
+
+# Run tests
+npm run test
 ```
 
-**Edit a file directly in GitHub**
+### Environment Variables
+The project uses Lovable Cloud which automatically manages environment variables for Supabase connectivity. No manual .env configuration needed.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Project Structure
 
-**Use GitHub Codespaces**
+```
+src/
+├── pages/           # Route pages (Home, Blog, Services, etc.)
+├── components/      # Reusable UI components (Header, Footer, etc.)
+├── contexts/        # React contexts (SiteDataContext for CMS)
+├── hooks/          # Custom React hooks
+├── data/           # Static data and seed content
+├── assets/         # Images, logos, favicon
+└── integrations/   # Supabase client and types
+supabase/
+├── functions/      # Edge functions (kb-chat, kb-embed, send-chat-transcript)
+└── migrations/     # Database schema migrations
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Database Schema
 
-## What technologies are used for this project?
+**Key Tables:**
+- `leads` - Contact form submissions with name, email, phone, city, service, budget, message
+- `site_config` - CMS configuration (company info, services, testimonials)
+- `knowledge_entries` - AI knowledge base entries with embeddings
+- `chat_logs` - Chat widget conversation history
 
-This project is built with:
+All tables use Row-Level Security (RLS) policies for data protection.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Admin Dashboard
 
-## How can I deploy this project?
+Access admin at `/admin/login` with Supabase authentication credentials.
+- Edit company information, services, and testimonials
+- Manage AI knowledge base entries
+- View chat transcripts and lead submissions
+- All changes persist to the cloud database and sync across devices
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## Deployment
 
-## Can I connect a custom domain to my Lovable project?
+The site is published on Lovable Cloud at https://florida-decks-and-patios.lovable.app with a custom domain configured.
 
-Yes, you can!
+**Frontend Updates:**
+1. Push code changes to GitHub
+2. Click "Publish" in Lovable editor
+3. Click "Update" in the publish dialog to deploy
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+**Backend Updates:**
+- Edge function and database changes deploy automatically
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## License
+
+MIT
+
+---
+
+**Built with [Lovable](https://lovable.dev)** - The AI editor for full-stack web apps.
