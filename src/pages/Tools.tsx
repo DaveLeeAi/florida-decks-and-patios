@@ -3,9 +3,11 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Info, Shield, BookOpen, Droplets, Wind, Sun, Anchor, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import BudgetEstimator from "@/components/tools/BudgetEstimator";
+import PermitChecker from "@/components/tools/PermitChecker";
 import RepairChecker from "@/components/tools/RepairChecker";
 import ViolationDecoder from "@/components/tools/ViolationDecoder";
 import { FAQSchema } from "@/components/seo/JsonLdSchema";
+import { permitFAQs } from "@/data/permitRules";
 
 const violationFAQs = [
   { question: "What does a failed deck inspection mean in Florida?", answer: "A failed deck inspection means the inspector found one or more issues that don't meet Florida Building Code requirements. Common reasons include improper ledger connections, missing hurricane straps, railing height violations, or permit documentation issues. Most failures can be corrected and reinspected." },
