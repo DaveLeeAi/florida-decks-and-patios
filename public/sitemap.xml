@@ -37,8 +37,21 @@
   <url><loc>https://florida-decks-and-patios.lovable.app/city/naples</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/city/palm-beach</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/city/tallahassee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- 12 NEW City SEO Pages -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-myers</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/cape-coral</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/gainesville</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/daytona-beach</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/bradenton</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/clearwater</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/lakeland</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/port-charlotte</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/jupiter</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-pierce</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/the-villages</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/kissimmee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
-  <!-- City + Service Combo Pages (40 total, priority 0.9) -->
+  <!-- City + Service Combo Pages (88 total, priority 0.9) -->
   <!-- Miami (4) -->
   <url><loc>https://florida-decks-and-patios.lovable.app/city/miami/deck-construction-miami</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/city/miami/deck-repair-miami</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -89,6 +102,66 @@
   <url><loc>https://florida-decks-and-patios.lovable.app/city/tallahassee/deck-repair-tallahassee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/city/tallahassee/patio-construction-tallahassee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://florida-decks-and-patios.lovable.app/city/tallahassee/pergola-construction-tallahassee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Fort Myers (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-myers/deck-construction-fort-myers</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-myers/deck-repair-fort-myers</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-myers/patio-construction-fort-myers</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-myers/pergola-construction-fort-myers</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Cape Coral (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/cape-coral/deck-construction-cape-coral</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/cape-coral/deck-repair-cape-coral</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/cape-coral/patio-construction-cape-coral</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/cape-coral/pergola-construction-cape-coral</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Gainesville (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/gainesville/deck-construction-gainesville</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/gainesville/deck-repair-gainesville</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/gainesville/patio-construction-gainesville</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/gainesville/pergola-construction-gainesville</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Daytona Beach (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/daytona-beach/deck-construction-daytona-beach</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/daytona-beach/deck-repair-daytona-beach</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/daytona-beach/patio-construction-daytona-beach</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/daytona-beach/pergola-construction-daytona-beach</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Bradenton (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/bradenton/deck-construction-bradenton</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/bradenton/deck-repair-bradenton</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/bradenton/patio-construction-bradenton</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/bradenton/pergola-construction-bradenton</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Clearwater (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/clearwater/deck-construction-clearwater</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/clearwater/deck-repair-clearwater</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/clearwater/patio-construction-clearwater</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/clearwater/pergola-construction-clearwater</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Lakeland (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/lakeland/deck-construction-lakeland</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/lakeland/deck-repair-lakeland</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/lakeland/patio-construction-lakeland</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/lakeland/pergola-construction-lakeland</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Port Charlotte (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/port-charlotte/deck-construction-port-charlotte</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/port-charlotte/deck-repair-port-charlotte</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/port-charlotte/patio-construction-port-charlotte</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/port-charlotte/pergola-construction-port-charlotte</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Jupiter (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/jupiter/deck-construction-jupiter</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/jupiter/deck-repair-jupiter</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/jupiter/patio-construction-jupiter</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/jupiter/pergola-construction-jupiter</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Fort Pierce (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-pierce/deck-construction-fort-pierce</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-pierce/deck-repair-fort-pierce</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-pierce/patio-construction-fort-pierce</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/fort-pierce/pergola-construction-fort-pierce</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- The Villages (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/the-villages/deck-construction-the-villages</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/the-villages/deck-repair-the-villages</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/the-villages/patio-construction-the-villages</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/the-villages/pergola-construction-the-villages</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Kissimmee (4) -->
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/kissimmee/deck-construction-kissimmee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/kissimmee/deck-repair-kissimmee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/kissimmee/patio-construction-kissimmee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://florida-decks-and-patios.lovable.app/city/kissimmee/pergola-construction-kissimmee</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
 
   <!-- Area Landing Pages (16 markets) -->
   <url><loc>https://florida-decks-and-patios.lovable.app/areas/tampa-bay-decks-patios</loc><lastmod>2026-03-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
