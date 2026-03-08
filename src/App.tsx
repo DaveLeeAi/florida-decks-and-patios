@@ -80,6 +80,7 @@ const App = () => (
               <Route path="/checklists" element={<Checklists />} />
               <Route path="/city/:citySlug" element={<CitySeoLanding />} />
               <Route path="/city/:citySlug/:serviceSlug" element={<CitySeoLanding />} />
+              <Route path="/projects/:hubSlug" element={<CityProjectHub />} />
               <Route path="/:slug" element={<CityLanding />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
