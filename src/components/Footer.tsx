@@ -44,6 +44,9 @@ export default function Footer() {
               {[
                 { label: "Portfolio", path: "/portfolio" },
                 { label: "Blog", path: "/blog" },
+                { label: "FAQ (152+)", path: "/faq" },
+                { label: "Diagrams", path: "/diagrams" },
+                { label: "Materials Hub", path: "/materials" },
                 { label: "2026 Cost Index", path: "/data-hub" },
                 { label: "Glossary", path: "/glossary" },
                 { label: "Project Estimator", path: "/tools" },

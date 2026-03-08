@@ -163,6 +163,9 @@ export default function BlogPost() {
             </div>
           )}
 
+          {/* Related Resources */}
+          <RelatedContent topics={["general", "materials", "costs"]} title="Helpful Resources" maxLinks={4} className="mt-8" />
+
           {/* Bottom CTA */}
           <div className="mt-12 rounded-lg border border-primary/20 bg-primary/5 p-6 sm:p-8 text-center space-y-3">
             <h3 className="font-heading text-xl font-bold text-foreground">Need Help With a Failed Inspection or Permit Issue?</h3>
