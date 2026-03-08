@@ -41,7 +41,26 @@ export function LocalBusinessSchema() {
       { "@type": "City", name: "Sarasota", addressRegion: "FL" },
       { "@type": "City", name: "Jacksonville", addressRegion: "FL" },
       { "@type": "City", name: "Ocala", addressRegion: "FL" },
+      { "@type": "City", name: "Miami", addressRegion: "FL" },
+      { "@type": "City", name: "Fort Lauderdale", addressRegion: "FL" },
+      { "@type": "City", name: "Melbourne", addressRegion: "FL" },
+      { "@type": "City", name: "West Palm Beach", addressRegion: "FL" },
+      { "@type": "City", name: "St. Augustine", addressRegion: "FL" },
     ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Florida Deck Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "HVHZ-Compliant Deck Construction",
+            description: "High-Velocity Hurricane Zone engineered decks for Miami-Dade and Broward counties with NOA-approved materials.",
+          },
+        },
+      ],
+    },
     priceRange: "$$–$$$$",
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
