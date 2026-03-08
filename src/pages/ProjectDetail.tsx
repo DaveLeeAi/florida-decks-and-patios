@@ -1,15 +1,13 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { portfolioProjects } from "@/data/portfolioData";
-import { MapPin, Calendar, Ruler, Layers, Clock, DollarSign, ArrowLeft, ArrowRight, Wrench, Shield, AlertTriangle, Camera, CheckCircle2 } from "lucide-react";
+import { MapPin, Ruler, Layers, Clock, DollarSign, ArrowLeft, ArrowRight, Wrench, Shield, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 import { X, ZoomIn } from "lucide-react";
 import { Helmet } from "react-helmet-async";
-
-const GALLERY_LABELS = ["Finished Deck View", "Railing System Detail", "Deck Surface Detail", "Outdoor Living Space"];
 
 export default function ProjectDetail() {
   const { slug } = useParams();
@@ -24,9 +22,7 @@ export default function ProjectDetail() {
     .filter(p => p.id !== project.id && (p.city === project.city || p.projectType === project.projectType))
     .slice(0, 3);
 
-  // Use afterImage as hero, rest of gallery minus duplicates
   const heroImage = project.afterImage;
-  const galleryImages = project.galleryImages.filter(img => img !== heroImage);
 
   return (
     <Layout>
@@ -99,13 +95,11 @@ export default function ProjectDetail() {
       {/* Project Overview */}
       <section className="section-padding bg-section-alt">
         <div className="container-narrow mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
             <OverviewCard icon={Ruler} label="Deck Size" value={project.deckSize} />
-            <OverviewCard icon={Layers} label="Materials" value={project.materials} />
             <OverviewCard icon={Layers} label="Materials" value={project.materials} />
             <OverviewCard icon={Clock} label="Duration" value={project.duration} />
             <OverviewCard icon={DollarSign} label="Budget Range" value={project.budgetRange} />
-            <OverviewCard icon={MapPin} label="Location" value={`${cityDisplay}, FL`} />
           </div>
 
           <p className="text-foreground/90 text-lg leading-relaxed max-w-3xl">
@@ -169,42 +163,24 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      {/* Photo Gallery */}
+      {/* Gallery placeholder — hidden until verified project images are available */}
+      {/* 
       <section className="section-padding bg-background">
         <div className="container-narrow mx-auto">
-          <div className="flex items-center gap-2 mb-6">
-            <Camera className="h-6 w-6 text-primary" />
-            <h2 className="font-heading text-2xl font-bold text-foreground">Project Gallery</h2>
-          </div>
+          <h2 className="font-heading text-2xl font-bold text-foreground mb-6">Project Gallery</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {galleryImages.map((img, i) => (
-              <button
-                key={i}
-                onClick={() => setLightboxImg(img)}
-                className="group relative aspect-[4/3] rounded-lg overflow-hidden border border-border"
-              >
-                <img
-                  src={img}
-                  alt={`${project.title} — ${GALLERY_LABELS[i] || `photo ${i + 1}`}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
-                  width={600}
-                  height={450}
-                />
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors flex items-center justify-center">
-                  <ZoomIn className="h-6 w-6 text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
-                </div>
-                <span className="absolute bottom-2 left-2 text-xs text-primary-foreground bg-foreground/50 backdrop-blur-sm px-2 py-0.5 rounded">
-                  {GALLERY_LABELS[i] || `Photo ${i + 1}`}
-                </span>
+            {project.galleryImages.map((img, i) => (
+              <button key={i} onClick={() => setLightboxImg(img)} className="group relative aspect-[4/3] rounded-lg overflow-hidden border border-border">
+                <img src={img} alt={`${project.title} photo ${i + 1}`} className="w-full h-full object-cover" loading="lazy" />
               </button>
             ))}
           </div>
         </div>
       </section>
+      */}
 
       {/* Related Tools */}
-      <section className="section-padding bg-section-alt">
+      <section className="section-padding bg-background">
         <div className="container-narrow mx-auto">
           <h2 className="font-heading text-2xl font-bold text-foreground mb-2">Planning a Similar Project?</h2>
           <p className="text-muted-foreground mb-6">Use our free tools to estimate costs, check permits, and review common inspection issues.</p>
@@ -218,7 +194,7 @@ export default function ProjectDetail() {
 
       {/* Similar Projects */}
       {similar.length > 0 && (
-        <section className="section-padding bg-background">
+        <section className="section-padding bg-section-alt">
           <div className="container-narrow mx-auto">
             <h2 className="font-heading text-2xl font-bold text-foreground mb-6">Similar Projects</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
