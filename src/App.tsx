@@ -21,6 +21,7 @@ const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const CityLanding = lazy(() => import("./pages/CityLanding"));
 const AdminKB = lazy(() => import("./pages/AdminKB"));
+const AdminChatHistory = lazy(() => import("./pages/AdminChatHistory"));
 const DataHub = lazy(() => import("./pages/DataHub"));
 const Glossary = lazy(() => import("./pages/Glossary"));
 
@@ -56,6 +57,7 @@ const App = () => (
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/kb" element={<AdminKB />} />
+              <Route path="/admin/chats" element={<AdminChatHistory />} />
               <Route path="/data-hub" element={<DataHub />} />
               <Route path="/glossary" element={<Glossary />} />
               <Route path="/:slug" element={<CityLanding />} />

@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.kb-chat]
 verify_jwt = false
+
+[functions.send-chat-transcript]
+verify_jwt = false

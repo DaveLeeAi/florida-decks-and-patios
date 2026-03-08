@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect, useCallback, lazy, Suspense } from "react";
-import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -20,6 +21,9 @@ export default function ChatWidget() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
+  const [showEmailInput, setShowEmailInput] = useState(false);
+  const [emailInput, setEmailInput] = useState("");
+  const [sendingEmail, setSendingEmail] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -165,6 +169,21 @@ export default function ChatWidget() {
           }
         }
       }
+      // Log the assistant response to DB
+      if (assistantSoFar) {
+        const sid = sessionId;
+        if (sid) {
+          const { supabase } = await import("@/integrations/supabase/client");
+          await supabase.from("chat_logs").insert({
+            session_id: sid,
+            role: "assistant",
+            content: assistantSoFar,
+            context_used: [],
+          }).then(({ error }) => {
+            if (error) console.error("Failed to log assistant message:", error);
+          });
+        }
+      }
     } catch (e) {
       console.error("Chat error:", e);
       setMessages((prev) => [
@@ -266,8 +285,56 @@ export default function ChatWidget() {
             <div ref={bottomRef} />
           </div>
 
-          {/* Input */}
-          <div className="p-3 border-t border-border bg-card">
+          {/* Email transcript & Input */}
+          <div className="p-3 border-t border-border bg-card space-y-2">
+            {/* Email transcript row */}
+            {sessionId && messages.length > 1 && !showEmailInput && (
+              <button
+                onClick={() => setShowEmailInput(true)}
+                className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Mail className="h-3 w-3" /> Email me this conversation
+              </button>
+            )}
+            {showEmailInput && (
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  value={emailInput}
+                  onChange={(e) => setEmailInput(e.target.value)}
+                  placeholder="your@email.com"
+                  className="flex-1 bg-muted text-foreground text-xs rounded-lg px-3 py-1.5 border border-border focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-muted-foreground"
+                />
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="text-xs h-7"
+                  disabled={!emailInput.trim() || sendingEmail}
+                  onClick={async () => {
+                    setSendingEmail(true);
+                    try {
+                      const { data, error } = await supabase.functions.invoke("send-chat-transcript", {
+                        body: { sessionId, email: emailInput.trim() },
+                      });
+                      if (error) throw error;
+                      toast.success("Chat transcript prepared! Check the confirmation.");
+                      setShowEmailInput(false);
+                      setEmailInput("");
+                    } catch (e) {
+                      console.error("Email transcript error:", e);
+                      toast.error("Failed to send transcript. Please try again.");
+                    } finally {
+                      setSendingEmail(false);
+                    }
+                  }}
+                >
+                  {sendingEmail ? <Loader2 className="h-3 w-3 animate-spin" /> : "Send"}
+                </Button>
+                <Button size="sm" variant="ghost" className="text-xs h-7" onClick={() => setShowEmailInput(false)}>
+                  ✕
+                </Button>
+              </div>
+            )}
             <form
               onSubmit={(e) => {
                 e.preventDefault();
