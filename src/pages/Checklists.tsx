@@ -181,12 +181,6 @@ export default function Checklists() {
 
   return (
     <Layout>
-      <Helmet>
-        <title>Free Deck Checklists — Inspection, Permit, Reinspection & Contractor | Florida Decks & Patios</title>
-        <meta name="description" content="Download free professional deck checklists: 47-point inspection audit, permit application guide, reinspection prep, and contractor evaluation scorecard for Florida homeowners." />
-        <link rel="canonical" href="https://florida-decks-and-patios.lovable.app/checklists" />
-      </Helmet>
-
       <section className="py-12 md:py-16 bg-muted/30">
         <div className="container-narrow mx-auto px-4 md:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10">

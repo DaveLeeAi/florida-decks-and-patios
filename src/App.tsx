@@ -29,6 +29,7 @@ const CitySeoLanding = lazy(() => import("./pages/CitySeoLanding"));
 const MaterialsHub = lazy(() => import("./pages/MaterialsHub"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Diagrams = lazy(() => import("./pages/Diagrams"));
+const Checklists = lazy(() => import("./pages/Checklists"));
 
 const queryClient = new QueryClient();
 
