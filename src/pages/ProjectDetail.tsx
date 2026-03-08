@@ -102,7 +102,7 @@ export default function ProjectDetail() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
             <OverviewCard icon={Ruler} label="Deck Size" value={project.deckSize} />
             <OverviewCard icon={Layers} label="Materials" value={project.materials} />
-            <OverviewCard icon={Calendar} label="Completed" value={String(project.completionYear)} />
+            <OverviewCard icon={Layers} label="Materials" value={project.materials} />
             <OverviewCard icon={Clock} label="Duration" value={project.duration} />
             <OverviewCard icon={DollarSign} label="Budget Range" value={project.budgetRange} />
             <OverviewCard icon={MapPin} label="Location" value={`${cityDisplay}, FL`} />
