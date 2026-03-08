@@ -55,7 +55,6 @@ export interface Testimonial {
   location: string;
   text: string;
   rating: number;
-  note: string;
 }
 
 export interface TrustBadge {
