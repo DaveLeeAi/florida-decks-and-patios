@@ -90,7 +90,7 @@ export default function HomeValueCalculator({ city }: Props) {
             <div className="text-center">
               <p className="text-xs text-muted-foreground mb-1">Net Impact</p>
               <p className={`text-lg font-bold ${result.netGain >= 0 ? "text-primary" : "text-destructive"}`}>
-                {result.netGain >= 0 ? "-" : "-"}${Math.abs(result.netGain).toLocaleString()}
+                {result.netGain >= 0 ? "+" : "-"}${Math.abs(result.netGain).toLocaleString()}
               </p>
             </div>
           </div>
