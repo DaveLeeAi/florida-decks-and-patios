@@ -38,7 +38,7 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const citySlugs = cityPages.map((c) => `/${c.slug}`);
+  const citySlugs = cityPages.map((c) => `/areas/${c.slug}`);
   const isAreaActive = citySlugs.includes(location.pathname);
 
   const phoneIsPlaceholder = !company.phone || company.phone.includes("PLACEHOLDER");
