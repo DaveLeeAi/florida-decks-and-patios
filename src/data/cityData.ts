@@ -184,6 +184,8 @@ export const cityPages: CityData[] = [
     heroSubheadline: "Luxury decks and outdoor spaces built with salt-air resistant materials — engineered for Sarasota's coastal climate and lifestyle.",
     permitLink: "https://www.scgov.net/government/building-permits",
     permitDepartment: "Sarasota County Building Department",
+    cityMultiplier: 1.05,
+    cityMultiplierLabel: "+5% Coastal Premium",
     permitPhone: "(941) 861-6151",
     climateProfile: {
       primary: "Coastal subtropical with significant salt air exposure",
