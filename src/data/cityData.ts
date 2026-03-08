@@ -70,6 +70,8 @@ export const cityPages: CityData[] = [
     heroSubheadline: "Custom outdoor living spaces engineered for Tampa's climate — built to FBC standards with hurricane-rated hardware.",
     permitLink: "https://www.hillsboroughcounty.org/en/residents/property-owners-and-renters/building-permits",
     permitDepartment: "Hillsborough County Building Services",
+    cityMultiplier: 1.0,
+    cityMultiplierLabel: "Standard Appraisal Lift for Master-Planned Communities",
     permitPhone: "(813) 272-5600",
     climateProfile: {
       primary: "Subtropical humidity with intense summer heat",
