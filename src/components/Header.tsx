@@ -95,9 +95,9 @@ export default function Header() {
                   {cityPages.map((city) => (
                     <Link
                       key={city.slug}
-                      to={`/${city.slug}`}
+                      to={`/areas/${city.slug}`}
                       className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        location.pathname === `/${city.slug}`
+                        location.pathname === `/areas/${city.slug}`
                           ? "text-primary bg-primary/10"
                           : "text-foreground/80 hover:text-primary hover:bg-primary/5"
                       }`}
