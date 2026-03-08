@@ -2,6 +2,7 @@ import { useState } from "react";
 import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { X, ZoomIn } from "lucide-react";
+import BeforeAfterSlider from "@/components/BeforeAfterSlider";
 
 export default function Portfolio() {
   const { portfolioProjects } = useSiteData();
