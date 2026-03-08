@@ -69,12 +69,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-                <li key={l.path}>
-                  <Link to={l.path} className="text-sm text-primary-foreground/70 hover:text-amber transition-colors">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
             </ul>
           </div>
 
