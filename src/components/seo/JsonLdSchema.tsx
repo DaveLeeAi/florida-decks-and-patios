@@ -23,7 +23,7 @@ export function LocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     name: COMPANY.name,
-    description: "Custom deck building, patio installation, and outdoor living spaces in Florida. Licensed, insured, and Florida Building Code compliant.",
+    description: "Referral network connecting homeowners with DBPR-licensed, insured Florida contractors for custom deck building, patio installation, and outdoor living spaces. All contractors verified before project begins.",
     url: "https://backyard-decks.lovable.app",
     telephone: COMPANY.phone,
     email: COMPANY.email,
