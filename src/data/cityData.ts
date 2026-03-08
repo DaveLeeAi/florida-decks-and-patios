@@ -58,7 +58,7 @@ export interface CityData {
 
 export const cityPages: CityData[] = [
   {
-    slug: "tampa-decks",
+    slug: "tampa-bay-decks-patios",
     name: "Tampa Bay",
     county: "Hillsborough / Pasco",
     region: "Central West Florida",
