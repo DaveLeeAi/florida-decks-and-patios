@@ -42,7 +42,7 @@ function DatasetSchema() {
         "@type": "DataDownload",
         encodingFormat: "text/csv",
         contentUrl:
-          "https://backyard-decks.lovable.app/2026-florida-deck-cost-index.csv",
+          "https://florida-decks-and-patios.lovable.app/2026-florida-deck-cost-index.csv",
       },
     ],
     variableMeasured: [
