@@ -173,7 +173,7 @@ export default function CityLanding() {
           <p className="text-muted-foreground mb-6">How different materials perform in {city.name}'s specific climate conditions</p>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
+            <table className="w-full min-w-[700px] text-sm border border-border rounded-lg overflow-hidden">
               <thead>
                 <tr className="bg-muted">
                   <th className="px-4 py-3 text-left font-semibold text-foreground">Material</th>
