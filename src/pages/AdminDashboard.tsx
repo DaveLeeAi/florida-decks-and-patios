@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { useNavigate, Link } from "react-router-dom";
 import { useSiteData, type CompanyInfo, type HeroSlide, type Service, type PortfolioProject, type BlogPost, type Testimonial, type TrustBadge, type NavLink as NavLinkType, type SiteSettings } from "@/contexts/SiteDataContext";
 import { Button } from "@/components/ui/button";
@@ -9,9 +10,13 @@ import { toast } from "sonner";
 function useAdminGuard() {
   const navigate = useNavigate();
   useEffect(() => {
-    if (sessionStorage.getItem("admin_auth") !== "true") {
-      navigate("/admin/login", { replace: true });
-    }
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) navigate("/admin/login", { replace: true });
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session) navigate("/admin/login", { replace: true });
+    });
+    return () => subscription.unsubscribe();
   }, [navigate]);
 }
 
@@ -382,10 +387,10 @@ function ContentTab() {
                 <Field label="Rating (1-5)" value={String(t.rating)} onChange={(v) => setTests(prev => prev.map((s, j) => j === i ? { ...s, rating: Math.min(5, Math.max(1, parseInt(v) || 5)) } : s))} type="number" />
               </div>
               <Field label="Text" value={t.text} onChange={(v) => setTests(prev => prev.map((s, j) => j === i ? { ...s, text: v } : s))} rows={2} />
-              <Field label="Note" value={t.note} onChange={(v) => setTests(prev => prev.map((s, j) => j === i ? { ...s, note: v } : s))} />
+              
             </div>
           ))}
-          <Button variant="outline" size="sm" className="gap-1" onClick={() => setTests(prev => [...prev, { name: "New Reviewer", location: "", text: "", rating: 5, note: "" }])}>
+          <Button variant="outline" size="sm" className="gap-1" onClick={() => setTests(prev => [...prev, { name: "New Reviewer", location: "", text: "", rating: 5 }])}>
             <Plus className="h-4 w-4" /> Add Testimonial
           </Button>
           <div><SaveButton onClick={() => { updateTestimonials(tests); toast.success("Testimonials saved!"); }} /></div>
@@ -459,8 +464,8 @@ export default function AdminDashboard() {
   useAdminGuard();
   const navigate = useNavigate();
 
-  const logout = () => {
-    sessionStorage.removeItem("admin_auth");
+  const logout = async () => {
+    await supabase.auth.signOut();
     navigate("/admin/login");
   };
 

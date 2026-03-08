@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, useCallback, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, useEffect, useRef, ReactNode } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import * as defaults from "@/data/siteData";
 
 // Types
@@ -55,7 +56,6 @@ export interface Testimonial {
   location: string;
   text: string;
   rating: number;
-  note: string;
 }
 
 export interface TrustBadge {
@@ -121,19 +121,13 @@ function getInitialData(): SiteData {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
       const parsed = JSON.parse(stored);
-      return {
-        company: parsed.company ?? defaults.COMPANY,
-        heroSlides: parsed.heroSlides ?? defaults.heroSlides,
-        services: parsed.services ?? defaults.services,
-        portfolioProjects: parsed.portfolioProjects ?? defaults.portfolioProjects,
-        blogPosts: parsed.blogPosts ?? defaults.blogPosts,
-        testimonials: parsed.testimonials ?? defaults.testimonials,
-        trustBadges: parsed.trustBadges ?? defaults.trustBadges,
-        navLinks: parsed.navLinks ?? defaultNavLinks,
-        settings: parsed.settings ?? defaultSettings,
-      };
+      return parseSiteData(parsed);
     }
   } catch {}
+  return getDefaults();
+}
+
+function getDefaults(): SiteData {
   return {
     company: defaults.COMPANY,
     heroSlides: defaults.heroSlides as HeroSlide[],
@@ -147,28 +141,56 @@ function getInitialData(): SiteData {
   };
 }
 
+function parseSiteData(parsed: any): SiteData {
+  const d = getDefaults();
+  return {
+    company: parsed.company ?? d.company,
+    heroSlides: parsed.heroSlides ?? d.heroSlides,
+    services: parsed.services ?? d.services,
+    portfolioProjects: parsed.portfolioProjects ?? d.portfolioProjects,
+    blogPosts: parsed.blogPosts ?? d.blogPosts,
+    testimonials: parsed.testimonials ?? d.testimonials,
+    trustBadges: parsed.trustBadges ?? d.trustBadges,
+    navLinks: parsed.navLinks ?? d.navLinks,
+    settings: parsed.settings ?? d.settings,
+  };
+}
+
 const SiteDataContext = createContext<SiteDataContextType | null>(null);
 
 export function SiteDataProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<SiteData>(getInitialData);
+  const initialLoadDone = useRef(false);
+
+  // On mount: try to load from Supabase first, then fall back to localStorage / defaults
+  useEffect(() => {
+    async function loadFromCloud() {
+      try {
+        const { data: row } = await supabase
+          .from("site_config")
+          .select("data")
+          .eq("id", "main")
+          .maybeSingle();
+
+        if (row?.data && typeof row.data === "object") {
+          const cloudData = parseSiteData(row.data as any);
+          setData(cloudData);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudData));
+        }
+      } catch {
+        // Supabase not available — localStorage / defaults already loaded
+      }
+      initialLoadDone.current = true;
+    }
+    loadFromCloud();
+  }, []);
 
   // Cross-tab sync: listen for localStorage changes from other tabs
   useEffect(() => {
     const onStorage = (e: StorageEvent) => {
       if (e.key === STORAGE_KEY && e.newValue) {
         try {
-          const parsed = JSON.parse(e.newValue);
-          setData({
-            company: parsed.company ?? defaults.COMPANY,
-            heroSlides: parsed.heroSlides ?? defaults.heroSlides as HeroSlide[],
-            services: parsed.services ?? defaults.services as Service[],
-            portfolioProjects: parsed.portfolioProjects ?? defaults.portfolioProjects as PortfolioProject[],
-            blogPosts: parsed.blogPosts ?? defaults.blogPosts as BlogPost[],
-            testimonials: parsed.testimonials ?? defaults.testimonials as Testimonial[],
-            trustBadges: parsed.trustBadges ?? defaults.trustBadges as TrustBadge[],
-            navLinks: parsed.navLinks ?? defaultNavLinks,
-            settings: parsed.settings ?? defaultSettings,
-          });
+          setData(parseSiteData(JSON.parse(e.newValue)));
         } catch {}
       }
     };
@@ -180,6 +202,14 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
     setData(prev => {
       const n = { ...prev, [key]: value };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(n));
+      // Also upsert to Supabase (fire-and-forget)
+      supabase.from("site_config").upsert({
+        id: "main",
+        data: n as any,
+        updated_at: new Date().toISOString(),
+      }).then(({ error }) => {
+        if (error) console.warn("site_config upsert failed (may need auth):", error.message);
+      });
       return n;
     });
   }, []);

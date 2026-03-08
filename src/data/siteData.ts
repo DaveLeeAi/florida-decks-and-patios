@@ -21,13 +21,18 @@ import portfolio15 from "@/assets/portfolio-15.jpg";
 
 export const COMPANY = {
   name: "Florida Decks and Patios",
-  phone: "555-238-9102",
-  phoneDisplay: "(555) 238-9102",
-  email: "hello@floridadecksandpatios.com",
-  address: "1425 Oakwood Trail, Suite 200",
-  city: "Tampa",
-  state: "FL",
-  zip: "33601",
+  // TODO: Replace with real phone number before launch
+  phone: "[PHONE_PLACEHOLDER]",
+  // TODO: Replace with real phone display before launch
+  phoneDisplay: "[PHONE_PLACEHOLDER]",
+  // TODO: Replace with real email before launch
+  email: "[EMAIL_PLACEHOLDER]",
+  // TODO: Replace with real address before launch
+  address: "[ADDRESS_PLACEHOLDER]",
+  // TODO: Replace with real city, state, zip before launch
+  city: "",
+  state: "",
+  zip: "",
   tagline: "Crafting Your Perfect Outdoor Space",
 };
 
@@ -549,26 +554,24 @@ export const testimonials = [
     location: "Tampa, FL",
     text: "They transformed our backyard into an outdoor oasis. The composite deck is beautiful and we love that it requires zero maintenance. Highly recommend!",
     rating: 5,
-    note: "Sample testimonial for demonstration purposes",
   },
   {
     name: "James & Linda K.",
     location: "Sarasota, FL",
     text: "Professional from start to finish. They handled all the permits and HOA paperwork, which was a huge relief. The deck looks even better than the 3D preview they showed us.",
     rating: 5,
-    note: "Sample testimonial for demonstration purposes",
   },
   {
     name: "David R.",
     location: "Orlando, FL",
     text: "Our outdoor kitchen has completely changed how we entertain. The quality of materials and craftsmanship is outstanding. Worth every penny.",
     rating: 5,
-    note: "Sample testimonial for demonstration purposes",
   },
 ];
 
 export const trustBadges = [
-  { icon: "Shield", title: "Licensed & Insured", text: "Fully licensed and insured for your protection" },
+  // TODO: Replace [LICENSE_PLACEHOLDER] with real Florida contractor license number before launch
+  { icon: "Shield", title: "Licensed & Insured", text: "Florida Licensed Contractor | License # [LICENSE_PLACEHOLDER] — verify at myfloridalicense.com" },
   { icon: "Award", title: "5-Year Workmanship Warranty", text: "We stand behind every project we build" },
   { icon: "FileCheck", title: "Permit & HOA Experts", text: "We handle all the paperwork for you" },
   { icon: "Users", title: "Local Crew", text: "Experienced local craftsmen who care about your community" },

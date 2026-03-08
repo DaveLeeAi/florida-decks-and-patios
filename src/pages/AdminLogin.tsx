@@ -1,25 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Lock, User } from "lucide-react";
-
-const ADMIN_USER = "admin";
-const ADMIN_PASS = "Password123456!!!";
+import { Lock, Mail, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function AdminLogin() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // If already logged in, redirect
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) navigate("/admin/dashboard", { replace: true });
+    });
+  }, [navigate]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === ADMIN_USER && password === ADMIN_PASS) {
-      sessionStorage.setItem("admin_auth", "true");
-      navigate("/admin/dashboard");
-    } else {
-      setError("Invalid credentials");
+    setLoading(true);
+    setError("");
+
+    const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
+
+    setLoading(false);
+
+    if (authError) {
+      setError(authError.message);
+      return;
     }
+
+    navigate("/admin/dashboard");
   };
 
   return (
@@ -34,20 +47,22 @@ export default function AdminLogin() {
         </div>
 
         <form onSubmit={handleSubmit} className="bg-card rounded-lg border border-border p-6 space-y-4 shadow-xl">
+          <p className="text-xs text-muted-foreground text-center">Admin access requires an authorized account with write permissions.</p>
           {error && (
             <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md text-center">{error}</div>
           )}
           <div>
-            <label className="block text-sm font-medium text-foreground mb-1.5">Username</label>
+            <label className="block text-sm font-medium text-foreground mb-1.5">Email</label>
             <div className="relative">
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-md border border-input bg-background pl-10 pr-3 py-2.5 text-sm text-foreground"
-                placeholder="admin"
+                placeholder="admin@example.com"
                 required
-                maxLength={50}
+                maxLength={255}
               />
             </div>
           </div>
@@ -66,8 +81,8 @@ export default function AdminLogin() {
               />
             </div>
           </div>
-          <Button type="submit" className="w-full bg-amber text-charcoal hover:bg-amber-dark font-bold">
-            Sign In
+          <Button type="submit" disabled={loading} className="w-full bg-amber text-charcoal hover:bg-amber-dark font-bold">
+            {loading ? <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Signing in...</> : "Sign In"}
           </Button>
         </form>
       </div>
