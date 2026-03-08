@@ -685,7 +685,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Key West represents the most challenging and rewarding outdoor living market in Florida.",
   },
   {
-    slug: "pensacola-decks",
+    slug: "pensacola-decks-patios",
     name: "Pensacola",
     county: "Escambia County",
     region: "Northwest Florida",
