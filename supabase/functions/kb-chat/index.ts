@@ -37,63 +37,22 @@ serve(async (req) => {
       });
     }
 
-    // 1. Generate embedding for the user's question
-    const embeddingResponse = await fetch(
-      "https://ai.gateway.lovable.dev/v1/embeddings",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${LOVABLE_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "text-embedding-3-small",
-          input: message,
-        }),
-      }
-    );
+    // 1. Fetch all knowledge entries as context (no embeddings needed)
+    const { data: entries, error: fetchError } = await supabase
+      .from("knowledge_entries")
+      .select("content")
+      .order("created_at", { ascending: false })
+      .limit(20);
 
-    if (!embeddingResponse.ok) {
-      const errText = await embeddingResponse.text();
-      if (embeddingResponse.status === 429) {
-        return new Response(JSON.stringify({ error: "Rate limit exceeded. Please try again in a moment." }), {
-          status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
-      }
-      if (embeddingResponse.status === 402) {
-        return new Response(JSON.stringify({ error: "Service temporarily unavailable. Please try again later." }), {
-          status: 402, headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
-      }
-      throw new Error(`Embedding failed: ${errText}`);
+    if (fetchError) {
+      console.error("Knowledge fetch error:", fetchError);
     }
 
-    const embeddingData = await embeddingResponse.json();
-    const queryEmbedding = embeddingData.data[0].embedding;
+    const contextText = entries && entries.length > 0
+      ? entries.map((e: { content: string }) => e.content).join("\n\n---\n\n")
+      : "No knowledge base entries found.";
 
-    // 2. Search knowledge base for relevant context
-    const { data: matches, error: matchError } = await supabase.rpc(
-      "match_knowledge_entries",
-      {
-        query_embedding: queryEmbedding,
-        match_threshold: 0.3,
-        match_count: 3,
-      }
-    );
-
-    if (matchError) {
-      console.error("Match error:", matchError);
-    }
-
-    const contextChunks = (matches || []).map(
-      (m: { content: string; similarity: number }) =>
-        `[Relevance: ${(m.similarity * 100).toFixed(0)}%] ${m.content}`
-    );
-    const contextText = contextChunks.length > 0
-      ? contextChunks.join("\n\n---\n\n")
-      : "No relevant context found in the knowledge base.";
-
-    // 3. Build messages for AI
+    // 2. Build messages for AI
     const messages = [
       { role: "system", content: SYSTEM_PROMPT },
       {
@@ -112,7 +71,7 @@ serve(async (req) => {
 
     messages.push({ role: "user", content: message });
 
-    // 4. Call AI for response (streaming)
+    // 3. Call AI for response (streaming)
     const aiResponse = await fetch(
       "https://ai.gateway.lovable.dev/v1/chat/completions",
       {
@@ -144,23 +103,20 @@ serve(async (req) => {
       throw new Error(`AI error [${aiResponse.status}]: ${errText}`);
     }
 
-    // 5. Log user message
+    // 4. Log user message
     const sid = sessionId || crypto.randomUUID();
     await supabase.from("chat_logs").insert({
       session_id: sid,
       role: "user",
       content: message,
-      context_used: matches?.map((m: { id: string; similarity: number }) => ({
-        id: m.id,
-        similarity: m.similarity,
-      })) || [],
+      context_used: [],
     });
 
     // Stream back with session info header
     const headers = new Headers(corsHeaders);
     headers.set("Content-Type", "text/event-stream");
     headers.set("X-Session-Id", sid);
-    headers.set("X-Has-Context", contextChunks.length > 0 ? "true" : "false");
+    headers.set("X-Has-Context", entries && entries.length > 0 ? "true" : "false");
 
     return new Response(aiResponse.body, { headers });
   } catch (e) {
