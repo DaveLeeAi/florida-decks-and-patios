@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { Phone, Menu, X, ChevronDown, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cityPages } from "@/data/cityData";
+import { citySeoPages } from "@/data/citySeoData";
 
 
 export default function Header() {
