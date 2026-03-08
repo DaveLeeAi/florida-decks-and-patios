@@ -46,8 +46,22 @@ export default function Footer() {
                 { label: "Blog", path: "/blog" },
                 { label: "Project Estimator", path: "/tools" },
                 { label: "Contact Us", path: "/contact" },
-                { label: "Privacy Policy", path: "/privacy" },
-                { label: "Terms of Service", path: "/terms" },
+              ].map((l) => (
+                <li key={l.path}>
+                  <Link to={l.path} className="text-sm text-primary-foreground/70 hover:text-amber transition-colors">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <h3 className="font-heading font-semibold text-lg mt-6 mb-3">Service Areas</h3>
+            <ul className="space-y-2">
+              {[
+                { label: "Tampa Bay", path: "/tampa-decks" },
+                { label: "Orlando", path: "/orlando-patios" },
+                { label: "Sarasota", path: "/sarasota-outdoor-living" },
+                { label: "Jacksonville", path: "/jacksonville-decks" },
+                { label: "Ocala", path: "/ocala-outdoor-living" },
               ].map((l) => (
                 <li key={l.path}>
                   <Link to={l.path} className="text-sm text-primary-foreground/70 hover:text-amber transition-colors">
