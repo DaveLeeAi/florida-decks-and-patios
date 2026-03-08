@@ -45,9 +45,12 @@ export default function Tools() {
           </Alert>
 
           {/* Calculators */}
-          <div className="space-y-8">
+          <div className="space-y-8" id="budget">
             <BudgetEstimator />
-            <RepairChecker />
+            <PermitChecker />
+            <div id="repair">
+              <RepairChecker />
+            </div>
           </div>
 
           {/* ═══ Inspection Failure Explainer Section ═══ */}
