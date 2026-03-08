@@ -1,0 +1,7 @@
+project_id = "gpmwnsgozuhdnclhokuw"
+
+[functions.kb-embed]
+verify_jwt = false
+
+[functions.kb-chat]
+verify_jwt = false
