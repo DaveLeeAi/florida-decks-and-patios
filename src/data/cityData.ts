@@ -64,7 +64,7 @@ export const cityPages: CityData[] = [
     region: "Central West Florida",
     tagline: "Volume Leader in Outdoor Living",
     metaTitle: "Tampa Deck Builders | Custom Decks & Patios in Tampa Bay FL",
-    metaDescription: "Tampa's top-rated deck builder. Custom composite & wood decks built to Florida Building Code. See local costs, permits, and project photos for Hillsborough County.",
+    metaDescription: "Build a custom Tampa deck designed for 2026 climate trends. Get real-time Hillsborough/Pasco permit links, current wood vs. composite cost-per-sq-ft ($45-$110), and expert tips for humidity-resistant outdoor living.",
     focusKeyword: "deck builder Tampa",
     heroHeadline: "Tampa Bay's Trusted Deck & Patio Experts",
     heroSubheadline: "Custom outdoor living spaces engineered for Tampa's climate — built to FBC standards with hurricane-rated hardware.",
