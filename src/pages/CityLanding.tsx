@@ -1,9 +1,9 @@
 import { useParams, Navigate, Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { getCityBySlug, cityPages } from "@/data/cityData";
-import { COMPANY } from "@/data/siteData";
+import { COMPANY, blogPosts } from "@/data/siteData";
 import { Button } from "@/components/ui/button";
-import { MapPin, ExternalLink, Phone, Shield, Thermometer, Droplets, Wind, Sun, ArrowRight } from "lucide-react";
+import { MapPin, ExternalLink, Phone, Shield, Thermometer, Droplets, Wind, Sun, ArrowRight, BookOpen } from "lucide-react";
 import HomeValueCalculator from "@/components/city/HomeValueCalculator";
 import { FAQSchema, CityServiceSchema, LocalBusinessSchema, HowToSchema } from "@/components/seo/JsonLdSchema";
 import { useEffect } from "react";
@@ -111,7 +111,7 @@ export default function CityLanding() {
           <p className="text-muted-foreground mb-8">Average installed costs for the {city.county} market</p>
 
           <div className="overflow-x-auto mb-8">
-            <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
+            <table className="w-full min-w-[600px] text-sm border border-border rounded-lg overflow-hidden">
               <thead>
                 <tr className="bg-muted">
                   <th className="px-4 py-3 text-left font-semibold text-foreground">Material</th>
@@ -173,7 +173,7 @@ export default function CityLanding() {
           <p className="text-muted-foreground mb-6">How different materials perform in {city.name}'s specific climate conditions</p>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
+            <table className="w-full min-w-[700px] text-sm border border-border rounded-lg overflow-hidden">
               <thead>
                 <tr className="bg-muted">
                   <th className="px-4 py-3 text-left font-semibold text-foreground">Material</th>
@@ -284,6 +284,34 @@ export default function CityLanding() {
                 <strong className="text-foreground">We handle everything:</strong> Florida Decks and Patios manages all permitting, plan submissions, inspections, and HOA coordination for every {city.name} project at no additional charge.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Expert Guides — Topic Cluster Links */}
+      <section className="section-padding bg-section-alt">
+        <div className="container-narrow mx-auto">
+          <div className="flex items-center gap-3 mb-6">
+            <BookOpen className="h-6 w-6 text-primary" />
+            <h2 className="font-heading text-xl md:text-2xl font-bold text-foreground">
+              Expert Guides for {city.name} Homeowners
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {blogPosts.slice(0, 3).map((post) => (
+              <Link
+                key={post.slug}
+                to={`/blog/${post.slug}`}
+                className="group bg-card rounded-lg border border-border p-5 hover:border-primary/30 hover:shadow-md transition-all"
+              >
+                <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">{post.category}</span>
+                <h3 className="font-heading font-semibold text-foreground group-hover:text-primary transition-colors text-sm mt-3 mb-2 line-clamp-2">{post.title}</h3>
+                <p className="text-xs text-muted-foreground line-clamp-2">{post.excerpt}</p>
+                <span className="text-xs text-primary font-medium flex items-center gap-1 mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  Read Guide <ArrowRight className="h-3 w-3" />
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

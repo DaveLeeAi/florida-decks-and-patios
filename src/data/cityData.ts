@@ -12,6 +12,8 @@ export interface CityData {
   permitLink: string;
   permitDepartment: string;
   permitPhone: string;
+  cityMultiplier: number;
+  cityMultiplierLabel: string;
   climateProfile: {
     primary: string;
     humidity: string;
@@ -68,6 +70,8 @@ export const cityPages: CityData[] = [
     heroSubheadline: "Custom outdoor living spaces engineered for Tampa's climate — built to FBC standards with hurricane-rated hardware.",
     permitLink: "https://www.hillsboroughcounty.org/en/residents/property-owners-and-renters/building-permits",
     permitDepartment: "Hillsborough County Building Services",
+    cityMultiplier: 1.0,
+    cityMultiplierLabel: "Standard Appraisal Lift for Master-Planned Communities",
     permitPhone: "(813) 272-5600",
     climateProfile: {
       primary: "Subtropical humidity with intense summer heat",
@@ -123,6 +127,8 @@ export const cityPages: CityData[] = [
     heroSubheadline: "Family-friendly outdoor spaces designed for Central Florida's year-round lifestyle — permitted and built to code in Orange County.",
     permitLink: "https://www.orangecountyfl.net/BuildingPermitting.aspx",
     permitDepartment: "Orange County Building Division",
+    cityMultiplier: 1.03,
+    cityMultiplierLabel: "+3% Outdoor Living Bonus",
     permitPhone: "(407) 836-5540",
     climateProfile: {
       primary: "Inland subtropical with heavy summer rainfall",
@@ -178,6 +184,8 @@ export const cityPages: CityData[] = [
     heroSubheadline: "Luxury decks and outdoor spaces built with salt-air resistant materials — engineered for Sarasota's coastal climate and lifestyle.",
     permitLink: "https://www.scgov.net/government/building-permits",
     permitDepartment: "Sarasota County Building Department",
+    cityMultiplier: 1.05,
+    cityMultiplierLabel: "+5% Coastal Premium",
     permitPhone: "(941) 861-6151",
     climateProfile: {
       primary: "Coastal subtropical with significant salt air exposure",
@@ -233,6 +241,8 @@ export const cityPages: CityData[] = [
     heroSubheadline: "Military-family-friendly deck building with maximum ROI — engineered for Northeast Florida's climate and built to last.",
     permitLink: "https://jaxepics.coj.net",
     permitDepartment: "City of Jacksonville Building Inspection Division",
+    cityMultiplier: 1.0,
+    cityMultiplierLabel: "Standard Appraisal Lift",
     permitPhone: "(904) 255-7800",
     climateProfile: {
       primary: "Northern subtropical with moderate coastal influence",
@@ -288,6 +298,8 @@ export const cityPages: CityData[] = [
     heroSubheadline: "Quality outdoor living spaces at North Central Florida's best prices — perfect for new builds, first-time homeowners, and retirement communities.",
     permitLink: "https://www.marioncountyfl.org/departments-agencies/building-safety",
     permitDepartment: "Marion County Building Safety",
+    cityMultiplier: 1.0,
+    cityMultiplierLabel: "Standard ROI",
     permitPhone: "(352) 438-2400",
     climateProfile: {
       primary: "Inland north-central subtropical with moderate conditions",
