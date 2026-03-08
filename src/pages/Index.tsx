@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import HeroSlider from "@/components/HeroSlider";
 import { useSiteData } from "@/contexts/SiteDataContext";
@@ -27,6 +28,11 @@ export default function Index() {
 
   return (
     <Layout>
+      <Helmet>
+        <title>Florida Decks and Patios | Custom Deck Builders Across Florida</title>
+        <meta name="description" content="Florida's premier deck and patio referral network. Connect with licensed, insured contractors for custom decks, patios, pergolas, and outdoor kitchens." />
+        <link rel="canonical" href="https://florida-decks-and-patios.lovable.app/" />
+      </Helmet>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -43,6 +44,11 @@ export default function BlogPost() {
 
   return (
     <Layout>
+      <Helmet>
+        <title>{post.title} | Florida Decks and Patios</title>
+        <meta name="description" content={post.excerpt} />
+        <link rel="canonical" href={`https://florida-decks-and-patios.lovable.app/blog/${post.slug}`} />
+      </Helmet>
       <TechArticleSchema
         title={post.title}
         description={post.excerpt}
