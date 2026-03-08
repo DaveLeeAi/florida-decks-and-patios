@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
+import RelatedContent from "@/components/RelatedContent";
 
 export default function Blog() {
   const { blogPosts } = useSiteData();
@@ -40,6 +41,8 @@ export default function Blog() {
               </Link>
             ))}
           </div>
+
+          <RelatedContent topics={["general", "design", "materials"]} title="Explore More" maxLinks={4} className="mt-10" />
         </div>
       </section>
     </Layout>

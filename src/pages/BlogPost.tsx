@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import ExpertCredentials from "@/components/ExpertCredentials";
+import RelatedContent from "@/components/RelatedContent";
 import { TechArticleSchema } from "@/components/seo/JsonLdSchema";
 import { Button } from "@/components/ui/button";
 
@@ -161,6 +162,9 @@ export default function BlogPost() {
               </div>
             </div>
           )}
+
+          {/* Related Resources */}
+          <RelatedContent topics={["general", "materials", "costs"]} title="Helpful Resources" maxLinks={4} className="mt-8" />
 
           {/* Bottom CTA */}
           <div className="mt-12 rounded-lg border border-primary/20 bg-primary/5 p-6 sm:p-8 text-center space-y-3">
