@@ -20,11 +20,11 @@ function DatasetSchema() {
     name: "2026 Florida Deck Construction & ROI Cost Index",
     description:
       "Proprietary dataset providing hyper-local 2026 construction costs, permit lead times, maintenance requirements, and ROI percentages for deck projects across Florida's East and West coasts, Central, and Inland regions.",
-    url: "https://backyard-decks.lovable.app/data-hub",
+    url: "https://florida-decks-and-patios.lovable.app/data-hub",
     creator: {
       "@type": "Organization",
       name: "Florida Decks and Patios",
-      url: "https://backyard-decks.lovable.app",
+      url: "https://florida-decks-and-patios.lovable.app",
     },
     datePublished: "2026-01-01",
     dateModified: "2026-03-08",
