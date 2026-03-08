@@ -229,7 +229,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Sarasota and Venice represent Florida's premium outdoor living market. Homeowners here expect resort-quality materials and finishes, and the coastal environment demands them.\n\nAfter Hurricanes Ian (2022) and Milton (2024), Sarasota County has significantly tightened enforcement of building codes for outdoor structures. This creates both challenges and opportunities:\n\n- **Post-hurricane rebuilding surge**: Many homes need new or rebuilt decks, creating high contractor demand and the opportunity to upgrade to modern, storm-resistant designs\n- **Salt-air material selection**: PVC decking (like AZEK and TimberTech Advanced PVC) is the #1 recommended material for Sarasota coastal properties due to zero moisture absorption and complete salt resistance\n- **Premium design expectations**: Sarasota clients typically request cable railings for view preservation, integrated lighting, and multi-zone layouts for entertaining\n- **Stricter wind engineering**: Coastal Sarasota projects routinely require stamped engineering drawings rated for 140–150+ mph winds, adding $1,500–$3,000 to project costs\n- **Flood zone compliance**: Many Sarasota properties fall within FEMA flood zones, requiring elevated deck designs that meet Base Flood Elevation (BFE) requirements",
   },
   {
-    slug: "jacksonville-decks",
+    slug: "jacksonville-decks-patios",
     name: "Jacksonville",
     county: "St. Johns / Duval County",
     region: "Northeast Florida",
