@@ -32,6 +32,7 @@ const MaterialsHub = lazy(() => import("./pages/MaterialsHub"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Diagrams = lazy(() => import("./pages/Diagrams"));
 const Checklists = lazy(() => import("./pages/Checklists"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ const App = () => (
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/kb" element={<AdminKB />} />
               <Route path="/admin/chats" element={<AdminChatHistory />} />
