@@ -304,7 +304,7 @@ export default function CityLanding() {
               </Button>
             </Link>
             <a href={`tel:${COMPANY.phone}`}>
-              <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-semibold">
+              <Button size="lg" className="bg-transparent border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10 font-semibold">
                 <Phone className="h-4 w-4 mr-2" />
                 Call {COMPANY.phoneDisplay}
               </Button>
