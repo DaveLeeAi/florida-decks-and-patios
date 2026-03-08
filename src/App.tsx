@@ -29,6 +29,7 @@ const CitySeoLanding = lazy(() => import("./pages/CitySeoLanding"));
 const MaterialsHub = lazy(() => import("./pages/MaterialsHub"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Diagrams = lazy(() => import("./pages/Diagrams"));
+const Checklists = lazy(() => import("./pages/Checklists"));
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,7 @@ const App = () => (
               <Route path="/materials" element={<MaterialsHub />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/diagrams" element={<Diagrams />} />
+              <Route path="/checklists" element={<Checklists />} />
               <Route path="/city/:citySlug" element={<CitySeoLanding />} />
               <Route path="/city/:citySlug/:serviceSlug" element={<CitySeoLanding />} />
               <Route path="/:slug" element={<CityLanding />} />
