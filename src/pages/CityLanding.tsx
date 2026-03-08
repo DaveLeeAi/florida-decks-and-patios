@@ -59,7 +59,7 @@ export default function CityLanding() {
               </Button>
             </Link>
             <a href={city.permitLink} target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-semibold">
+              <Button size="lg" className="bg-transparent border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10 font-semibold">
                 <ExternalLink className="h-4 w-4 mr-2" />
                 {city.county} Permits
               </Button>
