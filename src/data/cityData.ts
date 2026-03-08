@@ -172,7 +172,7 @@ export const cityPages: CityData[] = [
     uniqueContent: "Orlando's explosive population growth — over 1,000 new residents per week — creates unique opportunities and challenges for outdoor living projects. The city's family-centric demographics drive demand for practical, multi-functional deck designs that serve daily life, not just weekend entertaining.\n\nKey Orlando market characteristics:\n\n- **Zoning-conscious layouts**: Orange County's residential zoning requires careful setback planning, especially on smaller lots in communities like Lake Nona, Horizon West, and Windermere\n- **Sustainable material demand**: Orlando homeowners increasingly request eco-friendly composite options made from recycled materials, aligning with the city's sustainability initiatives\n- **Family-first design**: Play-safe surfaces, built-in gates for toddler safety, and covered homework/remote-work zones are common Orlando-specific requests\n- **HOA integration**: Many Orlando communities require architectural review — we handle all coordination as part of our project process",
   },
   {
-    slug: "sarasota-outdoor-living",
+    slug: "sarasota-venice-decks-patios",
     name: "Sarasota / Venice",
     county: "Sarasota County",
     region: "Southwest Florida",
