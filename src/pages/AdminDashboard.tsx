@@ -475,6 +475,13 @@ export default function AdminDashboard() {
             </Link>
             <span className="text-border">|</span>
             <span className="font-heading font-bold text-foreground">Admin Dashboard</span>
+            <span className="text-border">|</span>
+            <Link to="/admin/chats" className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1">
+              Chat History
+            </Link>
+            <Link to="/admin/kb" className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1">
+              Knowledge Base
+            </Link>
           </div>
           <Button variant="ghost" size="sm" className="text-muted-foreground gap-1" onClick={logout}>
             <LogOut className="h-4 w-4" /> Logout
