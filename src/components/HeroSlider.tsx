@@ -56,7 +56,7 @@ export default function HeroSlider() {
       aria-label="Featured outdoor living projects"
     >
       {heroSlides.map((s, i) => (
-        <div key={i} className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${i === current ? "opacity-100" : "opacity-0"}`} aria-hidden={i !== current}>
+        <div key={i} className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${i === current ? "opacity-100" : "opacity-0"}`} aria-hidden={i !== current}>
           <img
             key={i === current ? `kb-${current}-${Date.now()}` : `img-${i}`}
             src={s.image}
