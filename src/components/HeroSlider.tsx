@@ -17,10 +17,6 @@ export default function HeroSlider() {
   }, []);
 
   const goTo = useCallback((index: number) => {
-    if (!prefersReducedMotion.current) {
-      setIsFlashing(true);
-      setTimeout(() => setIsFlashing(false), 400);
-    }
     setCurrent(index);
   }, []);
 
