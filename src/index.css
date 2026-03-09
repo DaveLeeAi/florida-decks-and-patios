@@ -142,12 +142,12 @@
     transform: scale(1.0);
   }
   100% {
-    transform: scale(1.08);
+    transform: scale(1.05);
   }
 }
 
 .animate-ken-burns {
-  animation: kenBurns 14s ease-in-out forwards;
+  animation: kenBurns 18s ease-in-out forwards;
   will-change: transform;
   transform-origin: center center;
 }

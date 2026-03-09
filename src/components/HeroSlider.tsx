@@ -17,10 +17,6 @@ export default function HeroSlider() {
   }, []);
 
   const goTo = useCallback((index: number) => {
-    if (!prefersReducedMotion.current) {
-      setIsFlashing(true);
-      setTimeout(() => setIsFlashing(false), 400);
-    }
     setCurrent(index);
   }, []);
 
@@ -34,7 +30,7 @@ export default function HeroSlider() {
 
   useEffect(() => {
     if (isPaused) return;
-    timerRef.current = setInterval(next, 14000);
+    timerRef.current = setInterval(next, 18000);
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [next, isPaused]);
 
@@ -56,7 +52,7 @@ export default function HeroSlider() {
       aria-label="Featured outdoor living projects"
     >
       {heroSlides.map((s, i) => (
-        <div key={i} className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${i === current ? "opacity-100" : "opacity-0"}`} aria-hidden={i !== current}>
+        <div key={i} className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${i === current ? "opacity-100" : "opacity-0"}`} aria-hidden={i !== current}>
           <img
             key={i === current ? `kb-${current}-${Date.now()}` : `img-${i}`}
             src={s.image}
@@ -69,7 +65,7 @@ export default function HeroSlider() {
 
       <div className="absolute inset-0 bg-charcoal/55" />
 
-      {isFlashing && <div className="absolute inset-0 hero-flash bg-warm-white/20 pointer-events-none z-10" />}
+      
 
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
         <h1 key={`h-${current}`} className="font-heading font-bold text-sm md:text-base lg:text-lg text-primary-foreground mb-1 md:mb-2 animate-fade-in-up" style={{ animationDuration: "0.5s" }}>
