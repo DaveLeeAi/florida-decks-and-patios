@@ -65,7 +65,7 @@ export default function HeroSlider() {
 
       <div className="absolute inset-0 bg-charcoal/55" />
 
-      {isFlashing && <div className="absolute inset-0 hero-flash bg-warm-white/20 pointer-events-none z-10" />}
+      
 
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4">
         <h1 key={`h-${current}`} className="font-heading font-bold text-sm md:text-base lg:text-lg text-primary-foreground mb-1 md:mb-2 animate-fade-in-up" style={{ animationDuration: "0.5s" }}>
